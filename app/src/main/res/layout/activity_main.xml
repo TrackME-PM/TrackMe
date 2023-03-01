@@ -2,17 +2,119 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/grey"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Test Message"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
 
+        <LinearLayout
+            android:layout_width="368dp"
+            android:layout_height="580dp"
+            android:layout_margin="20dp"
+            android:orientation="vertical"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="129dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageIcon"
+                    android:layout_width="24dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="20dp"
+                    app:srcCompat="@drawable/ic_launcher_background" />
+
+                <TextView
+                    android:id="@+id/textViewApp"
+                    android:layout_width="163dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:padding="20dp"
+                    android:text="TrackME"
+                    android:textAlignment="center"
+                    android:textSize="34sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="46dp" />
+
+            <TextView
+                android:id="@+id/textViewUserName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="UserName" />
+
+            <EditText
+                android:id="@+id/usernameTextEdit"
+                android:layout_width="348dp"
+                android:layout_height="59dp"
+                android:layout_margin="10dp"
+                android:ems="10"
+                android:hint="Enter UserName"
+                android:inputType="textPersonName" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <TextView
+                android:id="@+id/textViewPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Password" />
+
+            <EditText
+                android:id="@+id/passwordTextEdit"
+                android:layout_width="match_parent"
+                android:layout_height="61dp"
+                android:layout_margin="10dp"
+                android:ems="10"
+                android:hint="Enter Password"
+                android:inputType="textPassword"
+                android:padding="10dp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="73dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/logInBtn"
+                    android:layout_width="120dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/button_radius"
+                    android:onClick="openHomePage"
+                    android:textSize="16sp"
+                    android:text="LOGIN" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

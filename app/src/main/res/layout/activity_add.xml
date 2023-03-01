@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/grey"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddActivity">
+    <LinearLayout
+        android:padding="10dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <ImageView
+                    android:id="@+id/backBtn"
+                    android:src="@drawable/back_btn"
+                    android:backgroundTint="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                </ImageView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="New Transaction"
+                    android:textSize="20dp">
+
+                </TextView>
+
+            </RelativeLayout>
+            <LinearLayout
+
+                android:layout_marginTop="150dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="Amount"
+                    android:textSize="16dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                </TextView>
+
+                <EditText
+                    android:id="@+id/amount"
+                    android:background="@drawable/stroke"
+                    android:layout_width="match_parent"
+                    android:paddingLeft="10dp"
+                    android:inputType="number"
+                    android:layout_marginBottom="10dp"
+                    android:layout_height="50dp"
+                    android:hint="Enter the amount">
+
+                </EditText>
+                <TextView
+                    android:text="Category"
+                    android:textSize="16dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                </TextView>
+
+<!--                <com.google.android.material.textfield.TextInputLayout-->
+<!--                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginBottom="10dp"-->
+<!--                    app:layout_constraintLeft_toLeftOf="parent"-->
+<!--                    app:layout_constraintRight_toRightOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent">-->
+
+<!--                    <AutoCompleteTextView-->
+<!--                        android:id="@+id/Category"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:inputType="none"-->
+<!--                        android:background="@drawable/button_radius"-->
+<!--                        android:backgroundTint="@color/grey"-->
+<!--                        android:text="Choose Category"-->
+<!--                        list-->
+<!--                        />-->
+
+<!--                </com.google.android.material.textfield.TextInputLayout>-->
+
+                <Spinner
+                    android:id="@+id/Category"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:listitem="@layout/dropdown_item">
+
+                </Spinner>
+
+                <TextView
+                    android:text="Description"
+                    android:textSize="16dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                </TextView>
+
+                <EditText
+                    android:id="@+id/description"
+                    android:background="@drawable/stroke"
+                    android:layout_width="match_parent"
+                    android:paddingLeft="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_height="50dp"
+                    android:hint="Enter the description">
+
+                </EditText>
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:id="@+id/addBtn"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_marginStart="10dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_marginEnd="10dp"-->
+<!--        android:layout_marginBottom="12dp"-->
+<!--        android:backgroundTint="@color/light_teal"-->
+<!--        android:onClick="openTransactionPage"-->
+<!--        app:cardCornerRadius="15dp">-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:padding="20dp"-->
+<!--            android:text="Add Transaction"-->
+<!--            android:textSize="16dp"-->
+<!--            android:textStyle="bold">-->
+
+<!--        </TextView>-->
+
+<!--    </androidx.cardview.widget.CardView>-->
+
+    <Button
+        android:id="@+id/addBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/button_radius"
+        android:onClick="openTransactionPage"
+        android:padding="10dp"
+        android:text="Add Transaction"
+        android:textSize="18sp"
+        android:textStyle="bold">
+
+    </Button>
+</RelativeLayout>

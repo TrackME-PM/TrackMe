@@ -12,6 +12,15 @@
         android:theme="@style/Theme.TrackME"
         tools:targetApi="31">
         <activity
+            android:name=".Activity_Transaction"
+            android:exported="false" />
+        <activity
+            android:name=".AddActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity_HomePage"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

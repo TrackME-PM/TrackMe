@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey"
+    android:onClick="openTransactionPage"
+    android:orientation="vertical"
+    app:layout_insetEdge="top"
+    app:layout_marginBaseline="2dp"
+    tools:context=".Activity_HomePage">
+
+    <LinearLayout
+        android:id="@+id/Profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/amtOverview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.01">
+
+        <ImageView
+            android:id="@+id/imageProfile"
+            android:layout_width="67dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:contentDescription="Profile Picture"
+            android:padding="5dp"
+            android:pointerIcon="hand"
+            android:src="@drawable/user_icon" />
+
+        <TextView
+            android:id="@+id/textViewProfile"
+            android:layout_width="312dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="Hi Name!"
+            android:textAlignment="gravity" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/amtOverview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="15dp"
+        android:weightSum="4"
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/statisticsCard"
+        app:layout_constraintVertical_bias="0.08">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/incomeCard"
+            android:layout_width="0dp"
+            android:layout_height="90dp"
+            android:layout_marginEnd="5dp"
+            android:layout_weight="2"
+            android:background="#66ff66"
+            app:cardCornerRadius="20dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/dark_grey">
+
+                <LinearLayout
+                    android:layout_width="170dp"
+                    android:layout_height="72dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingLeft="10dp">
+
+                        <TextView
+                            android:layout_width="109dp"
+                            android:layout_height="match_parent"
+                            android:text="Income"
+                            android:textSize="20dp">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/incomeAmt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1000"
+                            android:textSize="24dp">
+
+                        </TextView>
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/downArr"
+                        android:layout_width="45dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/down_arr">
+
+                    </ImageView>
+                </LinearLayout>
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/expenseCard"
+            android:layout_width="0dp"
+            android:layout_height="90dp"
+            android:layout_marginStart="5dp"
+            android:layout_weight="2"
+            android:background="#66ff66"
+            app:cardCornerRadius="20dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/dark_grey">
+
+                <LinearLayout
+                    android:layout_width="170dp"
+                    android:layout_height="72dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingLeft="10dp">
+
+                        <TextView
+                            android:layout_width="109dp"
+                            android:layout_height="match_parent"
+                            android:text="Expense"
+                            android:textSize="20dp">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/expenseAmt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1000"
+                            android:textSize="24dp">
+
+                        </TextView>
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/upArr"
+                        android:layout_width="45dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/up_arr">
+
+                    </ImageView>
+                </LinearLayout>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="175dp"
+                android:layout_height="30dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="216dp"
+                android:text="Recent Transaction"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/seeAllBtn"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:backgroundTint="@color/light_teal"
+                app:cardCornerRadius="15dp"
+                app:contentPadding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="See all"
+                    android:textAlignment="center">
+
+                </TextView>
+            </androidx.cardview.widget.CardView>
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/itemsRecycler"
+            tools:itemCount="3"
+            tools:listitem="@layout/row_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp">
+
+        </androidx.recyclerview.widget.RecyclerView>
+    </LinearLayout>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bottomAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:fabCradleMargin="10dp"
+            app:fabCradleRoundedCornerRadius="10dp"
+            app:fabCradleVerticalOffset="1dp"
+            app:layout_anchorGravity="center">
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottomNavView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/transperant_background"
+                app:menu="@menu/bottom_nav_menu">
+
+            </com.google.android.material.bottomnavigation.BottomNavigationView>
+        </com.google.android.material.bottomappbar.BottomAppBar>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/teal_200"
+            android:src="@drawable/add_icon"
+            app:layout_anchor="@id/bottomAppBar"
+            android:contentDescription="New Transaction">
+
+        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</LinearLayout>
