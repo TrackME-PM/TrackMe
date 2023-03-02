@@ -14,4 +14,5 @@
     <color name="red">#ff4d4d</color>
     <color name="light_teal">#35a09f</color>
     <color name="btn_color">#026d6c</color>
+    <color name="transparent">#00000000</color>
 </resources>

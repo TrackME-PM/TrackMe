@@ -12,6 +12,9 @@
         android:theme="@style/Theme.TrackME"
         tools:targetApi="31">
         <activity
+            android:name=".Activity_UserProfile"
+            android:exported="false" />
+        <activity
             android:name=".Activity_Transaction"
             android:exported="false" />
         <activity

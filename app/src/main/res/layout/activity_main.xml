@@ -65,10 +65,12 @@
                 android:text="UserName" />
 
             <EditText
+                android:background="@drawable/stroke"
                 android:id="@+id/usernameTextEdit"
-                android:layout_width="348dp"
-                android:layout_height="59dp"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
                 android:layout_margin="10dp"
+                android:padding="10dp"
                 android:ems="10"
                 android:hint="Enter UserName"
                 android:inputType="textPersonName" />
@@ -85,9 +87,10 @@
                 android:text="Password" />
 
             <EditText
+                android:background="@drawable/stroke"
                 android:id="@+id/passwordTextEdit"
                 android:layout_width="match_parent"
-                android:layout_height="61dp"
+                android:layout_height="60dp"
                 android:layout_margin="10dp"
                 android:ems="10"
                 android:hint="Enter Password"

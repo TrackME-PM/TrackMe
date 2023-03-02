@@ -10,13 +10,14 @@ import com.example.trackme.R;
 
 public class cardHolder extends RecyclerView.ViewHolder {
 
-    TextView textView;
+    TextView desc, amt, date;
+
 
     public cardHolder(@NonNull View itemView) {
         super(itemView);
-        textView = itemView.findViewById(R.id.description);
+        desc = itemView.findViewById(R.id.description);
     }
     public void setCardDescription(String description){
-        textView.setText(description);
+        desc.setText(description);
     }
 }

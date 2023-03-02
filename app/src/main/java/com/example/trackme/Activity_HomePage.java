@@ -8,11 +8,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.trackme.adapter.CardAdapter;
 import com.example.trackme.adapter.ViewPagerAdapter;
 import com.example.trackme.databinding.ActivityHomePageBinding;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Activity_HomePage extends AppCompatActivity {
 
@@ -23,6 +29,9 @@ public class Activity_HomePage extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     ActivityHomePageBinding binding;
 
+    CardAdapter cardAdapter;
+    List<cards> cardsList;
+    RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,10 +88,32 @@ public class Activity_HomePage extends AppCompatActivity {
 //            }
 //        });
 //
+
+        cardsList = new ArrayList<>();
+        cards card1 = new cards("Tea",500,"23-02-2023", 1);
+        cards card2 = new cards("Pantry",800,"28-02-2023", 1);
+        cards card3 = new cards("Project",500,"01-03-2023", 0);
+        cards card4 = new cards("Staff",1000,"27-04-2023", 1);
+        cards card5 = new cards("Tea",1000,"27-04-2023", 1);
+        cards card6 = new cards("Pantry",1000,"27-04-2023", 1);
+        cards card7 = new cards("Project",1000,"27-04-2023", 1);
+
+
+        cardsList.add(card1);
+        cardsList.add(card2);
+        cardsList.add(card3);
+
+
+        recyclerView = findViewById(R.id.itemsRecycler);
+        cardAdapter = new CardAdapter(Activity_HomePage.this, cardsList);
+        recyclerView.setAdapter(cardAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(Activity_HomePage.this));
+
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Activity_HomePage.this, AddActivity.class));
+                finish();
             }
         }) ;
 
@@ -90,26 +121,39 @@ public class Activity_HomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Activity_HomePage.this, Activity_Transaction.class));
+                finish();
             }
         });
 
-        replaceFragment(new HomeFragment());
+        binding.profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Activity_HomePage.this, Activity_UserProfile.class));
+                finish();
+            }
+        });
+
         binding.bottomNavView.setBackground(null);
 
         binding.bottomNavView.setOnItemSelectedListener(item->{
             int id = item.getItemId();
             switch(id) {
                 case R.id.navigation_home:
-                    replaceFragment(new HomeFragment());
                     break;
 
                 case R.id.navigation_transaction:
-                    replaceFragment(new TransactionFragment());
+                    startActivity(new Intent(Activity_HomePage.this, Activity_Transaction.class));
+                    finish();
                     break;
+
+                default:
 
             }
             return true;
         });
+
+
+
 
 
     }
@@ -141,10 +185,9 @@ public class Activity_HomePage extends AppCompatActivity {
         transactionFragment.commit();
     }
 
-//    public void openTransactionPage(View v) {
-//        Intent intent = new Intent(this, Activity_Transaction.class);
+//    public void openUserPage(View v) {
+//        Intent intent = new Intent(this, Activity_UserProfile.class);
 //        startActivity(intent);
-//
 //    }
 
 
