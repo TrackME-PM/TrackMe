@@ -94,7 +94,6 @@ public class AddActivity extends AppCompatActivity  {
         addBtn.setOnClickListener(this::openTransactionPage);
 
 
-
         binding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

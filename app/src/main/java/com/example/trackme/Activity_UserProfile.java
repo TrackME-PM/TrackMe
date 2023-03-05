@@ -35,6 +35,14 @@ public class Activity_UserProfile extends AppCompatActivity {
             }
         });
 
+        activityUserProfileBinding.reportBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Activity_UserProfile.this, Activity_Report.class));
+                finish();
+            }
+        });
+
     }
 
 //    public void openHomePage(View view){

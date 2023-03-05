@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, "Logged in successfully !", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, Activity_HomePage.class);
         startActivity(intent);
-        this.finish();
+        finish();
 
     }
 }

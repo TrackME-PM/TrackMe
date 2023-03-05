@@ -57,6 +57,11 @@ public class Activity_Transaction extends AppCompatActivity {
         cardsList.add(card8);
         cardsList.add(card9);
 
+//        Intent intent = getIntent();
+//        if(intent != null){
+//            tmpList = (List<cards>) getIntent().getSerializableExtra("TransactionList");
+//        }
+
 
         recyclerView = findViewById(R.id.itemsRecycler);
         cardAdapter = new CardAdapter(Activity_Transaction.this, cardsList);
