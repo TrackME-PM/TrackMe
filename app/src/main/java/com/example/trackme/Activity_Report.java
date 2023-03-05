@@ -3,9 +3,13 @@ package com.example.trackme;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
+
+import com.example.trackme.databinding.ActivityReportBinding;
 
 import org.eazegraph.lib.charts.PieChart;
 import org.eazegraph.lib.models.PieModel;
@@ -16,10 +20,13 @@ public class Activity_Report extends AppCompatActivity {
     TextView tvFood, tvTravel, tvStat, tvOther;
     PieChart pieChart;
 
+    ActivityReportBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_report);
+        binding = ActivityReportBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         // Link those objects with their respective
 // id's that we have given in .XML file
         tvFood = findViewById(R.id.tvFood);
@@ -28,7 +35,13 @@ public class Activity_Report extends AppCompatActivity {
         tvOther = findViewById(R.id.tvOther);
         pieChart = findViewById(R.id.piechart);
 
-
+        binding.backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Activity_Report.this, Activity_HomePage.class));
+                finish();
+            }
+        });
         setData();
     }
 
