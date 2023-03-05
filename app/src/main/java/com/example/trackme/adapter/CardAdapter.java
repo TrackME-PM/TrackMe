@@ -35,7 +35,9 @@ public class CardAdapter extends RecyclerView.Adapter<cardHolder>{
     @Override
     public void onBindViewHolder(@NonNull cardHolder holder, int position) {
         cards card = cardsList.get(position);
-        holder.setCardDescription(card.getDescription());
+        holder.setCardDescription(card.getDescription().toString());
+//        holder.setAmount(card.getAmount());
+//        holder.setDate(card.getDate());
     }
 
     @Override

@@ -220,9 +220,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/itemsRecycler"
-            tools:itemCount="3"
             android:layout_marginTop="20dp"
-            tools:listitem="@layout/row_item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp">
@@ -231,6 +229,8 @@
     </LinearLayout>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/navBarView"
+        android:layout_gravity="end|bottom"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

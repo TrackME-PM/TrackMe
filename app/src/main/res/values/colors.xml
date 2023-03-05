@@ -10,6 +10,7 @@
     <color name="green">#66ff66</color>
     <color name="arr_green">#4CBF4C</color>
     <color name="grey">#4d4d4d</color>
+    <color name="light_grey">#949494</color>
     <color name="dark_grey">#333333</color>
     <color name="red">#ff4d4d</color>
     <color name="light_teal">#35a09f</color>

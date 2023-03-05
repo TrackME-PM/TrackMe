@@ -12,12 +12,21 @@ public class cardHolder extends RecyclerView.ViewHolder {
 
     TextView desc, amt, date;
 
-
     public cardHolder(@NonNull View itemView) {
         super(itemView);
         desc = itemView.findViewById(R.id.description);
+//        amt = itemView.findViewById(R.id.amount);
+//        curDate = itemView.findViewById(R.id.date);
     }
     public void setCardDescription(String description){
         desc.setText(description);
     }
+
+//    public void setAmount(int amount) {
+//        amt.setText(amount);
+//    }
+//
+//    public void setDate(String date) {
+//        curDate.setText(date);
+//    }
 }

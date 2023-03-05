@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".AddActivity">
     <LinearLayout
-        android:padding="10dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -17,16 +16,20 @@
             android:layout_height="wrap_content">
 
             <RelativeLayout
+                android:background="@color/dark_grey"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp">
 
                 <ImageView
                     android:id="@+id/backBtn"
-                    android:src="@drawable/back_btn"
-                    android:backgroundTint="@color/white"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="15dp"
+                    android:backgroundTint="@color/white"
+                    android:src="@drawable/back_btn">
 
                 </ImageView>
 
@@ -40,9 +43,43 @@
                 </TextView>
 
             </RelativeLayout>
-            <LinearLayout
 
-                android:layout_marginTop="150dp"
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:layout_marginTop="80dp"-->
+<!--                app:cardCornerRadius="15dp"-->
+<!--                android:backgroundTint="@color/light_teal"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content">-->
+
+<!--                <LinearLayout-->
+<!--                    android:padding="15dp"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content">-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/isExpense"-->
+<!--                        android:textSize="16sp"-->
+<!--                        android:gravity="center"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Expense" />-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/isIncome"-->
+<!--                        android:textSize="16sp"-->
+<!--                        android:gravity="center"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:text="Income" />-->
+<!--                </LinearLayout>-->
+
+<!--            </androidx.cardview.widget.CardView>-->
+
+
+            <LinearLayout
+                android:layout_marginTop="60dp"
+                android:padding="15dp"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -73,41 +110,37 @@
                     android:layout_height="wrap_content">
                 </TextView>
 
-<!--                <com.google.android.material.textfield.TextInputLayout-->
-<!--                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginBottom="10dp"-->
-<!--                    app:layout_constraintLeft_toLeftOf="parent"-->
-<!--                    app:layout_constraintRight_toRightOf="parent"-->
-<!--                    app:layout_constraintTop_toTopOf="parent">-->
 
-<!--                    <AutoCompleteTextView-->
-<!--                        android:id="@+id/Category"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="match_parent"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:inputType="none"-->
-<!--                        android:background="@drawable/button_radius"-->
-<!--                        android:backgroundTint="@color/grey"-->
-<!--                        android:text="Choose Category"-->
-<!--                        list-->
-<!--                        />-->
-
-<!--                </com.google.android.material.textfield.TextInputLayout>-->
-
-                <Spinner
-                    android:id="@+id/Category"
-                    android:layout_weight="1"
+                <RelativeLayout
+                    android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:listitem="@layout/dropdown_item">
+                    android:layout_height="wrap_content">
+                    <Spinner
+                        android:padding="15dp"
+                        android:id="@+id/Category"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/stroke"
+                        tools:listitem="@layout/dropdown_item">
 
-                </Spinner>
+                    </Spinner>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="20dp"
+                        android:background="@drawable/drop_down_arr"
+                        android:paddingEnd="10dp" />
+
+                </RelativeLayout>
+
 
                 <TextView
                     android:text="Description"
                     android:textSize="16dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
@@ -127,6 +160,7 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
+
 
 <!--    <androidx.cardview.widget.CardView-->
 <!--        android:id="@+id/addBtn"-->
@@ -165,10 +199,12 @@
         android:layout_marginBottom="10dp"
         android:background="@drawable/button_radius"
         android:onClick="openTransactionPage"
-        android:padding="10dp"
+        android:padding="15dp"
         android:text="Add Transaction"
         android:textSize="18sp"
         android:textStyle="bold">
 
     </Button>
+
+
 </RelativeLayout>

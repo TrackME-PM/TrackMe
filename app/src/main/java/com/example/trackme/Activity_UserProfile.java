@@ -6,16 +6,34 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.trackme.databinding.ActivityUserProfileBinding;
 
 
 public class Activity_UserProfile extends AppCompatActivity {
 
-
+    ActivityUserProfileBinding activityUserProfileBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_profile);
+        activityUserProfileBinding = ActivityUserProfileBinding.inflate(getLayoutInflater());
+        setContentView(activityUserProfileBinding.getRoot());
+
+        activityUserProfileBinding.backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Activity_UserProfile.this, Activity_HomePage.class));
+                finish();
+            }
+        });
+
+        activityUserProfileBinding.signOutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Activity_UserProfile.this, MainActivity.class));
+                finish();
+            }
+        });
 
     }
 
