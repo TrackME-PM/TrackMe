@@ -44,37 +44,56 @@
 
             </RelativeLayout>
 
-<!--            <androidx.cardview.widget.CardView-->
-<!--                android:layout_marginTop="80dp"-->
-<!--                app:cardCornerRadius="15dp"-->
-<!--                android:backgroundTint="@color/light_teal"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content">-->
+            <androidx.cardview.widget.CardView
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginTop="80dp"
+                app:cardCornerRadius="15dp"
+                android:backgroundTint="@color/light_teal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-<!--                <LinearLayout-->
-<!--                    android:padding="15dp"-->
-<!--                    android:orientation="horizontal"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content">-->
-<!--                    <TextView-->
-<!--                        android:id="@+id/isExpense"-->
-<!--                        android:textSize="16sp"-->
-<!--                        android:gravity="center"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="Expense" />-->
-<!--                    <TextView-->
-<!--                        android:id="@+id/isIncome"-->
-<!--                        android:textSize="16sp"-->
-<!--                        android:gravity="center"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="match_parent"-->
-<!--                        android:text="Income" />-->
-<!--                </LinearLayout>-->
+                <LinearLayout
+                    android:weightSum="2"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <LinearLayout
+                        android:id="@+id/isExpense"
+                        android:background="@drawable/rectangle_border"
+                        android:padding="20dp"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:textSize="18sp"
+                            android:gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="Expense" />
+                        </LinearLayout>
 
-<!--            </androidx.cardview.widget.CardView>-->
+                        <LinearLayout
+                            android:background="@drawable/rectangle_border"
+                            android:id="@+id/isIncome"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                        <TextView
+                            android:textSize="18sp"
+                            android:gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="Income" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+
 
 
             <LinearLayout

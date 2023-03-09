@@ -13,6 +13,7 @@ public class Activity_UserProfile extends AppCompatActivity {
 
     ActivityUserProfileBinding activityUserProfileBinding;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

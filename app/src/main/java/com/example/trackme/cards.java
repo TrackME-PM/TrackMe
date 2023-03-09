@@ -5,13 +5,17 @@ public class cards {
     private String description;
     private int amount;
     private String date;
-    private int expId;
+    private int expId, catId;
 
     public cards(String description, int amount, String date, int expId) {
         this.description = description;
         this.amount = amount;
         this.date = date;
         this.expId = expId;
+//        this.catId = catId;
+    }
+
+    public cards() {
     }
 
     public String getDescription() {

@@ -22,11 +22,12 @@ public class cardHolder extends RecyclerView.ViewHolder {
         desc.setText(description);
     }
 
-//    public void setAmount(int amount) {
-//        amt.setText(amount);
-//    }
-//
-//    public void setDate(String date) {
-//        curDate.setText(date);
-//    }
+    public void setAmount(int amount) {
+        String num = Integer.toString(amount);
+        amt.setText(num);
+    }
+
+    public void setDate(String date) {
+        curDate.setText(date);
+    }
 }

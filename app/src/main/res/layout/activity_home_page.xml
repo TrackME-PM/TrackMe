@@ -40,7 +40,7 @@
             android:gravity="center_vertical"
             android:layout_marginStart="10dp"
             android:text="Hi Name!"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:textAlignment="gravity" />
     </LinearLayout>
 
@@ -177,11 +177,13 @@
     </LinearLayout>
 
     <LinearLayout
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <RelativeLayout
+            android:layout_marginBottom="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -213,6 +215,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="See all"
+                    android:textStyle="bold"
                     android:textAlignment="center">
 
                 </TextView>

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -11,15 +12,24 @@ import com.example.trackme.adapter.CardAdapter;
 import com.example.trackme.databinding.ActivityTransactionBinding;
 
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Activity_Transaction extends AppCompatActivity {
 
+    TextView catName;
+
+
+    Spinner spinner;
     CardAdapter cardAdapter;
     List<cards> cardsList;
     RecyclerView recyclerView;
+
+    ArrayAdapter<CharSequence> adapterItems;
     ActivityTransactionBinding activityTransactionBinding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +44,19 @@ public class Activity_Transaction extends AppCompatActivity {
                 finish();
             }
         });
+
+        activityTransactionBinding.filterCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Dialog dialog = new Dialog(Activity_Transaction.this);
+                dialog.setContentView(R.layout.popup_item);
+
+                catName = dialog.findViewById(R.id.categoryView);
+                dialog.show();
+
+            }
+        });
+
 
 
         cardsList = new ArrayList<>();
@@ -59,7 +82,7 @@ public class Activity_Transaction extends AppCompatActivity {
 
 //        Intent intent = getIntent();
 //        if(intent != null){
-//            tmpList = (List<cards>) getIntent().getSerializableExtra("TransactionList");
+//            cardsList = (List<cards>) getIntent().getSerializableExtra("TransactionList");
 //        }
 
 

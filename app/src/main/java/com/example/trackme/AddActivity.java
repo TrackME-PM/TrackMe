@@ -2,6 +2,7 @@ package com.example.trackme;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -9,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,10 +35,10 @@ public class AddActivity extends AppCompatActivity  {
 
     Button addBtn;
     ActivityAddBinding binding;
-
+    LinearLayout expLayout, incLayout;
     TextView desc, amt, curDate;
     String cardDesc, cardDate;
-    Integer cardAmt;
+    Integer catId, cardAmt;
     Spinner spinner;
 
     CardAdapter cardAdapter;
@@ -50,6 +52,29 @@ public class AddActivity extends AppCompatActivity  {
         binding = ActivityAddBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        incLayout = findViewById(R.id.isIncome);
+        expLayout = findViewById(R.id.isExpense);
+        incLayout.setBackgroundColor(android.R.color.transparent);
+
+        binding.isExpense.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                card.setExpId(1);
+                incLayout.setBackgroundColor(android.R.color.transparent);
+                expLayout.setBackgroundResource(R.drawable.rectangle_border);
+            }
+        });
+
+        binding.isIncome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                card.setExpId(0);
+                expLayout.setBackgroundColor(android.R.color.transparent);
+                incLayout.setBackgroundResource(R.drawable.rectangle_border);
+
+            }
+        });
+
         spinner = findViewById(R.id.Category);
         adapterItems = ArrayAdapter.createFromResource(this, R.array.category_list, android.R.layout.simple_spinner_item);
         adapterItems.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -60,16 +85,21 @@ public class AddActivity extends AppCompatActivity  {
         amt =(TextView)  findViewById(R.id.amount);
         curDate =(TextView) findViewById(R.id.date);
 
-//        cardAmt = Integer.valueOf(amt.getText().toString());
+        //cardAmt = Integer.parseInt(amt.getText().toString());
 //        cardDesc = desc.getText().toString();
-//        cardDate = curDate.getText().toString();
+//        cardDate =(String) curDate.getText();
 //        cardsList = new ArrayList<>();
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id) {
                 String value = String.valueOf(adapterView.getItemIdAtPosition(pos));
+                String item_position = String.valueOf(pos);
+
+                int positonInt = Integer.valueOf(item_position);
+
                 adapterItems.notifyDataSetChanged();
+
             }
 
             @Override
@@ -78,20 +108,16 @@ public class AddActivity extends AppCompatActivity  {
             }
         });
 
-//        addBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                card = new cards(cardDesc, cardAmt, cardDate, 1);
-//                cardsList.add(card);
-//                Intent intent = new Intent(AddActivity.this, Activity_Transaction.class);
-//                intent.putExtra("TransactionList", (Serializable)cardsList);
-//                startActivity(intent);
-//                finish();
-//            }
-//        });
+        binding.addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openTransactionPage(view);
+            }
+        });
 
-        addBtn =(Button) findViewById(R.id.addBtn);
-        addBtn.setOnClickListener(this::openTransactionPage);
+
+//        addBtn =(Button) findViewById(R.id.addBtn);
+//        addBtn.setOnClickListener(this::openTransactionPage);
 
 
         binding.backBtn.setOnClickListener(new View.OnClickListener() {
@@ -110,6 +136,15 @@ public class AddActivity extends AppCompatActivity  {
         Intent intent = new Intent(this, Activity_Transaction.class);
         startActivity(intent);
     }
+
+//    private void passData(int position) {
+//        cards card = new cards("Desc", 200, "02-03-2023", 1);
+//        Intent i = new Intent(AddActivity.this, Activity_Transaction.class);
+//        i.putExtra("cardDescription", cardsList.get(position).getDescription());
+//        i.putExtra("cardAmount", cardsList.get(position).getAmount());
+//        i.putExtra("cardDate", cardsList.get(position).getDate());
+//        c.startActivity(i);
+//    }
 
 
 }

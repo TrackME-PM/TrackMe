@@ -1,0 +1,14 @@
+
+<TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/categoryView"
+    android:background="@color/teal_200"
+    android:backgroundTint="@color/teal_200"
+    android:textColor="@color/black"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Select Category"
+    android:ellipsize="end"
+    android:textAppearance="?attr/textAppearanceSubtitle1"
+    android:padding="15dp"
+    />

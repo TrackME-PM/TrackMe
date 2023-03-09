@@ -3,6 +3,7 @@ package com.example.trackme;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -27,6 +28,7 @@ public class Activity_HomePage extends AppCompatActivity {
     ViewPagerAdapter viewPagerAdapter;
 
     BottomNavigationView bottomNavigationView;
+    TextView userName;
     ActivityHomePageBinding binding;
 
     CardAdapter cardAdapter;
@@ -88,6 +90,9 @@ public class Activity_HomePage extends AppCompatActivity {
 //            }
 //        });
 //
+
+        userName = findViewById(R.id.textViewProfile);
+        userName.setText("Igmite Solutions");
 
         cardsList = new ArrayList<>();
         cards card1 = new cards("Tea",500,"23-02-2023", 1);
