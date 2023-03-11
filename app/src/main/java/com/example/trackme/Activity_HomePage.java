@@ -103,6 +103,7 @@ public class Activity_HomePage extends AppCompatActivity {
         cards card5 = new cards("Stationary",1000,"27-04-2023",3, 1);
         cards card6 = new cards("Pantry",1000,"27-04-2023", 1, 1);
         cards card7 = new cards("Project",1000,"27-04-2023", 2);
+        cards card8 = new cards("Travel",500,"27-04-2023", 2, 1);
 
 
         cardsList.add(card1);
@@ -112,6 +113,7 @@ public class Activity_HomePage extends AppCompatActivity {
         cardsList.add(card5);
         cardsList.add(card6);
         cardsList.add(card7);
+        cardsList.add(card8);
 
         incAmt = findViewById(R.id.incomeAmt);
         expAmt = findViewById(R.id.expenseAmt);

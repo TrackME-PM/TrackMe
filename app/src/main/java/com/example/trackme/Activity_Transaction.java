@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +31,8 @@ public class Activity_Transaction extends AppCompatActivity {
 
     public static String Description = "CardDescription";
     public static String Amount = "CardAmount";
+    public static String Category = "CardCategory";
+    public static String Expense = "CardExpense";
 
     TextView cardDesc, cardAmt, cardDate;
     private String desc;
@@ -189,6 +192,7 @@ public class Activity_Transaction extends AppCompatActivity {
         cards card8 = new cards("Stationary",1000,"27-04-2023",3, 1);
         cards card9 = new cards("Travel",1000,"27-04-2023",2, 1);
 
+
         cardsList.add(card1);
         cardsList.add(card2);
         cardsList.add(card3);
@@ -225,6 +229,20 @@ public class Activity_Transaction extends AppCompatActivity {
 //            cardsList = (List<cards>) intent.getSerializableExtra("TransactionList");
 
 
+        Intent intent = getIntent();
+
+        int expId = intent.getIntExtra(Expense, 0);
+        Toast.makeText(Activity_Transaction.this, "Transaction " + expId, Toast.LENGTH_SHORT).show();
+
+        String cardDesc = intent.getStringExtra(Description);
+        int cardAmt = intent.getIntExtra(Amount, 0);
+        int catId = intent.getIntExtra(Category, 0);
+        Toast.makeText(Activity_Transaction.this, "Transaction " + cardDesc, Toast.LENGTH_SHORT).show();
+        Toast.makeText(Activity_Transaction.this, "Transaction " + cardAmt, Toast.LENGTH_SHORT).show();
+        Toast.makeText(Activity_Transaction.this, "Transaction " + catId, Toast.LENGTH_SHORT).show();
+        cards card = new cards(cardDesc, cardAmt, "11-03-2023",catId, expId);
+
+        cardsList.add(card);
         recyclerView = findViewById(R.id.itemsRecycler);
         cardAdapter = new CardAdapter(Activity_Transaction.this, cardsList);
         recyclerView.setAdapter(cardAdapter);

@@ -26,6 +26,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.trackme.adapter.CardAdapter;
 import com.example.trackme.databinding.ActivityAddBinding;
+import com.example.trackme.holder.cardHolder;
 import com.google.android.material.tabs.TabLayout;
 
 import java.io.Serializable;
@@ -44,13 +45,14 @@ public class AddActivity extends AppCompatActivity  {
     TextView category;
     EditText amt, desc;
     String cardDesc, cardDate;
-    Integer catId, cardAmt;
+    Integer catId = 0, cardAmt, expId = 1;
     Spinner spinner;
 
 
     RecyclerView recyclerView;
 
     CardAdapter cardAdapter;
+    cardHolder holder;
     List<cards> cardsList;
     cards card;
     ArrayAdapter<CharSequence> adapterItems;
@@ -61,6 +63,8 @@ public class AddActivity extends AppCompatActivity  {
         binding = ActivityAddBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+
+       // card = new cards();
         category = findViewById(R.id.textViewCategory);
         relativeLayout =(RelativeLayout) findViewById(R.id.categoryLayout);
 
@@ -71,7 +75,7 @@ public class AddActivity extends AppCompatActivity  {
         binding.isExpense.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                card.setExpId(1);
+                expId = 1;
                 incLayout.setBackgroundColor(android.R.color.transparent);
                 expLayout.setBackgroundResource(R.drawable.rectangle_border);
                 relativeLayout.setVisibility(1);
@@ -83,7 +87,8 @@ public class AddActivity extends AppCompatActivity  {
 
             @Override
             public void onClick(View view) {
-//                card.setExpId(0);
+                catId = 6;
+                expId = 2;
                 expLayout.setBackgroundColor(android.R.color.transparent);
                 incLayout.setBackgroundResource(R.drawable.rectangle_border);
                 relativeLayout.setVisibility(view.GONE);
@@ -113,7 +118,22 @@ public class AddActivity extends AppCompatActivity  {
                 String value = String.valueOf(adapterView.getItemIdAtPosition(pos));
                 String item_position = String.valueOf(pos);
 
-                int positonInt = Integer.valueOf(item_position);
+                int positonInt = Integer.parseInt(item_position);
+                if(positonInt == 0) {
+                    catId = 1;
+                }
+                else if (positonInt == 1) {
+                    catId = 2;
+                }
+                else if (positonInt == 2) {
+                    catId = 3;
+                }
+                else if (positonInt == 3) {
+                    catId = 4;
+                }
+                else if (positonInt == 5) {
+                    catId = 5;
+                }
 
                 adapterItems.notifyDataSetChanged();
 
@@ -123,13 +143,36 @@ public class AddActivity extends AppCompatActivity  {
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
+
         });
 
         binding.addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //sendData();
-               openTransactionPage(view);
+                String Desc = desc.getText().toString();
+                int  Amount = Integer.parseInt(amt.getText().toString());
+
+                Toast.makeText(AddActivity.this, "Add " +Amount, Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(AddActivity.this, Activity_Transaction.class);
+
+                intent.putExtra(Activity_Transaction.Description, Desc);
+                intent.putExtra(Activity_Transaction.Amount, Amount);
+                intent.putExtra(Activity_Transaction.Category, catId);
+                intent.putExtra(Activity_Transaction.Expense, expId);
+
+                startActivity(intent);
+
+//                card.setDescription(Desc);
+//                card.setAmount(Amount);
+//
+//
+//                recyclerView = findViewById(R.id.cardView);
+//                cardAdapter = new CardAdapter(AddActivity.this, cardsList);
+//                recyclerView.setAdapter(cardAdapter);
+//                recyclerView.setLayoutManager(new LinearLayoutManager(AddActivity.this));
+
+                //openTransactionPage(view);
             }
         });
 
@@ -158,6 +201,7 @@ public class AddActivity extends AppCompatActivity  {
     private void sendData() {
         cardDesc = desc.getText().toString().trim();
         cardAmt = Integer.parseInt(amt.getText().toString().trim());
+
 
         Intent intent = new Intent(AddActivity.this, Activity_Transaction.class);
         intent.putExtra(Activity_Transaction.Description, cardDesc);

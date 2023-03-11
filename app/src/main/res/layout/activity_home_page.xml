@@ -241,6 +241,7 @@
         </androidx.recyclerview.widget.RecyclerView>
 
         <com.google.android.material.bottomappbar.BottomAppBar
+            app:hideOnScroll="true"
             android:id="@+id/bottomAppBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
