@@ -200,26 +200,7 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/seeAllBtn"
-                android:layout_width="70dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="20dp"
-                android:backgroundTint="@color/light_teal"
-                app:cardCornerRadius="15dp"
-                app:contentPadding="10dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="See all"
-                    android:textStyle="bold"
-                    android:textAlignment="center">
-
-                </TextView>
-            </androidx.cardview.widget.CardView>
         </RelativeLayout>
 
     </LinearLayout>

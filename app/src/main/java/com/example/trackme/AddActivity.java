@@ -87,7 +87,7 @@ public class AddActivity extends AppCompatActivity  {
 
             @Override
             public void onClick(View view) {
-                catId = 6;
+                catId = 7;
                 expId = 2;
                 expLayout.setBackgroundColor(android.R.color.transparent);
                 incLayout.setBackgroundResource(R.drawable.rectangle_border);
@@ -131,8 +131,11 @@ public class AddActivity extends AppCompatActivity  {
                 else if (positonInt == 3) {
                     catId = 4;
                 }
-                else if (positonInt == 5) {
+                else if (positonInt == 4) {
                     catId = 5;
+                }
+                else if (positonInt == 5) {
+                    catId = 6;
                 }
 
                 adapterItems.notifyDataSetChanged();
@@ -198,17 +201,7 @@ public class AddActivity extends AppCompatActivity  {
         startActivity(intent);
     }
 
-    private void sendData() {
-        cardDesc = desc.getText().toString().trim();
-        cardAmt = Integer.parseInt(amt.getText().toString().trim());
 
-
-        Intent intent = new Intent(AddActivity.this, Activity_Transaction.class);
-        intent.putExtra(Activity_Transaction.Description, cardDesc);
-        intent.putExtra(Activity_Transaction.Amount, cardAmt);
-
-        startActivity(intent);
-    }
 
 
 }

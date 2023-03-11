@@ -19,8 +19,9 @@
 
     <string-array name="category_list">
         <item>Food &amp; Beverages</item>
-        <item>Travel</item>
+        <item>Pantry</item>
         <item>Stationary</item>
+        <item>Travel</item>
         <item>Staff</item>
         <item>Others</item>
     </string-array>

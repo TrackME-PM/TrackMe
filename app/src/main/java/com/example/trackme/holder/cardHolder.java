@@ -40,16 +40,22 @@ public class cardHolder extends RecyclerView.ViewHolder {
                 img.setImageResource(R.drawable.food_icon);
                 break;
             case 2:
-                img.setImageResource(R.drawable.travel_icon);
+                img.setImageResource(R.drawable.pantry_icon);
                 break;
             case 3:
                 img.setImageResource(R.drawable.stationary_icon);
                 break;
             case 4:
+                img.setImageResource(R.drawable.travel_icon);
+                break;
+            case 5:
                 img.setImageResource(R.drawable.staff_icon);
                 break;
-            default:
+            case 6:
                 img.setImageResource(R.drawable.other_icon);
+                break;
+            default:
+                img.setImageResource(R.drawable.income_icon);
                 break;
 
         }

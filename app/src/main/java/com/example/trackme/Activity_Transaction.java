@@ -22,7 +22,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Activity_Transaction extends AppCompatActivity {
@@ -58,7 +60,9 @@ public class Activity_Transaction extends AppCompatActivity {
         activityTransactionBinding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Activity_Transaction.this, Activity_HomePage.class));
+                Intent intent = new Intent(Activity_Transaction.this, Activity_HomePage.class);
+
+                startActivity(intent);
                 finish();
             }
         });
@@ -92,7 +96,7 @@ public class Activity_Transaction extends AppCompatActivity {
                 catTravel.setBackgroundResource(R.drawable.category_card_border);
                 tempList.clear();
                 for(cards card: cardsList){
-                    if(card.getCatId() == 2){
+                    if(card.getCatId() == 4){
                         tempList.add(card);
                     }
                 }
@@ -126,7 +130,7 @@ public class Activity_Transaction extends AppCompatActivity {
                 catStaff.setBackgroundResource(R.drawable.category_card_border);
                 tempList.clear();
                 for(cards card: cardsList){
-                    if(card.getCatId() == 4){
+                    if(card.getCatId() == 5){
                         tempList.add(card);
                     }
                 }
@@ -143,7 +147,7 @@ public class Activity_Transaction extends AppCompatActivity {
                 catOther.setBackgroundResource(R.drawable.category_card_border);
                 tempList.clear();
                 for(cards card: cardsList){
-                    if(card.getCatId() == 5){
+                    if(card.getCatId() == 6){
                         tempList.add(card);
                     }
                 }
@@ -166,6 +170,24 @@ public class Activity_Transaction extends AppCompatActivity {
             }
         });
 
+        activityTransactionBinding.catPantry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                catAll.setBackgroundResource(R.drawable.category_card_border);
+                tempList.clear();
+                for(cards card: cardsList){
+                    if(card.getCatId() == 2){
+                        tempList.add(card);
+                    }
+                }
+                recyclerView = findViewById(R.id.itemsRecycler);
+                cardAdapter = new CardAdapter(Activity_Transaction.this, tempList);
+                recyclerView.setAdapter(cardAdapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(Activity_Transaction.this));
+            }
+        });
+
+
 
 
 
@@ -183,14 +205,14 @@ public class Activity_Transaction extends AppCompatActivity {
 
         cardsList = new ArrayList<>();
         cards card1 = new cards("Tea",500,"23-02-2023", 1,1);
-        cards card2 = new cards("Pantry",800,"28-02-2023", 1,1);
+        cards card2 = new cards("Pantry",800,"28-02-2023", 2,1);
         cards card3 = new cards("Project",500,"01-03-2023", 2);
-        cards card4 = new cards("Staff",1000,"27-04-2023", 4, 1);
+        cards card4 = new cards("Staff",1000,"27-04-2023", 5, 1);
         cards card5 = new cards("Tea",1000,"27-04-2023", 1,1);
-        cards card6 = new cards("Pantry",1000,"27-04-2023", 1,1);
+        cards card6 = new cards("Pantry",1000,"27-04-2023", 2,1);
         cards card7 = new cards("Project",1000,"27-04-2023", 2);
         cards card8 = new cards("Stationary",1000,"27-04-2023",3, 1);
-        cards card9 = new cards("Travel",1000,"27-04-2023",2, 1);
+        cards card9 = new cards("Travel",1000,"27-04-2023",4, 1);
 
 
         cardsList.add(card1);
@@ -228,7 +250,6 @@ public class Activity_Transaction extends AppCompatActivity {
 //        if(intent != null)
 //            cardsList = (List<cards>) intent.getSerializableExtra("TransactionList");
 
-
         Intent intent = getIntent();
 
         int expId = intent.getIntExtra(Expense, 0);
@@ -240,13 +261,20 @@ public class Activity_Transaction extends AppCompatActivity {
         Toast.makeText(Activity_Transaction.this, "Transaction " + cardDesc, Toast.LENGTH_SHORT).show();
         Toast.makeText(Activity_Transaction.this, "Transaction " + cardAmt, Toast.LENGTH_SHORT).show();
         Toast.makeText(Activity_Transaction.this, "Transaction " + catId, Toast.LENGTH_SHORT).show();
-        cards card = new cards(cardDesc, cardAmt, "11-03-2023",catId, expId);
+        if(cardDesc != "null" && cardAmt != -1 && catId != -1 && expId != -1) {
 
-        cardsList.add(card);
+            cards card = new cards(cardDesc, cardAmt, "11-03-2023",catId, expId);
+            cardsList.add(card);
+
+        }
+        Collections.reverse(cardsList);
         recyclerView = findViewById(R.id.itemsRecycler);
         cardAdapter = new CardAdapter(Activity_Transaction.this, cardsList);
         recyclerView.setAdapter(cardAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(Activity_Transaction.this));
+        recyclerView.smoothScrollToPosition(cardsList.size()-1);
+
+
 
     }
 }
