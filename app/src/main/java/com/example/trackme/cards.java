@@ -7,12 +7,27 @@ public class cards {
     private String date;
     private int expId, catId;
 
+    public int getCatId() {
+        return catId;
+    }
+
+    public void setCatId(int catId) {
+        this.catId = catId;
+    }
+
+    public cards(String description, int amount, String date, int catId, int expId) {
+        this.description = description;
+        this.amount = amount;
+        this.date = date;
+        this.expId = expId;
+        this.catId = catId;
+    }
+
     public cards(String description, int amount, String date, int expId) {
         this.description = description;
         this.amount = amount;
         this.date = date;
         this.expId = expId;
-//        this.catId = catId;
     }
 
     public cards() {

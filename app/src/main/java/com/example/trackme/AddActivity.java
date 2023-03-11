@@ -102,8 +102,8 @@ public class AddActivity extends AppCompatActivity  {
         desc =(EditText) findViewById(R.id.description);
         amt =(EditText)  findViewById(R.id.amount);
 
-        cardAmt = Integer.getInteger(amt.getText().toString());
-        cardDesc = desc.getText().toString();
+//        cardAmt = Integer.valueOf(amt.getText().toString());
+//        cardDesc = desc.getText().toString();
 //        cardDate =(String) curDate.getText();
 //        cardsList = new ArrayList<>();
 
@@ -128,15 +128,8 @@ public class AddActivity extends AppCompatActivity  {
         binding.addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                card = new cards(cardDesc, cardAmt, "09-03-2023", 1);
-                cardsList.add(card);
-
-                recyclerView = findViewById(R.id.cardView);
-                cardAdapter = new CardAdapter(AddActivity.this, cardsList);
-                recyclerView.setAdapter(cardAdapter);
-                recyclerView.setLayoutManager(new LinearLayoutManager(AddActivity.this));
-
-                openTransactionPage(view);
+                //sendData();
+               openTransactionPage(view);
             }
         });
 
@@ -162,14 +155,16 @@ public class AddActivity extends AppCompatActivity  {
         startActivity(intent);
     }
 
-//    private void passData(int position) {
-//        cards card = new cards("Desc", 200, "02-03-2023", 1);
-//        Intent i = new Intent(AddActivity.this, Activity_Transaction.class);
-//        i.putExtra("cardDescription", cardsList.get(position).getDescription());
-//        i.putExtra("cardAmount", cardsList.get(position).getAmount());
-//        i.putExtra("cardDate", cardsList.get(position).getDate());
-//        c.startActivity(i);
-//    }
+    private void sendData() {
+        cardDesc = desc.getText().toString().trim();
+        cardAmt = Integer.parseInt(amt.getText().toString().trim());
+
+        Intent intent = new Intent(AddActivity.this, Activity_Transaction.class);
+        intent.putExtra(Activity_Transaction.Description, cardDesc);
+        intent.putExtra(Activity_Transaction.Amount, cardAmt);
+
+        startActivity(intent);
+    }
 
 
 }
