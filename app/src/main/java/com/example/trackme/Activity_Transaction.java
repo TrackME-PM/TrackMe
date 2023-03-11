@@ -181,11 +181,11 @@ public class Activity_Transaction extends AppCompatActivity {
         cardsList = new ArrayList<>();
         cards card1 = new cards("Tea",500,"23-02-2023", 1,1);
         cards card2 = new cards("Pantry",800,"28-02-2023", 1,1);
-        cards card3 = new cards("Project",500,"01-03-2023", 0);
+        cards card3 = new cards("Project",500,"01-03-2023", 2);
         cards card4 = new cards("Staff",1000,"27-04-2023", 4, 1);
         cards card5 = new cards("Tea",1000,"27-04-2023", 1,1);
         cards card6 = new cards("Pantry",1000,"27-04-2023", 1,1);
-        cards card7 = new cards("Project",1000,"27-04-2023", 0);
+        cards card7 = new cards("Project",1000,"27-04-2023", 2);
         cards card8 = new cards("Stationary",1000,"27-04-2023",3, 1);
         cards card9 = new cards("Travel",1000,"27-04-2023",2, 1);
 

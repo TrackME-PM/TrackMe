@@ -28,11 +28,11 @@ public class Activity_HomePage extends AppCompatActivity {
     ViewPagerAdapter viewPagerAdapter;
 
     BottomNavigationView bottomNavigationView;
-    TextView userName;
+    TextView userName, incAmt, expAmt;
     ActivityHomePageBinding binding;
 
     CardAdapter cardAdapter;
-    List<cards> cardsList;
+    List<cards> cardsList, tempList;
     RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,22 +95,47 @@ public class Activity_HomePage extends AppCompatActivity {
         userName.setText("Igmite Solutions");
 
         cardsList = new ArrayList<>();
-        cards card1 = new cards("Tea",500,"23-02-2023", 1);
-        cards card2 = new cards("Pantry",800,"28-02-2023", 1);
-        cards card3 = new cards("Project",500,"01-03-2023", 0);
-        cards card4 = new cards("Staff",1000,"27-04-2023", 1);
-        cards card5 = new cards("Tea",1000,"27-04-2023", 1);
-        cards card6 = new cards("Pantry",1000,"27-04-2023", 1);
-        cards card7 = new cards("Project",1000,"27-04-2023", 1);
+        tempList= new ArrayList<>();
+        cards card1 = new cards("Tea",500,"23-02-2023", 1,1);
+        cards card2 = new cards("Pantry",800,"28-02-2023",1, 1);
+        cards card3 = new cards("Project",500,"01-03-2023", 2);
+        cards card4 = new cards("Staff",1000,"27-04-2023", 4,1);
+        cards card5 = new cards("Stationary",1000,"27-04-2023",3, 1);
+        cards card6 = new cards("Pantry",1000,"27-04-2023", 1, 1);
+        cards card7 = new cards("Project",1000,"27-04-2023", 2);
 
 
         cardsList.add(card1);
         cardsList.add(card2);
         cardsList.add(card3);
+        cardsList.add(card4);
+        cardsList.add(card5);
+        cardsList.add(card6);
+        cardsList.add(card7);
+
+        incAmt = findViewById(R.id.incomeAmt);
+        expAmt = findViewById(R.id.expenseAmt);
+
+        int exp = 0, inc = 0;
+        for(cards card : cardsList) {
+            String date = card.getDate();
+            if (date == "27-04-2023") {
+                tempList.add(card);
+                int num = card.getAmount();
+                if(card.getExpId() == 1){
+                    exp += num;
+                }
+                if(card.getExpId() == 2){
+                    inc += num;
+                }
+            }
+        }
+        incAmt.setText(Integer.toString(inc));
+        expAmt.setText(Integer.toString(exp));
 
 
         recyclerView = findViewById(R.id.itemsRecycler);
-        cardAdapter = new CardAdapter(Activity_HomePage.this, cardsList);
+        cardAdapter = new CardAdapter(Activity_HomePage.this, tempList);
         recyclerView.setAdapter(cardAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(Activity_HomePage.this));
 

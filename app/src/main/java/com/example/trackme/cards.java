@@ -7,14 +7,6 @@ public class cards {
     private String date;
     private int expId, catId;
 
-    public int getCatId() {
-        return catId;
-    }
-
-    public void setCatId(int catId) {
-        this.catId = catId;
-    }
-
     public cards(String description, int amount, String date, int catId, int expId) {
         this.description = description;
         this.amount = amount;
@@ -65,6 +57,13 @@ public class cards {
         this.expId = expId;
     }
 
+    public int getCatId() {
+        return catId;
+    }
+
+    public void setCatId(int catId) {
+        this.catId = catId;
+    }
 
 
 }

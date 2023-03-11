@@ -38,6 +38,8 @@ public class CardAdapter extends RecyclerView.Adapter<cardHolder>{
         holder.setCardDescription(card.getDescription().toString());
         holder.setAmount(card.getAmount());
         holder.setDate(card.getDate());
+        holder.setCategory(card.getCatId());
+        holder.setType(card.getExpId());
     }
 
     @Override
