@@ -12,6 +12,9 @@
         android:theme="@style/Theme.TrackME"
         tools:targetApi="31">
         <activity
+            android:name=".Report_Format"
+            android:exported="false" />
+        <activity
             android:name=".Activity_Report"
             android:exported="false" />
         <activity
