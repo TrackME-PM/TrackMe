@@ -9,20 +9,20 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trackme.R;
-import com.example.trackme.cards;
+import com.example.trackme.Transaction;
 import com.example.trackme.holder.cardHolder;
 
 import java.util.List;
 
 public class CardAdapter extends RecyclerView.Adapter<cardHolder>{
 
-    public CardAdapter(Context context, List<cards> cardsList) {
+    public CardAdapter(Context context, List<com.example.trackme.data.model.Transaction> transactionList) {
         this.context = context;
-        this.cardsList = cardsList;
+        this.transactionList = transactionList;
     }
 
     Context context;
-    List<cards> cardsList;
+    List<com.example.trackme.data.model.Transaction> transactionList;
     @NonNull
     @Override
     public cardHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -34,16 +34,15 @@ public class CardAdapter extends RecyclerView.Adapter<cardHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull cardHolder holder, int position) {
-        cards card = cardsList.get(position);
+        com.example.trackme.data.model.Transaction card = transactionList.get(position);
         holder.setCardDescription(card.getDescription().toString());
         holder.setAmount(card.getAmount());
-        holder.setDate(card.getDate());
-        holder.setCategory(card.getCatId());
-        holder.setType(card.getExpId());
+        holder.setDate(card.getDate().toString());
+
     }
 
     @Override
     public int getItemCount() {
-        return cardsList.size();
+        return transactionList.size();
     }
 }

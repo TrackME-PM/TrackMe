@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trackme.adapter.CardAdapter;
 import com.example.trackme.adapter.ViewPagerAdapter;
+import com.example.trackme.data.model.Transaction;
 import com.example.trackme.databinding.ActivityHomePageBinding;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -33,7 +34,7 @@ public class Activity_HomePage extends AppCompatActivity {
     ActivityHomePageBinding binding;
 
     CardAdapter cardAdapter;
-    List<cards> cardsList, tempList, tempList1;
+    List<Transaction> cardsList, tempList, tempList1;
     RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,46 +99,32 @@ public class Activity_HomePage extends AppCompatActivity {
         cardsList = new ArrayList<>();
         tempList= new ArrayList<>();
         tempList1= new ArrayList<>();
-        cards card1 = new cards("Tea",500,"23-02-2023", 1,1);
-        cards card2 = new cards("Pantry",800,"28-02-2023",1, 1);
-        cards card3 = new cards("Project",500,"01-03-2023", 2);
-        cards card4 = new cards("Staff",1000,"27-04-2023", 4,1);
-        cards card5 = new cards("Stationary",1000,"27-04-2023",3, 1);
-        cards card6 = new cards("Pantry",1000,"27-04-2023", 1, 1);
-        cards card7 = new cards("Project",1000,"27-04-2023", 2);
-        cards card8 = new cards("Travel",500,"27-04-2023", 2, 1);
 
 
-        cardsList.add(card1);
-        cardsList.add(card2);
-        cardsList.add(card3);
-        cardsList.add(card4);
-        cardsList.add(card5);
-        cardsList.add(card6);
-        cardsList.add(card7);
-        cardsList.add(card8);
+
+
 
         incAmt = findViewById(R.id.incomeAmt);
         expAmt = findViewById(R.id.expenseAmt);
 
 
 
-        int exp = 0, inc = 0;
-        for(cards card : cardsList) {
-            String date = card.getDate();
-            if (date == "11-03-2023") {
-                tempList.add(card);
-                int num = card.getAmount();
-                if(card.getExpId() == 1){
-                    exp += num;
-                }
-                if(card.getExpId() == 2){
-                    inc += num;
-                }
-            }
-        }
-        incAmt.setText(Integer.toString(inc));
-        expAmt.setText(Integer.toString(exp));
+//        int exp = 0, inc = 0;
+//        for(cards card : cardsList) {
+//            String date = card.getDate();
+//            if (date == "11-03-2023") {
+//                tempList.add(card);
+//                int num = card.getAmount();
+//                if(card.getExpId() == 1){
+//                    exp += num;
+//                }
+//                if(card.getExpId() == 2){
+//                    inc += num;
+//                }
+//            }
+//        }
+//        incAmt.setText(Integer.toString(inc));
+//        expAmt.setText(Integer.toString(exp));
 
 
         recyclerView = findViewById(R.id.itemsRecycler);
@@ -173,10 +160,10 @@ public class Activity_HomePage extends AppCompatActivity {
 
                 case R.id.navigation_transaction:
                     Intent intent = new Intent(Activity_HomePage.this, Activity_Transaction.class);
-                    intent.putExtra(Activity_Transaction.Description, "null");
-                    intent.putExtra(Activity_Transaction.Amount, -1);
-                    intent.putExtra(Activity_Transaction.Expense, -1);
-                    intent.putExtra(Activity_Transaction.Category, -1);
+//                    intent.putExtra(Activity_Transaction.Description, "null");
+//                    intent.putExtra(Activity_Transaction.Amount, -1);
+//                    intent.putExtra(Activity_Transaction.Expense, -1);
+//                    intent.putExtra(Activity_Transaction.Category, -1);
 
                     startActivity(intent);
                     finish();

@@ -2,12 +2,10 @@ package com.example.trackme;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -16,21 +14,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
 
 import com.example.trackme.adapter.CardAdapter;
 import com.example.trackme.databinding.ActivityAddBinding;
 import com.example.trackme.holder.cardHolder;
-import com.google.android.material.tabs.TabLayout;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -53,8 +43,8 @@ public class AddActivity extends AppCompatActivity  {
 
     CardAdapter cardAdapter;
     cardHolder holder;
-    List<cards> cardsList;
-    cards card;
+    List<Transaction> transactionList;
+    Transaction card;
     ArrayAdapter<CharSequence> adapterItems;
     @SuppressLint("ResourceType")
     @Override

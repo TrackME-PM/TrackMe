@@ -25,8 +25,8 @@ public class cardHolder extends RecyclerView.ViewHolder {
         desc.setText(description);
     }
 
-    public void setAmount(int amount) {
-        String num = Integer.toString(amount);
+    public void setAmount(Double amount) {
+        String num = Double.toString(amount);
         amt.setText(num);
     }
 
