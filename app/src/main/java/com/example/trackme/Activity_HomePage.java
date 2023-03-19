@@ -34,7 +34,7 @@ public class Activity_HomePage extends AppCompatActivity {
     ActivityHomePageBinding binding;
 
     CardAdapter cardAdapter;
-    List<Transaction> cardsList, tempList, tempList1;
+    List<cards> cardsList, tempList, tempList1;
     RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,7 +126,6 @@ public class Activity_HomePage extends AppCompatActivity {
 //        incAmt.setText(Integer.toString(inc));
 //        expAmt.setText(Integer.toString(exp));
 
-
         recyclerView = findViewById(R.id.itemsRecycler);
         cardAdapter = new CardAdapter(Activity_HomePage.this, tempList);
         recyclerView.setAdapter(cardAdapter);
@@ -192,39 +191,6 @@ public class Activity_HomePage extends AppCompatActivity {
 
 
     }
-
-//    @Override
-//    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//        Fragment fragment = null;
-//        switch (item.getItemId()) {
-//            case R.id.navigation_home:
-//                fragment = new homeFragement();
-//                return true;
-//            case R.id.navigation_transaction:
-//                fragment = new transactionFragment();
-//                return true;
-//        }
-//
-//        return false;
-//    }
-    void loadFragment(Fragment fragment) {
-        //to attach fragment
-        getSupportFragmentManager().beginTransaction().replace(R.id.relativelayout, fragment).commit();
-    }
-
-
-    private void replaceFragment(Fragment fragment){
-        FragmentManager fragmentManager= getSupportFragmentManager();
-        FragmentTransaction transactionFragment= fragmentManager.beginTransaction();
-        transactionFragment.replace(R.id.bottomAppBar, fragment);
-        transactionFragment.commit();
-    }
-
-//    public void openUserPage(View v) {
-//        Intent intent = new Intent(this, Activity_UserProfile.class);
-//        startActivity(intent);
-//    }
-
 
 
 

@@ -7,8 +7,15 @@ public class Category {
 
 
     public int Id;
+
     public String Name;
-//    public List<com.example.trackme.data.model.Transaction> Transaction;
+
+    public List<Transaction> getTransaction() {
+        return Transaction;
+    }
+
+
+    public List<Transaction> Transaction;
 
     public Category(int Id, String Name){
         this.Id = Id;

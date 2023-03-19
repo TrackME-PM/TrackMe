@@ -1,5 +1,7 @@
 package com.example.trackme.data.model;
 
+import android.util.Log;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.time.LocalDateTime;
@@ -23,8 +25,7 @@ public class Transaction {
     @SerializedName("categoryId")
     public String CategoryId;
 
-    public Transaction(int Id, String Name, String Description, String Amount, String Date, String TransactionTypeId, String CategoryId ){
-        this.Id = Id;
+    public Transaction(String Name, String Description, String Amount, String Date, String TransactionTypeId, String CategoryId ){
         this.Name = Name;
         this.Description = Description;
         this.Amount = Amount;
@@ -59,5 +60,13 @@ public class Transaction {
 
     public String getCategoryId() {
         return CategoryId;
+    }
+
+    public void show(){
+        Log.e("Transaction","onSuccess: " + Name);
+        Log.e("Transaction","onSuccess: " + Amount);
+        Log.e("Transaction","onSuccess: " + Date);
+        Log.e("Transaction","onSuccess: " + Description);
+        Log.e("Transaction","onSuccess: " + CategoryId);
     }
 }

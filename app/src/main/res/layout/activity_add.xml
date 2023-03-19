@@ -112,7 +112,6 @@
                     android:background="@drawable/stroke"
                     android:layout_width="match_parent"
                     android:paddingLeft="10dp"
-                    android:inputType="number"
                     android:layout_marginBottom="10dp"
                     android:layout_height="50dp"
                     android:hint="Enter the title">
@@ -176,7 +175,7 @@
 
 
                 <TextView
-                    android:text="Description"
+                    android:text="Description (Optional)"
                     android:textSize="16dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
