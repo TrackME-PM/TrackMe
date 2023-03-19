@@ -1,21 +1,29 @@
 package com.example.trackme.data.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.time.LocalDateTime;
 
 public class Transaction {
 
 
     public int Id;
+    @SerializedName("name")
     public String Name;
+    @SerializedName("description")
     public String Description;
-    public double Amount;
+    @SerializedName("amount")
+    public String Amount;
+    @SerializedName("date")
 
-    public LocalDateTime Date;
+    public String Date;
+    @SerializedName("transactionId")
 
-    public int TransactionTypeId;
-    public int CategoryId;
+    public String TransactionTypeId;
+    @SerializedName("categoryId")
+    public String CategoryId;
 
-    public Transaction(int Id, String Name, String Description, double Amount, LocalDateTime Date, int TransactionTypeId, int CategoryId ){
+    public Transaction(int Id, String Name, String Description, String Amount, String Date, String TransactionTypeId, String CategoryId ){
         this.Id = Id;
         this.Name = Name;
         this.Description = Description;
@@ -37,19 +45,19 @@ public class Transaction {
         return Description;
     }
 
-    public double getAmount() {
+    public String getAmount() {
         return Amount;
     }
 
-    public LocalDateTime getDate() {
+    public String getDate() {
         return Date;
     }
 
-    public int getTransactionTypeId() {
+    public String getTransactionTypeId() {
         return TransactionTypeId;
     }
 
-    public int getCategoryId() {
+    public String getCategoryId() {
         return CategoryId;
     }
 }

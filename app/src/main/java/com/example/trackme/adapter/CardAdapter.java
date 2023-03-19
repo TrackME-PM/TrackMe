@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trackme.R;
-import com.example.trackme.Transaction;
 import com.example.trackme.holder.cardHolder;
 
 import java.util.List;
@@ -36,7 +35,7 @@ public class CardAdapter extends RecyclerView.Adapter<cardHolder>{
     public void onBindViewHolder(@NonNull cardHolder holder, int position) {
         com.example.trackme.data.model.Transaction card = transactionList.get(position);
         holder.setCardDescription(card.getDescription().toString());
-        holder.setAmount(card.getAmount());
+        holder.setAmount(Double.valueOf(card.getAmount()));
         holder.setDate(card.getDate().toString());
 
     }

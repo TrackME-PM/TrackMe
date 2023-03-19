@@ -66,6 +66,9 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
 
 
+    implementation 'com.github.Gkemon:Android-XML-to-PDF-Generator:1.0'
+
+
 
 
 }

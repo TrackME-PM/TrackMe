@@ -4,11 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
 import android.widget.TextView;
 
+
 import com.example.trackme.adapter.ReportAdapter;
 import com.example.trackme.databinding.ActivityReportFormatBinding;
+import com.gkemon.XMLtoPDF.PdfGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +56,8 @@ public class Report_Format extends AppCompatActivity {
         reportAdapter = new ReportAdapter(this, reportList);
         recyclerView.setAdapter(reportAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+
 
 
 

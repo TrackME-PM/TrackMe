@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 
+
+
 import com.example.trackme.adapter.CardAdapter;
 import com.example.trackme.databinding.ActivityTransactionBinding;
 
@@ -39,7 +41,7 @@ public class Activity_Transaction extends AppCompatActivity {
     private String desc;
     private int amt;
 
-    Transaction card;
+
     ListView listView;
     CardView catAll, catFood, catTravel,catStat, catStaff, catOther;
     CardAdapter cardAdapter;
@@ -52,7 +54,6 @@ public class Activity_Transaction extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         tempList = new ArrayList<>();
-        allTransactionList = new ArrayList<>();
         super.onCreate(savedInstanceState);
         activityTransactionBinding = ActivityTransactionBinding.inflate(getLayoutInflater());
         setContentView(activityTransactionBinding.getRoot());
@@ -64,8 +65,12 @@ public class Activity_Transaction extends AppCompatActivity {
                allTransactionList = response.body();
 //               cardAdapter = new CardAdapter(Activity_Transaction.this, allTransactionList);
 //               recyclerView.setAdapter(cardAdapter);
-               for(int i=0;i<allTransactionList.size();i++){
-                   Log.e("api","onSuccess: " + allTransactionList.get(i).getName());
+               for(com.example.trackme.data.model.Transaction transaction : allTransactionList){
+                   Log.e("api","onSuccess: " + transaction.getName());
+                   Log.e("api","onSuccess: " + transaction.getAmount());
+                   Log.e("api","onSuccess: " + transaction.getDate());
+                   Log.e("api","onSuccess: " + transaction.getDescription());
+                   Log.e("api","onSuccess: " + transaction.getCategoryId());
                }
            }
 
@@ -76,15 +81,15 @@ public class Activity_Transaction extends AppCompatActivity {
        });
 
 
-//        activityTransactionBinding.backBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(Activity_Transaction.this, Activity_HomePage.class);
-//
-//                startActivity(intent);
-//                finish();
-//            }
-//        });
+        activityTransactionBinding.backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Activity_Transaction.this, Activity_HomePage.class);
+
+                startActivity(intent);
+                finish();
+            }
+        });
 //
 //        catAll = findViewById(R.id.catAll);
 //        catStat = findViewById(R.id.catStat);

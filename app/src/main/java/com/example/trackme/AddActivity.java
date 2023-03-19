@@ -43,8 +43,8 @@ public class AddActivity extends AppCompatActivity  {
 
     CardAdapter cardAdapter;
     cardHolder holder;
-    List<Transaction> transactionList;
-    Transaction card;
+
+
     ArrayAdapter<CharSequence> adapterItems;
     @SuppressLint("ResourceType")
     @Override
