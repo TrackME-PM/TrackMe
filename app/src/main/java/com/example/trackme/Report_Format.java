@@ -1,25 +1,33 @@
 package com.example.trackme;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
 import com.example.trackme.adapter.ReportAdapter;
 import com.example.trackme.databinding.ActivityReportFormatBinding;
 import com.gkemon.XMLtoPDF.PdfGenerator;
+import com.gkemon.XMLtoPDF.PdfGeneratorListener;
+import com.gkemon.XMLtoPDF.model.FailureResponse;
+import com.gkemon.XMLtoPDF.model.SuccessResponse;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Report_Format extends AppCompatActivity {
 
-    TextView trDate, trTitle, trCategory, trAmount, trDue;
+    TextView dueAmt;
 
+    LinearLayout linear;
+    CardView downBtn;
     List<Report> reportList;
     RecyclerView recyclerView;
     ReportAdapter reportAdapter;
@@ -52,10 +60,56 @@ public class Report_Format extends AppCompatActivity {
         reportList.add(data8);
 
 
-        recyclerView = findViewById(R.id.itemsRecycler);
+        recyclerView = findViewById(R.id.dataRecycler);
         reportAdapter = new ReportAdapter(this, reportList);
         recyclerView.setAdapter(reportAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        dueAmt = findViewById(R.id.totalDue);
+        int sum = 0;
+        for(Report data: reportList){
+            int amt = data.getTrAmount();
+            sum += amt;
+        }
+        dueAmt.setText(Integer.toString(sum));
+
+
+        linear = findViewById(R.id.lineard);
+
+        downBtn = findViewById(R.id.downloadBtn);
+        downBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                PdfGenerator.getBuilder()
+                        .setContext(Report_Format.this)
+                        .fromViewSource()
+                        .fromView(linear)
+                        /* "fromView()" takes array of view. You can also invoke "fromViewList()" method here
+                         * which takes list of view instead of array. */
+                        .setCustomPageSize(linear.getWidth(), linear.getHeight())
+                        .setFileName("Test-PDF")
+                        .setFolderName("TrackME")
+                        .openPDFafterGeneration(true)
+                        .build(new PdfGeneratorListener() {
+                            @Override
+                            public void onFailure(FailureResponse failureResponse) {
+                                super.onFailure(failureResponse);
+                            }
+
+                            @Override
+                            public void showLog(String log) {
+                                super.showLog(log);
+                            }
+
+                            @Override
+                            public void onSuccess(SuccessResponse response) {
+                                super.onSuccess(response);
+                            }
+
+                        });
+            }
+        });
 
 
 

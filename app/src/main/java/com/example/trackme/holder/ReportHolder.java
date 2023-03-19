@@ -17,7 +17,6 @@ public class ReportHolder extends RecyclerView.ViewHolder{
         trTitle = itemView.findViewById(R.id.trTitle);
         trCategory = itemView.findViewById(R.id.trCategory);
         trAmount = itemView.findViewById(R.id.trAmount);
-        trDue = itemView.findViewById(R.id.trDue);
     }
     public void setTitle(String title){
         trTitle.setText(title);

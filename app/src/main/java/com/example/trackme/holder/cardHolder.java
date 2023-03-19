@@ -15,7 +15,7 @@ public class cardHolder extends RecyclerView.ViewHolder {
     ImageView img, type;
     public cardHolder(@NonNull View itemView) {
         super(itemView);
-        desc = itemView.findViewById(R.id.description);
+        desc = itemView.findViewById(R.id.title);
         amt = itemView.findViewById(R.id.amount);
         curDate = itemView.findViewById(R.id.date);
         img = itemView.findViewById(R.id.categoryIcon);

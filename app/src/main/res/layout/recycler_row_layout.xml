@@ -2,63 +2,70 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:backgroundTint="@color/white"
     android:padding="5dp">
 
-    <LinearLayout
-        android:weightSum="5"
-        android:orientation="horizontal"
+    <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <TableRow
+            android:background="@color/white"
+            android:weightSum="4"
+            android:backgroundTint="@color/white"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/trDate"
-            android:layout_weight="1"
-            android:background="@drawable/border_table"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:padding="9dp"
-            android:text="Tr Date"
-            android:textColor="@color/black" />
+            <TextView
+                android:id="@+id/trDate"
+                android:layout_weight="1"
+                android:layout_column="1"
+                android:background="@drawable/column_border"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:padding="9dp"
+                android:text="Tr Date"
+                android:textSize="12sp"
+                android:textColor="@color/black" />
 
-        <TextView
-            android:id="@+id/trTitle"
-            android:layout_weight="1"
-            android:background="@drawable/border_table"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:padding="9dp"
-            android:text="Title"
-            android:textColor="@color/black" />
+            <TextView
+                android:id="@+id/trTitle"
+                android:layout_weight="1"
+                android:layout_column="2"
+                android:background="@drawable/column_border"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:padding="9dp"
+                android:gravity="center"
+                android:textSize="12sp"
+                android:text="Title"
+                android:textColor="@color/black" />
 
-        <TextView
-            android:id="@+id/trCategory"
-            android:layout_weight="1"
-            android:background="@drawable/border_table"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Category"
-            android:padding="9dp"
-            android:textColor="@color/black" />
+            <TextView
+                android:id="@+id/trCategory"
+                android:layout_weight="1"
+                android:layout_column="3"
+                android:background="@drawable/column_border"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:text="Category"
+                android:padding="9dp"
+                android:gravity="center"
+                android:textSize="12sp"
+                android:textColor="@color/black" />
 
-        <TextView
-            android:id="@+id/trAmount"
-            android:layout_weight="1"
-            android:background="@drawable/border_table"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Due Amount"
-            android:padding="9dp"
-            android:textColor="@color/black" />
+            <TextView
+                android:id="@+id/trAmount"
+                android:layout_weight="1"
+                android:layout_column="4"
+                android:background="@drawable/column_border"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:text="Due Amount"
+                android:padding="9dp"
+                android:gravity="center"
+                android:textSize="12sp"
+                android:textColor="@color/black" />
 
-        <TextView
-            android:id="@+id/trDue"
-            android:layout_weight="1"
-            android:background="@drawable/border_table"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Due Date"
-            android:padding="9dp"
-            android:textColor="@color/black" />
-    </LinearLayout>
+        </TableRow>
+    </TableLayout>
 </androidx.cardview.widget.CardView>
