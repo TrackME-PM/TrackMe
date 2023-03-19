@@ -100,6 +100,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:text="Title"
+                    android:textSize="16dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                </TextView>
+
+                <EditText
+                    android:id="@+id/title"
+                    android:background="@drawable/stroke"
+                    android:layout_width="match_parent"
+                    android:paddingLeft="10dp"
+                    android:inputType="number"
+                    android:layout_marginBottom="10dp"
+                    android:layout_height="50dp"
+                    android:hint="Enter the title">
+
+                </EditText>
+                <TextView
                     android:text="Amount"
                     android:textSize="16dp"
                     android:layout_marginBottom="10dp"
@@ -206,17 +225,6 @@
 <!--        </TextView>-->
 
 <!--    </androidx.cardview.widget.CardView>-->
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/cardView"
-        android:layout_width="match_parent"
-        android:layout_height="153dp"
-        tools:itemCount="2"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="51dp"
-        android:layout_marginBottom="49dp">
-
-    </androidx.recyclerview.widget.RecyclerView>
 
     <Button
         android:id="@+id/addBtn"

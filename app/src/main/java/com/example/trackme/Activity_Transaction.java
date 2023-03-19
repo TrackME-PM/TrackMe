@@ -65,10 +65,12 @@ public class Activity_Transaction extends AppCompatActivity {
                allTransactionList = response.body();
 //               cardAdapter = new CardAdapter(Activity_Transaction.this, allTransactionList);
 //               recyclerView.setAdapter(cardAdapter);
+
                for(com.example.trackme.data.model.Transaction transaction : allTransactionList){
+                   String date = transaction.getDate();
                    Log.e("api","onSuccess: " + transaction.getName());
                    Log.e("api","onSuccess: " + transaction.getAmount());
-                   Log.e("api","onSuccess: " + transaction.getDate());
+                   Log.e("api","onSuccess: " + date.substring(0,10));
                    Log.e("api","onSuccess: " + transaction.getDescription());
                    Log.e("api","onSuccess: " + transaction.getCategoryId());
                }

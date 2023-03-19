@@ -73,7 +73,7 @@
                 android:padding="10dp"
                 android:ems="10"
                 android:hint="Enter UserName"
-                android:inputType="textPersonName" />
+                android:inputType="text" />
 
             <Space
                 android:layout_width="match_parent"

@@ -142,30 +142,11 @@ public class AddActivity extends AppCompatActivity  {
         binding.addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String Desc = desc.getText().toString();
-                int  Amount = Integer.parseInt(amt.getText().toString());
 
-                Toast.makeText(AddActivity.this, "Add " +Amount, Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(AddActivity.this, Activity_Transaction.class);
 
-                intent.putExtra(Activity_Transaction.Description, Desc);
-                intent.putExtra(Activity_Transaction.Amount, Amount);
-                intent.putExtra(Activity_Transaction.Category, catId);
-                intent.putExtra(Activity_Transaction.Expense, expId);
 
-                startActivity(intent);
-
-//                card.setDescription(Desc);
-//                card.setAmount(Amount);
 //
-//
-//                recyclerView = findViewById(R.id.cardView);
-//                cardAdapter = new CardAdapter(AddActivity.this, cardsList);
-//                recyclerView.setAdapter(cardAdapter);
-//                recyclerView.setLayoutManager(new LinearLayoutManager(AddActivity.this));
-
-                //openTransactionPage(view);
             }
         });
 

@@ -3,11 +3,16 @@ package com.example.trackme;
 import com.example.trackme.data.model.Category;
 import com.example.trackme.data.model.Transaction;
 import com.example.trackme.data.model.TransactionType;
+import com.example.trackme.data.model.User;
 
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface ApiInterface {
@@ -29,4 +34,8 @@ public interface ApiInterface {
 
     @GET("api/transactions/{id}")
     Call<TransactionType> getTransactionsByTransactionType(@Path("id") int id);
+
+//    @FormUrlEncoded
+    @POST("api/Account/login")
+    Call<User> getLoginData(@Body User user);
 }
