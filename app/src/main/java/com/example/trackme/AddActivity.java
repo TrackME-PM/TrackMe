@@ -25,8 +25,6 @@ import com.example.trackme.data.model.Transaction;
 import com.example.trackme.databinding.ActivityAddBinding;
 import com.example.trackme.holder.cardHolder;
 
-import org.joda.time.DateTime;
-import org.joda.time.LocalDateTime;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -65,7 +63,7 @@ public class AddActivity extends AppCompatActivity  {
 // System.out.println(date1);
 
     String getAmt, getDesc, getTitle;
-    Integer catId = 0, cardAmt, expId = 1;
+    Integer catId = 7, cardAmt, expId = 1;
     Spinner spinner;
 
 

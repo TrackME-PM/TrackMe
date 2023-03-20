@@ -61,16 +61,6 @@
             </ImageView>
 
         </androidx.cardview.widget.CardView>
-        <TextView
-            android:layout_marginTop="5dp"
-            android:id="@+id/userName"
-            android:gravity="center"
-            android:text="UserName"
-            android:textSize="18sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        </TextView>
     </LinearLayout>
 
 
@@ -105,7 +95,7 @@
                     android:id="@id/usernameTextEdit"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_weight="4"
                     android:background="@drawable/transperant_background"
                     android:hint="Profile Name"
                     android:inputType="text"
@@ -115,7 +105,7 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="100dp"
+                    android:gravity="center"
                     android:background="@drawable/button_radius"
                     android:text="Edit" />
 
@@ -142,7 +132,7 @@
                     android:padding="10dp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_weight="4"
                     android:text="Profile Name" />
 
                 <Button
@@ -181,6 +171,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:padding="20dp"
+                    android:textSize="18sp"
                     android:text="Generate Report">
 
                 </TextView>

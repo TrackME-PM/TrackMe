@@ -37,7 +37,7 @@ public class Activity_Transaction extends AppCompatActivity {
     TextView cardDesc, cardAmt, cardDate;
     private String desc, title, amt, date ,catId, expId;
 
-    CardView catAll, catFood, catTravel,catStat, catStaff, catOther;
+    CardView catAll, catFood, catTravel,catStat, catStaff, catOther, catInc;
     CardAdapter cardAdapter;
     List<Transaction> allTransactionList, transactionList;
     Category category;
@@ -111,6 +111,7 @@ public class Activity_Transaction extends AppCompatActivity {
         catStaff = findViewById(R.id.catStaff);
         catFood = findViewById(R.id.catFood);
         catOther = findViewById(R.id.catOther);
+        catInc = findViewById(R.id.catIncome);
 
         activityTransactionBinding.catFood.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -396,6 +397,47 @@ public class Activity_Transaction extends AppCompatActivity {
             }
         });
 
+
+        activityTransactionBinding.catIncome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                catFood.setBackgroundResource(R.drawable.category_card_border);
+                tempList.clear();
+
+                RetrofitClient.getRetrofitInstance().apiInterface.getTransactions().enqueue(new Callback<List<Transaction>>() {
+                    @Override
+                    public void onResponse(Call<List<Transaction>> call, Response<List<Transaction>> response) {
+                        transactionList = response.body();
+
+                        for (Transaction transaction: transactionList) {
+                            title = transaction.getName();
+                            desc = transaction.getDescription();
+                            amt = transaction.getAmount();
+                            date = transaction.getDate();
+                            date = date.substring(0, 10);
+                            catId = transaction.getCategoryId();
+                            expId = transaction.getTransactionTypeId();
+
+                            if(catId.equals("7")) {
+                                cards card = new cards(title, desc, amt, date, catId, expId);
+                                tempList.add(card);
+                            }
+
+                        }
+                        recyclerView = findViewById(R.id.itemsRecycler);
+                        cardAdapter = new CardAdapter(Activity_Transaction.this, tempList);
+                        recyclerView.setAdapter(cardAdapter);
+                        recyclerView.setLayoutManager(new LinearLayoutManager(Activity_Transaction.this));
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Transaction>> call, Throwable t) {
+
+                    }
+                });
+
+            }
+        });
 
 
 

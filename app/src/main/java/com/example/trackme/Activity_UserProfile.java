@@ -44,7 +44,9 @@ public class Activity_UserProfile extends AppCompatActivity {
             }
         });
 
+
     }
+
 
 //    public void openHomePage(View view){
 //        Intent intent = new Intent(this, Activity_HomePage.class);

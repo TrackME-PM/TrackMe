@@ -17,10 +17,12 @@
     <color name="btn_color">#026d6c</color>
     <color name="transparent">#00000000</color>
 
-    <color name="R">#FFA726</color>
-    <color name="Python">#66BB6A</color>
-    <color name="CPP">#EF5350</color>
-    <color name="Java">#29B6F6</color>
+    <color name="food">#FFA726</color>
+    <color name="travel">#66BB6A</color>
+    <color name="pantry">#EF5350</color>
+    <color name="other">#29B6F6</color>
+    <color name="stat">#50D4A4</color>
+    <color name="staff">#EF5350</color>
 
     <color name="color_one">#fb7268</color>
     <color name="color_white">#ededf2</color>

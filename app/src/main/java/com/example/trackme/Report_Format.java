@@ -5,10 +5,13 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +26,7 @@ import com.gkemon.XMLtoPDF.PdfGeneratorListener;
 import com.gkemon.XMLtoPDF.model.FailureResponse;
 import com.gkemon.XMLtoPDF.model.SuccessResponse;
 
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -33,26 +37,32 @@ import retrofit2.Response;
 
 public class Report_Format extends AppCompatActivity {
 
-    TextView dueAmt;
+    TextView dueAmt, tvMonth;
 
-    LinearLayout linear;
+    LinearLayout linear, layout;
     CardView downBtn;
     List<Report> reportList;
+    double sum = 0, getAmt;
 
     private String desc, title, amt, date ,catId, expId;
     List<Transaction> allTransactionList;
     RecyclerView recyclerView;
+    String[] monthArr = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
     ReportAdapter reportAdapter;
-    private ActivityReportFormatBinding binding;
 
+    ImageView backBtn;
+
+    @SuppressLint({"SetTextI18n", "MissingInflatedId"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        binding = ActivityReportFormatBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        setContentView(R.layout.activity_report_format);
 
 
+        dueAmt = findViewById(R.id.totalDue);
+        tvMonth = findViewById(R.id.monthName);
+
+        reportList = new ArrayList<>();
         RetrofitClient.getRetrofitInstance().apiInterface.getTransactions().enqueue(new Callback<List<Transaction>>() {
             @Override
             public void onResponse(Call<List<Transaction>> call, Response<List<Transaction>> response) {
@@ -67,6 +77,7 @@ public class Report_Format extends AppCompatActivity {
                     catId = transaction.getCategoryId();
                     expId = (transaction.getTransactionTypeId());
 
+
                     Log.e("report", "OnSuccess " + title);
                     Log.e("report", "OnSuccess " + desc);
                     Log.e("report", "OnSuccess " + amt);
@@ -75,17 +86,30 @@ public class Report_Format extends AppCompatActivity {
                     Log.e("report", "OnSuccess " + expId);
 
 
-//                    if(expId.equals("1")){
-//                        Log.e("report", "OnSuccess " + expId);
-//
-//                    }
-//                    Report report = new Report("date", "title", "1", "20");
-//                    reportList.add(report);
+                    if(expId.equals("1")){
+                        Log.e("report", "OnSuccess " + expId);
+                        Report report = new Report(date, title, catId, amt);
+                        reportList.add(report);
 
+                        getAmt = Double.parseDouble(amt);
+                        sum += getAmt;
+                        Log.e("amount", "OnSuccess " + Double.toString(sum));
 
+                    }
 
                 }
-                Toast.makeText(Report_Format.this,reportList.size(),Toast.LENGTH_SHORT).show();
+
+                String[] str = allTransactionList.get(1).getDate().split("-");
+                int month = Integer.parseInt(str[1]);
+                String getMonth = monthArr[month-1];
+                tvMonth.setText(getMonth);
+//                Toast.makeText(Report_Format.this,reportList.size(),Toast.LENGTH_SHORT).show();
+
+
+                dueAmt.setText(Double.toString(sum));
+
+
+
                 recyclerView = findViewById(R.id.dataRecycler);
                 reportAdapter = new ReportAdapter(Report_Format.this, reportList);
                 recyclerView.setAdapter(reportAdapter);
@@ -98,16 +122,11 @@ public class Report_Format extends AppCompatActivity {
             }
         });
 
-//        dueAmt = findViewById(R.id.totalDue);
-//        int sum = 0;
-//        for(Report data: reportList){
-//            int amt = Integer.parseInt(data.getTrAmount());
-//            sum += amt;
-//        }
-//        dueAmt.setText(Integer.toString(sum));
+
 
 
         linear = findViewById(R.id.lineard);
+        layout = findViewById(R.id.layoutPage);
 
         downBtn = findViewById(R.id.downloadBtn);
         downBtn.setOnClickListener(new View.OnClickListener() {
@@ -120,7 +139,7 @@ public class Report_Format extends AppCompatActivity {
                         .fromView(linear)
                         /* "fromView()" takes array of view. You can also invoke "fromViewList()" method here
                          * which takes list of view instead of array. */
-                        .setCustomPageSize(linear.getWidth(), linear.getHeight())
+                        .setCustomPageSize(layout.getWidth(), layout.getHeight())
                         .setFileName("Test-PDF")
                         .setFolderName("TrackME")
                         .openPDFafterGeneration(true)
@@ -142,9 +161,18 @@ public class Report_Format extends AppCompatActivity {
 
                         });
             }
+
         });
 
-
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Report_Format.this, Activity_UserProfile.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
 
 
