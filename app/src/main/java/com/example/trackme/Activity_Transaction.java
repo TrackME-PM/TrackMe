@@ -70,6 +70,8 @@ public class Activity_Transaction extends AppCompatActivity {
                    date = date.substring(0, 10);
                    catId = transaction.getCategoryId();
                    expId = transaction.getTransactionTypeId();
+                   Log.e("tran","success"+ expId);
+                   Log.e("tran","success"+ catId);
 
                    cards card = new cards(title, desc, amt, date, catId, expId);
                    cardsList.add(card);

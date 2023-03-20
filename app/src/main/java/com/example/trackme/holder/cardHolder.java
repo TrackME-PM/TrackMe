@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trackme.R;
 
+import java.util.Objects;
+
 public class cardHolder extends RecyclerView.ViewHolder {
 
     TextView trTitle, desc, amt, curDate;
@@ -84,7 +86,7 @@ public class cardHolder extends RecyclerView.ViewHolder {
         }
     }
     public void setType(String  expId){
-        if(expId == "2"){
+        if(Objects.equals(expId, "2")){
             type.setImageResource(R.drawable.arr_inc);
         }
         else{

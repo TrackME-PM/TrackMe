@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.example.trackme.adapter.CardAdapter;
@@ -24,6 +25,7 @@ import com.gkemon.XMLtoPDF.model.SuccessResponse;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -72,10 +74,18 @@ public class Report_Format extends AppCompatActivity {
                     Log.e("report", "OnSuccess " + catId);
                     Log.e("report", "OnSuccess " + expId);
 
-                    Report report = new Report(date, title, catId, amt);
-                    reportList.add(report);
+
+//                    if(expId.equals("1")){
+//                        Log.e("report", "OnSuccess " + expId);
+//
+//                    }
+//                    Report report = new Report("date", "title", "1", "20");
+//                    reportList.add(report);
+
+
 
                 }
+                Toast.makeText(Report_Format.this,reportList.size(),Toast.LENGTH_SHORT).show();
                 recyclerView = findViewById(R.id.dataRecycler);
                 reportAdapter = new ReportAdapter(Report_Format.this, reportList);
                 recyclerView.setAdapter(reportAdapter);

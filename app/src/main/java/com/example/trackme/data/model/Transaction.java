@@ -19,7 +19,7 @@ public class Transaction {
     @SerializedName("date")
 
     public String Date;
-    @SerializedName("transactionId")
+    @SerializedName("transactionTypeId")
 
     public String TransactionTypeId;
     @SerializedName("categoryId")
