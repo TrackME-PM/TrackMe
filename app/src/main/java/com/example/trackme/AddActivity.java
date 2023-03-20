@@ -179,30 +179,34 @@ public class AddActivity extends AppCompatActivity  {
         binding.addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                getAmt= "0";
                 getTitle = title.getText().toString();
                 getAmt = amt.getText().toString();
                 getDesc = desc.getText().toString();
 
                 Toast.makeText(AddActivity.this,getTitle,Toast.LENGTH_SHORT).show();
+                Log.e("Add","Success"+ getAmt);
+                if(!getTitle.equals("") && !getAmt.equals("") && !getDesc.equals("")){
+                    ApiInterface retrofitApi = RetrofitClient.getRetrofitInstance().apiInterface;
+                    Transaction transaction = new Transaction(getTitle,getDesc,Double.parseDouble(getAmt),date.toString(),expId,catId);
+                    Call<Transaction> call = retrofitApi.addTransaction(transaction);
+                    call.enqueue(new Callback<Transaction>() {
+                        @Override
+                        public void onResponse(Call<Transaction> call, Response<Transaction> response) {
+                            Log.e("Add","Success");
 
-                ApiInterface retrofitApi = RetrofitClient.getRetrofitInstance().apiInterface;
-                Transaction transaction = new Transaction(getTitle,getDesc,Double.parseDouble(getAmt),date.toString(),expId,catId);
-                Call<Transaction> call = retrofitApi.addTransaction(transaction);
-                call.enqueue(new Callback<Transaction>() {
-                    @Override
-                    public void onResponse(Call<Transaction> call, Response<Transaction> response) {
-                        Log.e("Add","Success");
-                        Log.e("Add","Success"+ response.code());
 
+                        }
 
-                    }
+                        @Override
+                        public void onFailure(Call<Transaction> call, Throwable t) {
+                            Log.e("Add","Failure");
+                        }
+                    });
 
-                    @Override
-                    public void onFailure(Call<Transaction> call, Throwable t) {
-                        Log.e("Add","Failure");
-                    }
-                });
-                openTransactionPage(view);
+                }
+                startActivity(new Intent(AddActivity.this, Activity_HomePage.class));
+                finish();
             }
         });
 

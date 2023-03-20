@@ -157,10 +157,16 @@ public class Report_Format extends AppCompatActivity {
                             @Override
                             public void onSuccess(SuccessResponse response) {
                                 super.onSuccess(response);
+                                Intent intent = new Intent(Report_Format.this,Activity_UserProfile.class);
+                                startActivity(intent);
+                                finish();
                             }
 
                         });
+
+
             }
+
 
         });
 
