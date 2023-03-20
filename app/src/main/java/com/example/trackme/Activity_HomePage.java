@@ -100,8 +100,15 @@ public class Activity_HomePage extends AppCompatActivity {
                 incAmt.setText(Double.toString(inc));
                 expAmt.setText(Double.toString(exp));
 
+                int size = cardsList.size() - 1;
+                for(int i = size; i > size - 5; i--) {
+                    cards card = cardsList.get(i);
+                    tempList.add(card);
+                }
+
+
                 recyclerView = findViewById(R.id.itemsRecycler);
-                cardAdapter = new CardAdapter(Activity_HomePage.this, cardsList);
+                cardAdapter = new CardAdapter(Activity_HomePage.this, tempList);
                 recyclerView.setAdapter(cardAdapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(Activity_HomePage.this));
                 // Toast.makeText(Activity_Transaction.this, Integer.toString(cardsList.size()), Toast.LENGTH_SHORT).show();
@@ -133,10 +140,8 @@ public class Activity_HomePage extends AppCompatActivity {
 //        incAmt.setText(Integer.toString(inc));
 //        expAmt.setText(Integer.toString(exp));
 
-        recyclerView = findViewById(R.id.itemsRecycler);
-        cardAdapter = new CardAdapter(Activity_HomePage.this, tempList);
-        recyclerView.setAdapter(cardAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(Activity_HomePage.this));
+
+
 
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
