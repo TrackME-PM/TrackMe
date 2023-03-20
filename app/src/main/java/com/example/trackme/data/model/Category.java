@@ -1,5 +1,7 @@
 package com.example.trackme.data.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class Category {
@@ -8,9 +10,10 @@ public class Category {
 
     public int Id;
 
+    @SerializedName("name")
     public String Name;
 
-    public List<Transaction> getTransaction() {
+    public List<Transaction> getTransactionCat() {
         return Transaction;
     }
 

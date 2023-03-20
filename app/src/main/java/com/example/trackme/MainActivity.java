@@ -40,7 +40,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 usrnm = username.getText().toString();
                 psswrd = password.getText().toString();
-                loginBtnClicked(usrnm, psswrd);
+                startActivity(new Intent(MainActivity.this, Activity_HomePage.class));
+                //loginBtnClicked(usrnm, psswrd);
 
             }
         });

@@ -5,17 +5,16 @@ package com.example.trackme;
 public class Report {
     private String trDate;
     private String trTitle;
-    private int trCategory;
+    private String trCategory;
 
-    public Report(String trDate, String trTitle, int trCategory, int trAmount, String trDue) {
+    public Report(String trDate, String trTitle, String trCategory, String trAmount) {
         this.trDate = trDate;
         this.trTitle = trTitle;
         this.trCategory = trCategory;
         this.trAmount = trAmount;
-        this.trDue = trDue;
     }
 
-    private int trAmount;
+    private String trAmount;
 
     private String trDue;
 
@@ -37,19 +36,19 @@ public class Report {
         this.trTitle = trTitle;
     }
 
-    public int getTrCategory() {
+    public String getTrCategory() {
         return trCategory;
     }
 
-    public void setTrCategory(int trCategory) {
+    public void setTrCategory(String trCategory) {
         this.trCategory = trCategory;
     }
 
-    public int getTrAmount() {
+    public String getTrAmount() {
         return trAmount;
     }
 
-    public void setTrAmount(int trAmount) {
+    public void setTrAmount(String trAmount) {
         this.trAmount = trAmount;
     }
 

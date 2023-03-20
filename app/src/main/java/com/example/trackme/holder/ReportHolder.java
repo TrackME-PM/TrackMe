@@ -22,9 +22,8 @@ public class ReportHolder extends RecyclerView.ViewHolder{
         trTitle.setText(title);
     }
 
-    public void setAmount(int amount) {
-        String num = Integer.toString(amount);
-        trAmount.setText(num);
+    public void setAmount(String amount) {
+        trAmount.setText(amount);
     }
 
     public void setTransactionDate(String date) {
@@ -35,21 +34,22 @@ public class ReportHolder extends RecyclerView.ViewHolder{
         trDue.setText(date);
     }
 
-    public void setCategory(int catId){
+    public void setCategory(String catId){
+
         switch (catId){
-            case 1:
+            case "1":
                 trCategory.setText("Food & Beverages");
                 break;
-            case 2:
+            case "2":
                 trCategory.setText("Pantry");
                 break;
-            case 3:
+            case "3":
                 trCategory.setText("Stationary");
                 break;
-            case 4:
+            case "4":
                 trCategory.setText("Travel");
                 break;
-            case 5:
+            case "5":
                 trCategory.setText("Staff");
                 break;
             default:

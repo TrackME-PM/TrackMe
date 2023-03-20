@@ -7,12 +7,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
+import com.example.trackme.adapter.CardAdapter;
 import com.example.trackme.adapter.ReportAdapter;
+import com.example.trackme.data.model.Transaction;
 import com.example.trackme.databinding.ActivityReportFormatBinding;
 import com.gkemon.XMLtoPDF.PdfGenerator;
 import com.gkemon.XMLtoPDF.PdfGeneratorListener;
@@ -22,6 +25,10 @@ import com.gkemon.XMLtoPDF.model.SuccessResponse;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class Report_Format extends AppCompatActivity {
 
     TextView dueAmt;
@@ -29,6 +36,9 @@ public class Report_Format extends AppCompatActivity {
     LinearLayout linear;
     CardView downBtn;
     List<Report> reportList;
+
+    private String desc, title, amt, date ,catId, expId;
+    List<Transaction> allTransactionList;
     RecyclerView recyclerView;
     ReportAdapter reportAdapter;
     private ActivityReportFormatBinding binding;
@@ -40,38 +50,51 @@ public class Report_Format extends AppCompatActivity {
         binding = ActivityReportFormatBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        reportList = new ArrayList<>();
-        Report data1 = new Report("23-02-2023","Tea", 1, 500,"07-03-2023");
-        Report data2 = new Report("28-02-2023","Pantry", 2, 800,"07-03-2023");
-        Report data3 = new Report("27-02-2023","Staff", 5, 1000,"07-03-2023");
-        Report data4 = new Report("12-02-2023","Stationary", 3, 200,"07-03-2023");
-        Report data5 = new Report("17-02-2023","Travel", 4, 450,"07-03-2023");
-        Report data6 = new Report("20-02-2023","Other", 5, 700,"07-03-2023");
-        Report data7 = new Report("05-02-2023","Staff", 5, 950,"07-03-2023");
-        Report data8 = new Report("20-02-2023","Pantry", 1, 1100,"07-03-2023");
 
-        reportList.add(data1);
-        reportList.add(data2);
-        reportList.add(data3);
-        reportList.add(data4);
-        reportList.add(data5);
-        reportList.add(data6);
-        reportList.add(data7);
-        reportList.add(data8);
+        RetrofitClient.getRetrofitInstance().apiInterface.getTransactions().enqueue(new Callback<List<Transaction>>() {
+            @Override
+            public void onResponse(Call<List<Transaction>> call, Response<List<Transaction>> response) {
+                allTransactionList = response.body();
 
+                for (Transaction transaction: allTransactionList) {
+                    title = transaction.getName();
+                    desc = transaction.getDescription();
+                    amt = transaction.getAmount();
+                    date = transaction.getDate();
+                    date = date.substring(0, 10);
+                    catId = transaction.getCategoryId();
+                    expId = (transaction.getTransactionTypeId());
 
-        recyclerView = findViewById(R.id.dataRecycler);
-        reportAdapter = new ReportAdapter(this, reportList);
-        recyclerView.setAdapter(reportAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                    Log.e("report", "OnSuccess " + title);
+                    Log.e("report", "OnSuccess " + desc);
+                    Log.e("report", "OnSuccess " + amt);
+                    Log.e("report", "OnSuccess " + date);
+                    Log.e("report", "OnSuccess " + catId);
+                    Log.e("report", "OnSuccess " + expId);
 
-        dueAmt = findViewById(R.id.totalDue);
-        int sum = 0;
-        for(Report data: reportList){
-            int amt = data.getTrAmount();
-            sum += amt;
-        }
-        dueAmt.setText(Integer.toString(sum));
+                    Report report = new Report(date, title, catId, amt);
+                    reportList.add(report);
+
+                }
+                recyclerView = findViewById(R.id.dataRecycler);
+                reportAdapter = new ReportAdapter(Report_Format.this, reportList);
+                recyclerView.setAdapter(reportAdapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(Report_Format.this));
+            }
+
+            @Override
+            public void onFailure(Call<List<Transaction>> call, Throwable t) {
+
+            }
+        });
+
+//        dueAmt = findViewById(R.id.totalDue);
+//        int sum = 0;
+//        for(Report data: reportList){
+//            int amt = Integer.parseInt(data.getTrAmount());
+//            sum += amt;
+//        }
+//        dueAmt.setText(Integer.toString(sum));
 
 
         linear = findViewById(R.id.lineard);

@@ -6,7 +6,7 @@ public class TransactionType {
 
     public int Id;
     public String Name;
-//    public List<com.example.trackme.data.model.Transaction> Transaction;
+    public List<Transaction> Transaction;
     public TransactionType(int id, String name) {
         Id = id;
         Name = name;
@@ -18,5 +18,9 @@ public class TransactionType {
 
     public String getName() {
         return Name;
+    }
+
+    public List<Transaction> getTransactionType() {
+        return Transaction;
     }
 }
