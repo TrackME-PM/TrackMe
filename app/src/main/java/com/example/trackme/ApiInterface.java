@@ -38,4 +38,7 @@ public interface ApiInterface {
 //    @FormUrlEncoded
     @POST("api/Account/login")
     Call<User> getLoginData(@Body User user);
+
+    @POST("api/transactions")
+    Call<Transaction> addTransaction(@Body Transaction transaction);
 }

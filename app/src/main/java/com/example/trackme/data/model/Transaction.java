@@ -4,7 +4,10 @@ import android.util.Log;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.joda.time.DateTime;
+
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class Transaction {
 
@@ -15,17 +18,48 @@ public class Transaction {
     @SerializedName("description")
     public String Description;
     @SerializedName("amount")
-    public String Amount;
+    public Double Amount;
     @SerializedName("date")
 
     public String Date;
     @SerializedName("transactionTypeId")
 
-    public String TransactionTypeId;
+    public int TransactionTypeId;
     @SerializedName("categoryId")
-    public String CategoryId;
+    public int CategoryId;
 
-    public Transaction(String Name, String Description, String Amount, String Date, String TransactionTypeId, String CategoryId ){
+    @SerializedName("title")
+    public String title;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setName(String name) {
+        Name = name;
+    }
+
+    public void setDescription(String description) {
+        Description = description;
+    }
+
+    public void setAmount(Double amount) {
+        Amount = amount;
+    }
+
+    public void setDate(String date) {
+        Date = date;
+    }
+
+    public void setTransactionTypeId(int transactionTypeId) {
+        TransactionTypeId = transactionTypeId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        CategoryId = categoryId;
+    }
+
+    public Transaction(String Name, String Description, Double Amount, String Date, int TransactionTypeId, int CategoryId ){
         this.Name = Name;
         this.Description = Description;
         this.Amount = Amount;
@@ -47,19 +81,19 @@ public class Transaction {
     }
 
     public String getAmount() {
-        return Amount;
+        return Double.toString(Amount);
     }
 
     public String getDate() {
-        return Date;
+        return Date.toString();
     }
 
     public String getTransactionTypeId() {
-        return TransactionTypeId;
+        return Integer.toString(TransactionTypeId);
     }
 
     public String getCategoryId() {
-        return CategoryId;
+        return Integer.toString(CategoryId);
     }
 
     public void show(){

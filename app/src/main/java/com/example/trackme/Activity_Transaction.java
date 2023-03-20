@@ -36,6 +36,7 @@ public class Activity_Transaction extends AppCompatActivity {
 
     TextView cardDesc, cardAmt, cardDate;
     private String desc, title, amt, date ,catId, expId;
+
     CardView catAll, catFood, catTravel,catStat, catStaff, catOther;
     CardAdapter cardAdapter;
     List<Transaction> allTransactionList, transactionList;
@@ -67,7 +68,7 @@ public class Activity_Transaction extends AppCompatActivity {
                    desc = transaction.getDescription();
                    amt = transaction.getAmount();
                    date = transaction.getDate();
-                   date = date.substring(0, 10);
+
                    catId = transaction.getCategoryId();
                    expId = transaction.getTransactionTypeId();
                    Log.e("tran","success"+ expId);
@@ -115,6 +116,7 @@ public class Activity_Transaction extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 catFood.setBackgroundResource(R.drawable.category_card_border);
+                tempList.clear();
 
                 RetrofitClient.getRetrofitInstance().apiInterface.getTransactions().enqueue(new Callback<List<Transaction>>() {
                     @Override
@@ -314,40 +316,41 @@ public class Activity_Transaction extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 catAll.setBackgroundResource(R.drawable.category_card_border);
+                recyclerView = findViewById(R.id.itemsRecycler);
+                cardAdapter = new CardAdapter(Activity_Transaction.this, cardsList);
+                recyclerView.setAdapter(cardAdapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(Activity_Transaction.this));
 
-                RetrofitClient.getRetrofitInstance().apiInterface.getTransactions().enqueue(new Callback<List<Transaction>>() {
-                    @Override
-                    public void onResponse(@NonNull Call<List<Transaction>> call, @NonNull Response<List<Transaction>> response) {
-                        allTransactionList = response.body();
-//               cardAdapter = new CardAdapter(Activity_Transaction.this, allTransactionList);
-//               recyclerView.setAdapter(cardAdapter);
-
-
-                        for (Transaction transaction : allTransactionList) {
-                            title = transaction.getName();
-                            desc = transaction.getDescription();
-                            amt = transaction.getAmount();
-                            date = transaction.getDate();
-                            date = date.substring(0, 10);
-                            catId = transaction.getCategoryId();
-                            expId = transaction.getTransactionTypeId();
-
-                            cards card = new cards(title, desc, amt, date, catId, expId);
-                            cardsList.add(card);
-                        }
-                        recyclerView = findViewById(R.id.itemsRecycler);
-                        cardAdapter = new CardAdapter(Activity_Transaction.this, cardsList);
-                        recyclerView.setAdapter(cardAdapter);
-                        recyclerView.setLayoutManager(new LinearLayoutManager(Activity_Transaction.this));
-                        // Toast.makeText(Activity_Transaction.this, Integer.toString(cardsList.size()), Toast.LENGTH_SHORT).show();
-
-                    }
-
-                    @Override
-                    public void onFailure(Call<List<Transaction>> call, Throwable t) {
-
-                    }
-                });
+//                RetrofitClient.getRetrofitInstance().apiInterface.getTransactions().enqueue(new Callback<List<Transaction>>() {
+//                    @Override
+//                    public void onResponse(@NonNull Call<List<Transaction>> call, @NonNull Response<List<Transaction>> response) {
+//                        allTransactionList = response.body();
+////               cardAdapter = new CardAdapter(Activity_Transaction.this, allTransactionList);
+////               recyclerView.setAdapter(cardAdapter);
+//
+//
+//                        for (Transaction transaction : allTransactionList) {
+//                            title = transaction.getName();
+//                            desc = transaction.getDescription();
+//                            amt = transaction.getAmount();
+//                            date = transaction.getDate();
+//                            date = date.substring(0, 10);
+//                            catId = transaction.getCategoryId();
+//                            expId = transaction.getTransactionTypeId();
+//
+//                            cards card = new cards(title, desc, amt, date, catId, expId);
+//                            cardsList.add(card);
+//                        }
+//
+//                        // Toast.makeText(Activity_Transaction.this, Integer.toString(cardsList.size()), Toast.LENGTH_SHORT).show();
+//
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<List<Transaction>> call, Throwable t) {
+//
+//                    }
+//                });
 
             }
 

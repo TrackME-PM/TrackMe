@@ -2,7 +2,9 @@ package com.example.trackme;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -14,16 +16,31 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trackme.adapter.CardAdapter;
+import com.example.trackme.data.model.Transaction;
 import com.example.trackme.databinding.ActivityAddBinding;
 import com.example.trackme.holder.cardHolder;
 
+import org.joda.time.DateTime;
+import org.joda.time.LocalDateTime;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
+
+@RequiresApi(api = Build.VERSION_CODES.O)
 public class AddActivity extends AppCompatActivity  {
 
 
@@ -32,9 +49,22 @@ public class AddActivity extends AppCompatActivity  {
     LinearLayout expLayout, incLayout;
     RelativeLayout relativeLayout;
 
+
+
     TextView category;
-    EditText amt, desc;
-    String cardDesc, cardDate;
+    EditText amt, desc, title;
+
+
+
+
+    LocalDate date = LocalDate.now();
+
+
+
+
+// System.out.println(date1);
+
+    String getAmt, getDesc, getTitle;
     Integer catId = 0, cardAmt, expId = 1;
     Spinner spinner;
 
@@ -45,7 +75,12 @@ public class AddActivity extends AppCompatActivity  {
     cardHolder holder;
 
 
+
     ArrayAdapter<CharSequence> adapterItems;
+
+    public AddActivity() throws ParseException {
+    }
+
     @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +88,13 @@ public class AddActivity extends AppCompatActivity  {
         binding = ActivityAddBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        title = (EditText) findViewById(R.id.title);
+        desc = (EditText) findViewById(R.id.description);
+        amt= (EditText) findViewById(R.id.amount);
 
-       // card = new cards();
+
+
+        // card = new cards();
         category = findViewById(R.id.textViewCategory);
         relativeLayout =(RelativeLayout) findViewById(R.id.categoryLayout);
 
@@ -94,8 +134,7 @@ public class AddActivity extends AppCompatActivity  {
         spinner.setAdapter(adapterItems);
 
 
-        desc =(EditText) findViewById(R.id.description);
-        amt =(EditText)  findViewById(R.id.amount);
+
 
 //        cardAmt = Integer.valueOf(amt.getText().toString());
 //        cardDesc = desc.getText().toString();
@@ -142,11 +181,30 @@ public class AddActivity extends AppCompatActivity  {
         binding.addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                getTitle = title.getText().toString();
+                getAmt = amt.getText().toString();
+                getDesc = desc.getText().toString();
+
+                Toast.makeText(AddActivity.this,getTitle,Toast.LENGTH_SHORT).show();
+
+                ApiInterface retrofitApi = RetrofitClient.getRetrofitInstance().apiInterface;
+                Transaction transaction = new Transaction(getTitle,getDesc,Double.parseDouble(getAmt),date.toString(),expId,catId);
+                Call<Transaction> call = retrofitApi.addTransaction(transaction);
+                call.enqueue(new Callback<Transaction>() {
+                    @Override
+                    public void onResponse(Call<Transaction> call, Response<Transaction> response) {
+                        Log.e("Add","Success");
+                        Log.e("Add","Success"+ response.code());
 
 
+                    }
 
-
-//
+                    @Override
+                    public void onFailure(Call<Transaction> call, Throwable t) {
+                        Log.e("Add","Failure");
+                    }
+                });
+                openTransactionPage(view);
             }
         });
 
