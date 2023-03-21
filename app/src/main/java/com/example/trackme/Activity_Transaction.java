@@ -6,6 +6,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -38,7 +39,7 @@ public class Activity_Transaction extends AppCompatActivity {
     TextView cardDesc, cardAmt, cardDate;
     private String desc, title, amt, date ,catId, expId;
 
-    CardView catAll, catFood, catTravel,catStat, catStaff, catOther, catInc;
+    CardView catAll, catFood, catTravel,catStat, catStaff, catOther, catInc, catPantry;
     CardAdapter cardAdapter;
     List<Transaction> allTransactionList, transactionList;
     Category category;
@@ -125,12 +126,14 @@ public class Activity_Transaction extends AppCompatActivity {
         catFood = findViewById(R.id.catFood);
         catOther = findViewById(R.id.catOther);
         catInc = findViewById(R.id.catIncome);
+        catPantry = findViewById(R.id.catPantry);
 
         activityTransactionBinding.catFood.setOnClickListener(new View.OnClickListener() {
 
+            @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View view) {
-                catFood.setBackgroundResource(R.drawable.category_card_border);
+                changeColor(2);
                 tempList.clear();
 
                 RetrofitClient.getRetrofitInstance().apiInterface.getTransactions().enqueue(new Callback<List<Transaction>>() {
@@ -173,9 +176,10 @@ public class Activity_Transaction extends AppCompatActivity {
             }
         });
         activityTransactionBinding.catTravel.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View view) {
-                catTravel.setBackgroundResource(R.drawable.category_card_border);
+                changeColor(4);
                 tempList.clear();
                 RetrofitClient.getRetrofitInstance().apiInterface.getTransactions().enqueue(new Callback<List<Transaction>>() {
                     @Override
@@ -218,9 +222,10 @@ public class Activity_Transaction extends AppCompatActivity {
         });
 
         activityTransactionBinding.catStat.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View view) {
-                catStat.setBackgroundResource(R.drawable.category_card_border);
+                changeColor(5);
                 tempList.clear();
                 RetrofitClient.getRetrofitInstance().apiInterface.getTransactions().enqueue(new Callback<List<Transaction>>() {
                     @Override
@@ -264,9 +269,10 @@ public class Activity_Transaction extends AppCompatActivity {
         });
 
         activityTransactionBinding.catStaff.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View view) {
-                catStaff.setBackgroundResource(R.drawable.category_card_border);
+                changeColor(6);
                 tempList.clear();
                 RetrofitClient.getRetrofitInstance().apiInterface.getTransactions().enqueue(new Callback<List<Transaction>>() {
                     @Override
@@ -309,9 +315,10 @@ public class Activity_Transaction extends AppCompatActivity {
         });
 
         activityTransactionBinding.catOther.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View view) {
-                catOther.setBackgroundResource(R.drawable.category_card_border);
+                changeColor(7);
                 tempList.clear();
                 RetrofitClient.getRetrofitInstance().apiInterface.getTransactions().enqueue(new Callback<List<Transaction>>() {
                     @Override
@@ -354,13 +361,15 @@ public class Activity_Transaction extends AppCompatActivity {
         });
 //
         activityTransactionBinding.catAll.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View view) {
+                changeColor(1);
+
                 if (mProgressDialog.isShowing()){
                     mProgressDialog.dismiss();
                 }
 
-                catAll.setBackgroundResource(R.drawable.category_card_border);
                 recyclerView = findViewById(R.id.itemsRecycler);
                 cardAdapter = new CardAdapter(Activity_Transaction.this, cardsList);
                 recyclerView.setAdapter(cardAdapter);
@@ -402,9 +411,10 @@ public class Activity_Transaction extends AppCompatActivity {
         });
 
         activityTransactionBinding.catPantry.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View view) {
-                catAll.setBackgroundResource(R.drawable.category_card_border);
+                changeColor(3);
                 tempList.clear();
                 RetrofitClient.getRetrofitInstance().apiInterface.getTransactions().enqueue(new Callback<List<Transaction>>() {
                     @Override
@@ -448,9 +458,10 @@ public class Activity_Transaction extends AppCompatActivity {
 
 
         activityTransactionBinding.catIncome.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View view) {
-                catFood.setBackgroundResource(R.drawable.category_card_border);
+                changeColor(8);
                 tempList.clear();
 
                 RetrofitClient.getRetrofitInstance().apiInterface.getTransactions().enqueue(new Callback<List<Transaction>>() {
@@ -579,5 +590,34 @@ public class Activity_Transaction extends AppCompatActivity {
 
 
 
+    }
+
+    @SuppressLint("ResourceAsColor")
+    public void changeColor(int id) {
+        catAll.setCardBackgroundColor(R.color.light_grey);
+        catFood.setCardBackgroundColor(R.color.light_grey);
+        catPantry.setCardBackgroundColor(R.color.light_grey);
+        catStat.setCardBackgroundColor(R.color.light_grey);
+        catStaff.setCardBackgroundColor(R.color.light_grey);
+        catOther.setCardBackgroundColor(R.color.light_grey);
+        catTravel.setCardBackgroundColor(R.color.light_grey);
+        catInc.setCardBackgroundColor(R.color.light_grey);
+        if(id == 1){
+            catAll.setCardBackgroundColor(R.color.teal_200);
+        } else if (id == 2) {
+            catFood.setCardBackgroundColor(R.color.teal_200);
+        } else if (id == 3) {
+            catPantry.setCardBackgroundColor(R.color.teal_200);
+        }else if (id == 4) {
+            catTravel.setCardBackgroundColor(R.color.teal_200);
+        }else if (id == 5) {
+            catStat.setCardBackgroundColor(R.color.teal_200);
+        }else if (id == 6) {
+            catStaff.setCardBackgroundColor(R.color.teal_200);
+        }else if (id == 7) {
+            catOther.setCardBackgroundColor(R.color.teal_200);
+        }else if (id == 8) {
+            catInc.setCardBackgroundColor(R.color.teal_200);
+        }
     }
 }
