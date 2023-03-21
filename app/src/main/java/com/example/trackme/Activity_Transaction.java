@@ -6,6 +6,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -55,9 +56,18 @@ public class Activity_Transaction extends AppCompatActivity {
 
         cardsList = new ArrayList<>();
         tempList = new ArrayList<>();
-       RetrofitClient.getRetrofitInstance().apiInterface.getTransactions().enqueue(new Callback<List<Transaction>>() {
+
+        ProgressDialog mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.setMessage("Loading...");
+        mProgressDialog.show();
+
+        RetrofitClient.getRetrofitInstance().apiInterface.getTransactions().enqueue(new Callback<List<Transaction>>() {
            @Override
            public void onResponse(@NonNull Call<List<Transaction>> call, @NonNull Response<List<Transaction>> response) {
+               if (mProgressDialog.isShowing()){
+                   mProgressDialog.dismiss();
+               }
                allTransactionList = response.body();
 //               cardAdapter = new CardAdapter(Activity_Transaction.this, allTransactionList);
 //               recyclerView.setAdapter(cardAdapter);
@@ -88,6 +98,9 @@ public class Activity_Transaction extends AppCompatActivity {
            @Override
            public void onFailure(@NonNull Call<List<Transaction>> call, Throwable t) {
                 Log.e("api","onFailure: " + t.getLocalizedMessage());
+               if (mProgressDialog.isShowing()){
+                   mProgressDialog.dismiss();
+               }
            }
        });
 
@@ -114,6 +127,7 @@ public class Activity_Transaction extends AppCompatActivity {
         catInc = findViewById(R.id.catIncome);
 
         activityTransactionBinding.catFood.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 catFood.setBackgroundResource(R.drawable.category_card_border);
@@ -122,6 +136,9 @@ public class Activity_Transaction extends AppCompatActivity {
                 RetrofitClient.getRetrofitInstance().apiInterface.getTransactions().enqueue(new Callback<List<Transaction>>() {
                     @Override
                     public void onResponse(Call<List<Transaction>> call, Response<List<Transaction>> response) {
+                        if (mProgressDialog.isShowing()){
+                            mProgressDialog.dismiss();
+                        }
                         transactionList = response.body();
 
                         for (Transaction transaction: transactionList) {
@@ -147,7 +164,9 @@ public class Activity_Transaction extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<List<Transaction>> call, Throwable t) {
-
+                        if (mProgressDialog.isShowing()){
+                            mProgressDialog.dismiss();
+                        }
                     }
                 });
 
@@ -161,6 +180,9 @@ public class Activity_Transaction extends AppCompatActivity {
                 RetrofitClient.getRetrofitInstance().apiInterface.getTransactions().enqueue(new Callback<List<Transaction>>() {
                     @Override
                     public void onResponse(Call<List<Transaction>> call, Response<List<Transaction>> response) {
+                        if (mProgressDialog.isShowing()){
+                            mProgressDialog.dismiss();
+                        }
                         transactionList = response.body();
 
                         for (Transaction transaction: transactionList) {
@@ -186,7 +208,9 @@ public class Activity_Transaction extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<List<Transaction>> call, Throwable t) {
-
+                        if (mProgressDialog.isShowing()){
+                            mProgressDialog.dismiss();
+                        }
                     }
                 });
 
@@ -201,6 +225,10 @@ public class Activity_Transaction extends AppCompatActivity {
                 RetrofitClient.getRetrofitInstance().apiInterface.getTransactions().enqueue(new Callback<List<Transaction>>() {
                     @Override
                     public void onResponse(Call<List<Transaction>> call, Response<List<Transaction>> response) {
+
+                        if (mProgressDialog.isShowing()){
+                            mProgressDialog.dismiss();
+                        }
                         transactionList = response.body();
 
                         for (Transaction transaction: transactionList) {
@@ -226,7 +254,9 @@ public class Activity_Transaction extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<List<Transaction>> call, Throwable t) {
-
+                        if (mProgressDialog.isShowing()){
+                            mProgressDialog.dismiss();
+                        }
                     }
                 });
 
@@ -241,6 +271,9 @@ public class Activity_Transaction extends AppCompatActivity {
                 RetrofitClient.getRetrofitInstance().apiInterface.getTransactions().enqueue(new Callback<List<Transaction>>() {
                     @Override
                     public void onResponse(Call<List<Transaction>> call, Response<List<Transaction>> response) {
+                        if (mProgressDialog.isShowing()){
+                            mProgressDialog.dismiss();
+                        }
                         transactionList = response.body();
 
                         for (Transaction transaction: transactionList) {
@@ -266,7 +299,9 @@ public class Activity_Transaction extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<List<Transaction>> call, Throwable t) {
-
+                        if (mProgressDialog.isShowing()){
+                            mProgressDialog.dismiss();
+                        }
                     }
                 });
 
@@ -281,6 +316,9 @@ public class Activity_Transaction extends AppCompatActivity {
                 RetrofitClient.getRetrofitInstance().apiInterface.getTransactions().enqueue(new Callback<List<Transaction>>() {
                     @Override
                     public void onResponse(Call<List<Transaction>> call, Response<List<Transaction>> response) {
+                        if (mProgressDialog.isShowing()){
+                            mProgressDialog.dismiss();
+                        }
                         transactionList = response.body();
 
                         for (Transaction transaction: transactionList) {
@@ -306,7 +344,9 @@ public class Activity_Transaction extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<List<Transaction>> call, Throwable t) {
-
+                        if (mProgressDialog.isShowing()){
+                            mProgressDialog.dismiss();
+                        }
                     }
                 });
 
@@ -316,6 +356,10 @@ public class Activity_Transaction extends AppCompatActivity {
         activityTransactionBinding.catAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (mProgressDialog.isShowing()){
+                    mProgressDialog.dismiss();
+                }
+
                 catAll.setBackgroundResource(R.drawable.category_card_border);
                 recyclerView = findViewById(R.id.itemsRecycler);
                 cardAdapter = new CardAdapter(Activity_Transaction.this, cardsList);
@@ -365,6 +409,9 @@ public class Activity_Transaction extends AppCompatActivity {
                 RetrofitClient.getRetrofitInstance().apiInterface.getTransactions().enqueue(new Callback<List<Transaction>>() {
                     @Override
                     public void onResponse(Call<List<Transaction>> call, Response<List<Transaction>> response) {
+                        if (mProgressDialog.isShowing()){
+                            mProgressDialog.dismiss();
+                        }
                         transactionList = response.body();
 
                         for (Transaction transaction: transactionList) {
@@ -390,7 +437,9 @@ public class Activity_Transaction extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<List<Transaction>> call, Throwable t) {
-
+                        if (mProgressDialog.isShowing()){
+                            mProgressDialog.dismiss();
+                        }
                     }
                 });
 
@@ -407,6 +456,9 @@ public class Activity_Transaction extends AppCompatActivity {
                 RetrofitClient.getRetrofitInstance().apiInterface.getTransactions().enqueue(new Callback<List<Transaction>>() {
                     @Override
                     public void onResponse(Call<List<Transaction>> call, Response<List<Transaction>> response) {
+                        if (mProgressDialog.isShowing()){
+                            mProgressDialog.dismiss();
+                        }
                         transactionList = response.body();
 
                         for (Transaction transaction: transactionList) {
@@ -432,7 +484,9 @@ public class Activity_Transaction extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<List<Transaction>> call, Throwable t) {
-
+                        if (mProgressDialog.isShowing()){
+                            mProgressDialog.dismiss();
+                        }
                     }
                 });
 

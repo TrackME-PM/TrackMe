@@ -6,8 +6,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.pdf.PdfDocument;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -26,6 +29,7 @@ import com.gkemon.XMLtoPDF.PdfGeneratorListener;
 import com.gkemon.XMLtoPDF.model.FailureResponse;
 import com.gkemon.XMLtoPDF.model.SuccessResponse;
 
+import java.io.File;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
@@ -63,10 +67,26 @@ public class Report_Format extends AppCompatActivity {
         tvMonth = findViewById(R.id.monthName);
 
         reportList = new ArrayList<>();
+
+        ProgressDialog mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.setMessage("Loading...");
+        mProgressDialog.show();
+
+
         RetrofitClient.getRetrofitInstance().apiInterface.getTransactions().enqueue(new Callback<List<Transaction>>() {
             @Override
             public void onResponse(Call<List<Transaction>> call, Response<List<Transaction>> response) {
+
+                if (mProgressDialog.isShowing()){
+                    mProgressDialog.dismiss();
+                }
                 allTransactionList = response.body();
+
+                String[] str = allTransactionList.get(1).getDate().split("-");
+                int month = Integer.parseInt(str[1]);
+                String getMonth = monthArr[month-1];
+                tvMonth.setText(getMonth);
 
                 for (Transaction transaction: allTransactionList) {
                     title = transaction.getName();
@@ -88,8 +108,12 @@ public class Report_Format extends AppCompatActivity {
 
                     if(expId.equals("1")){
                         Log.e("report", "OnSuccess " + expId);
-                        Report report = new Report(date, title, catId, amt);
-                        reportList.add(report);
+                        String[] dates = transaction.getDate().split("-");
+                        int pos = Integer.parseInt(dates[1]);
+                        if(month == pos) {
+                            Report report = new Report(date, title, catId, amt);
+                            reportList.add(report);
+                        }
 
                         getAmt = Double.parseDouble(amt);
                         sum += getAmt;
@@ -99,10 +123,7 @@ public class Report_Format extends AppCompatActivity {
 
                 }
 
-                String[] str = allTransactionList.get(1).getDate().split("-");
-                int month = Integer.parseInt(str[1]);
-                String getMonth = monthArr[month-1];
-                tvMonth.setText(getMonth);
+
 //                Toast.makeText(Report_Format.this,reportList.size(),Toast.LENGTH_SHORT).show();
 
 
@@ -118,12 +139,14 @@ public class Report_Format extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Transaction>> call, Throwable t) {
-
+                if (mProgressDialog.isShowing()){
+                    mProgressDialog.dismiss();
+                }
             }
         });
 
 
-
+        final File[] file = new File[1];
 
         linear = findViewById(R.id.lineard);
         layout = findViewById(R.id.layoutPage);
@@ -132,6 +155,7 @@ public class Report_Format extends AppCompatActivity {
         downBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
 
                 PdfGenerator.getBuilder()
                         .setContext(Report_Format.this)
@@ -163,6 +187,7 @@ public class Report_Format extends AppCompatActivity {
                             }
 
                         });
+
 
 
             }

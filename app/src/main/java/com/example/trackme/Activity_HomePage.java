@@ -1,9 +1,11 @@
 package com.example.trackme;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -48,6 +50,7 @@ public class Activity_HomePage extends AppCompatActivity {
 
     List<String> datestring;
     RecyclerView recyclerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,10 +69,21 @@ public class Activity_HomePage extends AppCompatActivity {
         incAmt = findViewById(R.id.incomeAmt);
         expAmt = findViewById(R.id.expenseAmt);
 
+
+        ProgressDialog mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.setMessage("Loading...");
+        mProgressDialog.show();
+
+
         RetrofitClient.getRetrofitInstance().apiInterface.getTransactions().enqueue(new Callback<List<Transaction>>() {
             @SuppressLint("SetTextI18n")
             @Override
             public void onResponse(@NonNull Call<List<Transaction>> call, @NonNull Response<List<Transaction>> response) {
+                if (mProgressDialog.isShowing()){
+                    mProgressDialog.dismiss();
+                }
+
                 allTransactionList = response.body();
 //               cardAdapter = new CardAdapter(Activity_Transaction.this, allTransactionList);
 //               recyclerView.setAdapter(cardAdapter);
@@ -117,6 +131,8 @@ public class Activity_HomePage extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Call<List<Transaction>> call, Throwable t) {
                 Log.e("api","onFailure: " + t.getLocalizedMessage());
+                if (mProgressDialog.isShowing())
+                    mProgressDialog.dismiss();
             }
         });
 
