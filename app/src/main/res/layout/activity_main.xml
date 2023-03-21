@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/grey"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <LinearLayout
-        android:orientation="vertical"
+        android:id="@+id/linearLayout5"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="10dp"
@@ -38,7 +45,6 @@
         </LinearLayout>
 
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="10dp"
@@ -46,74 +52,80 @@
             android:orientation="vertical">
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="300dp"
                 android:gravity="center"
-                android:layout_width="wrap_content"
-                android:textSize="20sp"
                 android:letterSpacing="0.08"
+                android:text="TrackME"
                 android:textColor="@color/teal_200"
-                android:layout_height="wrap_content"
-                android:text="TrackME">
-            </TextView>
+                android:textSize="20sp" />
         </LinearLayout>
 
     </LinearLayout>
 
+
     <androidx.cardview.widget.CardView
-        app:cardElevation="20dp"
-        app:cardCornerRadius="15dp"
-        android:backgroundTint="@color/grey"
+        android:layout_marginTop="300dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:layout_marginTop="-450dp"
+        android:id="@+id/cardView3"
         android:layout_width="match_parent"
-        android:layout_height="360dp">
+        android:layout_height="360dp"
+        android:backgroundTint="@color/grey"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="25dp"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:orientation="vertical">
 
             <TextView
-                android:text="LOGIN"
-                android:gravity="center"
-                android:textSize="22sp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="LOGIN"
+                android:textSize="22sp">
 
             </TextView>
+
             <TextView
                 android:id="@+id/textViewUserName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_marginStart="20dp"
-                android:textSize="16sp"
+                android:layout_marginTop="10dp"
+                android:text="UserName"
                 android:textColor="@color/teal_200"
-                android:text="UserName" />
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/usernameTextEdit"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_margin="10dp"
-                android:padding="10dp"
                 android:ems="10"
                 android:hint="Enter UserName"
-                android:inputType="text" />
+                android:inputType="text"
+                android:padding="10dp" />
 
 
             <TextView
                 android:id="@+id/textViewPassword"
-                android:textColor="@color/teal_200"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_marginStart="20dp"
-                android:textSize="16sp"
-                android:text="Password" />
+                android:layout_marginTop="10dp"
+                android:text="Password"
+                android:textColor="@color/teal_200"
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/passwordTextEdit"
@@ -124,21 +136,22 @@
                 android:hint="Enter Password"
                 android:inputType="textPassword"
                 android:padding="10dp" />
+
             <Button
                 android:id="@+id/logInBtn"
                 android:layout_width="150dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="30dp"
                 android:layout_gravity="bottom|center"
+                android:layout_marginTop="30dp"
                 android:background="@drawable/button_radius"
                 android:onClick="openHomePage"
-                android:textSize="16sp"
-                android:text="LOGIN" />
+                android:text="LOGIN"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
 
     </androidx.cardview.widget.CardView>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 

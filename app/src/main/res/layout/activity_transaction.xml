@@ -41,6 +41,7 @@
     </LinearLayout>
 
     <HorizontalScrollView
+        android:scrollbars="none"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -53,6 +54,7 @@
             android:orientation="horizontal">
 
             <androidx.cardview.widget.CardView
+                app:cardElevation="10dp"
                 android:id="@+id/catAll"
                 android:backgroundTint="@color/light_grey"
                 app:cardCornerRadius="10dp"
@@ -70,6 +72,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                app:cardElevation="10dp"
                 android:id="@+id/catFood"
                 android:backgroundTint="@color/light_grey"
                 app:cardCornerRadius="10dp"
@@ -86,6 +89,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                app:cardElevation="10dp"
                 android:id="@+id/catPantry"
                 android:backgroundTint="@color/light_grey"
                 app:cardCornerRadius="10dp"
@@ -103,6 +107,7 @@
 
 
             <androidx.cardview.widget.CardView
+                app:cardElevation="10dp"
                 android:id="@+id/catTravel"
                 android:backgroundTint="@color/light_grey"
                 app:cardCornerRadius="10dp"
@@ -118,6 +123,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                app:cardElevation="10dp"
                 android:id="@+id/catStat"
                 android:backgroundTint="@color/light_grey"
                 app:cardCornerRadius="10dp"
@@ -133,6 +139,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                app:cardElevation="10dp"
                 android:id="@+id/catStaff"
                 android:backgroundTint="@color/light_grey"
                 app:cardCornerRadius="10dp"
@@ -148,6 +155,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                app:cardElevation="10dp"
                 android:id="@+id/catOther"
                 android:backgroundTint="@color/light_grey"
                 app:cardCornerRadius="10dp"
@@ -163,6 +171,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                app:cardElevation="10dp"
                 android:id="@+id/catIncome"
                 android:backgroundTint="@color/light_grey"
                 app:cardCornerRadius="10dp"

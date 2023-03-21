@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import com.example.trackme.data.model.User;
 
+import java.io.Serializable;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -39,8 +41,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 usrnm = username.getText().toString();
+                if(usrnm == null){
+                    usrnm = "";
+                }
                 psswrd = password.getText().toString();
-                startActivity(new Intent(MainActivity.this, Activity_HomePage.class));
+                Intent intent = new Intent(MainActivity.this, Activity_HomePage.class);
+                intent.putExtra("username",(Serializable) usrnm);
+                startActivity(intent);
+
                 //loginBtnClicked(usrnm, psswrd);
 
             }

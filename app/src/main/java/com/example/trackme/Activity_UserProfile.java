@@ -44,7 +44,8 @@ public class Activity_UserProfile extends AppCompatActivity {
             }
         });
 
-
+        String username = (String) getIntent().getSerializableExtra("username");
+        activityUserProfileBinding.tvUser.setText(username);
     }
 
 

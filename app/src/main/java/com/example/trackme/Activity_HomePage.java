@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -42,6 +43,7 @@ public class Activity_HomePage extends AppCompatActivity {
     int exp = 0, inc = 0;
     ActivityHomePageBinding binding;
 
+    String name;
     private String desc, title, amt, date ,catId, expId;
     CardAdapter cardAdapter;
 
@@ -174,7 +176,13 @@ public class Activity_HomePage extends AppCompatActivity {
         binding.profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Activity_HomePage.this, Activity_UserProfile.class));
+                name = (String) getIntent().getSerializableExtra("username");
+
+                Toast.makeText(Activity_HomePage.this, name, Toast.LENGTH_SHORT).show();
+
+                Intent  intent = new Intent(Activity_HomePage.this, Activity_UserProfile.class);
+                intent.putExtra("username",(Serializable) name);
+                startActivity(intent);
                 finish();
             }
         });

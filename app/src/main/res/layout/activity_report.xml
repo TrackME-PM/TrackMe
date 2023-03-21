@@ -47,7 +47,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="100dp"
-        android:elevation="10dp"
+        app:cardElevation="15dp"
         app:cardCornerRadius="10dp">
 
 
@@ -225,6 +225,7 @@
     <!-- Another Card view for displaying -->
     <!-- Use of programming languages -->
     <androidx.cardview.widget.CardView
+        app:cardElevation="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/cardViewGraph"
@@ -232,7 +233,6 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
-        android:elevation="10dp"
         app:cardCornerRadius="10dp"
         android:id="@+id/details">
 
