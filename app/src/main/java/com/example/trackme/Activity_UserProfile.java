@@ -3,6 +3,7 @@ package com.example.trackme;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 
@@ -44,9 +45,20 @@ public class Activity_UserProfile extends AppCompatActivity {
             }
         });
 
+        activityUserProfileBinding.link.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                intent.setData(Uri.parse("http://igmite.in/index.php"));
+                startActivity(intent);
+            }
+        });
         String username = (String) getIntent().getSerializableExtra("username");
         activityUserProfileBinding.tvUser.setText(username);
     }
+
 
 
 //    public void openHomePage(View view){
