@@ -32,8 +32,10 @@ import com.gkemon.XMLtoPDF.model.SuccessResponse;
 
 
 import java.io.File;
+import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -119,15 +121,41 @@ public class Report_Format extends AppCompatActivity {
                     if(expId.equals("1")){
                         Log.e("report", "OnSuccess " + expId);
                         String[] dates = transaction.getDate().split("-");
-                        int pos = Integer.parseInt(dates[1]);
-                        if(month == pos) {
-                            Report report = new Report(date, title, catId, amt);
-                            reportList.add(report);
+                        LocalDate date_var = null;
+                        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                            date_var = LocalDate.now();
+                        }
+                        String[] currDate = date_var.toString().split("-");
+                        int day = Integer.parseInt((currDate[2]));
+                        int mnth = Integer.parseInt((currDate[1]));
+                        if(day<=7){
+                            tvMonth.setText(monthArr[mnth-2]);
+                            int pos = Integer.parseInt(dates[1]);
+                            if((mnth-1) == pos) {
+                                Report report = new Report(date, title, catId, amt);
+                                reportList.add(report);
+                                getAmt = Double.parseDouble(amt);
+                                sum += getAmt;
+                            }
+
+                        }
+                        else{
+                            tvMonth.setText(monthArr[mnth-1]);
+                            int pos = Integer.parseInt(dates[1]);
+                            if(mnth == pos) {
+                                Report report = new Report(date, title, catId, amt);
+                                reportList.add(report);
+                                getAmt = Double.parseDouble(amt);
+                                sum += getAmt;
+                            }
+
+
                         }
 
-                        getAmt = Double.parseDouble(amt);
-                        sum += getAmt;
-                        Log.e("amount", "OnSuccess " + Double.toString(sum));
+
+
+
+                        Log.e("amount", "OnSuccess " + date_var.toString());
 
                     }
 
