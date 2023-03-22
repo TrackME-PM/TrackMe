@@ -42,10 +42,11 @@
         android:orientation="vertical"
         android:layout_marginBottom="20dp"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="350dp"
         android:gravity="center">
 
         <androidx.cardview.widget.CardView
+            android:layout_marginBottom="40dp"
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -63,9 +64,10 @@
 
 
     <androidx.cardview.widget.CardView
-        app:cardElevation="10dp"
+        app:cardElevation="20dp"
         app:cardCornerRadius="20dp"
         android:padding="10dp"
+        android:layout_marginTop="-100dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_width="match_parent"
@@ -153,7 +155,7 @@
 
 
         <androidx.cardview.widget.CardView
-            app:cardElevation="10dp"
+            app:cardElevation="20dp"
             android:outlineSpotShadowColor="@color/black"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
@@ -171,11 +173,12 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:layout_width="98dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="3"
-                    android:padding="20dp"
+                    android:padding="15dp"
                     android:textSize="18sp"
+                    android:textColor="@color/teal_200"
                     android:text="Generate Report">
 
                 </TextView>
@@ -184,7 +187,7 @@
                 android:id="@+id/reportBtn"
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:background="@drawable/button_radius"
                 android:text="Report" />
 

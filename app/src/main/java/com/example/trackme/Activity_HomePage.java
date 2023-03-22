@@ -177,6 +177,9 @@ public class Activity_HomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 name = (String) getIntent().getSerializableExtra("username");
+                if(name == null){
+                    name = "";
+                }
 
                 Toast.makeText(Activity_HomePage.this, name, Toast.LENGTH_SHORT).show();
 
