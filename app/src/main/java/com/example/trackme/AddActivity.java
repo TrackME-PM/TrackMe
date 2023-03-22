@@ -184,7 +184,7 @@ public class AddActivity extends AppCompatActivity  {
                 getAmt = amt.getText().toString();
                 getDesc = desc.getText().toString();
 
-                Toast.makeText(AddActivity.this,getTitle,Toast.LENGTH_SHORT).show();
+//                Toast.makeText(AddActivity.this,getTitle,Toast.LENGTH_SHORT).show();
                 Log.e("Add","Success"+ getAmt);
                 if(!getTitle.equals("") && !getAmt.equals("") && !getDesc.equals("")){
                     ApiInterface retrofitApi = RetrofitClient.getRetrofitInstance().apiInterface;

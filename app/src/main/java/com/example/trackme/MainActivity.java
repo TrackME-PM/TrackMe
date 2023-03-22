@@ -84,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
                   if(response.code()==200){
                       Toast.makeText(MainActivity.this, "Logged in successfully !", Toast.LENGTH_SHORT).show();
                       Intent intent = new Intent(MainActivity.this, Activity_HomePage.class);
+
                       startActivity(intent);
                       finish();
                   }

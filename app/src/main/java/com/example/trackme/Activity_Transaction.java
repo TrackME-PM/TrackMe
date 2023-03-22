@@ -27,6 +27,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
@@ -73,8 +75,7 @@ public class Activity_Transaction extends AppCompatActivity {
                     mProgressDialog.dismiss();
                 }
                 allTransactionList = response.body();
-//               cardAdapter = new CardAdapter(Activity_Transaction.this, allTransactionList);
-//               recyclerView.setAdapter(cardAdapter);
+
 
 
                 for (Transaction transaction : allTransactionList) {
@@ -92,6 +93,7 @@ public class Activity_Transaction extends AppCompatActivity {
                     cards card = new cards(title, desc, amt, date, catId, expId);
                     cardsList.add(card);
                 }
+                Collections.reverse(cardsList);
                 recyclerView = findViewById(R.id.itemsRecycler);
                 cardAdapter = new CardAdapter(Activity_Transaction.this, cardsList);
                 recyclerView.setAdapter(cardAdapter);

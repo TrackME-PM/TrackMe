@@ -43,12 +43,14 @@ public class Activity_HomePage extends AppCompatActivity {
     int exp = 0, inc = 0;
     ActivityHomePageBinding binding;
 
-    String name;
+
     private String desc, title, amt, date ,catId, expId;
     CardAdapter cardAdapter;
 
     List<Transaction> allTransactionList;
     List<cards> cardsList, tempList, tempList1;
+
+    String name;
 
     List<String> datestring;
     RecyclerView recyclerView;
@@ -76,6 +78,10 @@ public class Activity_HomePage extends AppCompatActivity {
         mProgressDialog.setIndeterminate(true);
         mProgressDialog.setMessage("Loading...");
         mProgressDialog.show();
+
+
+
+
 
 
         RetrofitClient.getRetrofitInstance().apiInterface.getTransactions().enqueue(new Callback<List<Transaction>>() {
@@ -176,15 +182,12 @@ public class Activity_HomePage extends AppCompatActivity {
         binding.profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                name = (String) getIntent().getSerializableExtra("username");
-                if(name == null){
-                    name = "";
-                }
 
-                Toast.makeText(Activity_HomePage.this, name, Toast.LENGTH_SHORT).show();
+
+
+//                Toast.makeText(Activity_HomePage.this, name, Toast.LENGTH_SHORT).show();
 
                 Intent  intent = new Intent(Activity_HomePage.this, Activity_UserProfile.class);
-                intent.putExtra("username",(Serializable) name);
                 startActivity(intent);
                 finish();
             }

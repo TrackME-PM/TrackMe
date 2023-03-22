@@ -15,6 +15,10 @@ public class Activity_UserProfile extends AppCompatActivity {
     ActivityUserProfileBinding activityUserProfileBinding;
 
 
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,8 +59,8 @@ public class Activity_UserProfile extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        String username = (String) getIntent().getSerializableExtra("username");
-        activityUserProfileBinding.tvUser.setText(username);
+
+
     }
 
 
