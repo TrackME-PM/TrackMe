@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AddActivity">
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -96,70 +97,71 @@
 
 
             <LinearLayout
-                android:layout_marginTop="30dp"
-                android:padding="15dp"
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:orientation="vertical"
+                android:padding="15dp">
+
                 <TextView
-                    android:text="Title"
-                    android:textSize="16dp"
-                    android:layout_marginBottom="10dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                </TextView>
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="Title"
+                    android:textSize="16dp"></TextView>
 
                 <EditText
                     android:id="@+id/title"
-                    android:background="@drawable/stroke"
                     android:layout_width="match_parent"
-                    android:paddingLeft="10dp"
-                    android:layout_marginBottom="10dp"
                     android:layout_height="50dp"
-                    android:hint="Enter the title">
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/stroke"
+                    android:hint="Enter the title"
+                    android:paddingLeft="10dp">
 
                 </EditText>
+
                 <TextView
-                    android:text="Amount"
-                    android:textSize="16dp"
-                    android:layout_marginBottom="10dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                </TextView>
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="Amount"
+                    android:textSize="16dp"></TextView>
 
                 <EditText
                     android:id="@+id/amount"
-                    android:background="@drawable/stroke"
                     android:layout_width="match_parent"
-                    android:paddingLeft="10dp"
-                    android:inputType="number"
-                    android:layout_marginBottom="10dp"
                     android:layout_height="50dp"
-                    android:hint="Enter the amount">
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/stroke"
+                    android:hint="Enter the amount"
+                    android:inputType="number"
+                    android:paddingLeft="10dp">
 
                 </EditText>
+
                 <TextView
                     android:id="@+id/textViewCategory"
 
-                    android:text="Category"
-                    android:textSize="16dp"
-                    android:layout_marginBottom="10dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                </TextView>
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="Category"
+                    android:textSize="16dp"></TextView>
 
 
                 <RelativeLayout
                     android:id="@+id/categoryLayout"
-                    android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
                     <Spinner
-                        android:padding="15dp"
                         android:id="@+id/Category"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/stroke"
+                        android:padding="15dp"
                         tools:listitem="@layout/dropdown_item">
 
                     </Spinner>
@@ -177,22 +179,21 @@
 
 
                 <TextView
-                    android:text="Description (Optional)"
-                    android:textSize="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                </TextView>
+                    android:text="Description (Optional)"
+                    android:textSize="16dp"></TextView>
 
                 <EditText
                     android:id="@+id/description"
-                    android:background="@drawable/stroke"
                     android:layout_width="match_parent"
-                    android:paddingLeft="10dp"
-                    android:layout_marginBottom="10dp"
                     android:layout_height="50dp"
-                    android:hint="Enter the description">
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/stroke"
+                    android:hint="Enter the description"
+                    android:paddingLeft="10dp">
 
                 </EditText>
 
