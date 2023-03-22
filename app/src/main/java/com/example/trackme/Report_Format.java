@@ -24,14 +24,12 @@ import com.example.trackme.adapter.CardAdapter;
 import com.example.trackme.adapter.ReportAdapter;
 import com.example.trackme.data.model.Transaction;
 import com.example.trackme.databinding.ActivityReportFormatBinding;
+//import com.github.barteksc.pdfviewer.PDFView;
 import com.gkemon.XMLtoPDF.PdfGenerator;
 import com.gkemon.XMLtoPDF.PdfGeneratorListener;
 import com.gkemon.XMLtoPDF.model.FailureResponse;
 import com.gkemon.XMLtoPDF.model.SuccessResponse;
-import com.tejpratapsingh.pdfcreator.activity.PDFCreatorActivity;
-import com.tejpratapsingh.pdfcreator.views.PDFTableView;
-import com.tejpratapsingh.pdfcreator.views.basic.PDFTextView;
-import com.tejpratapsingh.pdfcreator.views.basic.PDFView;
+
 
 import java.io.File;
 import java.time.Month;
@@ -52,6 +50,8 @@ public class Report_Format extends AppCompatActivity {
     List<Report> reportList;
     double sum = 0, getAmt;
 
+    Uri uri;
+
     private String desc, title, amt, date ,catId, expId;
     private String trTitle, trAmt, trDate ,trCat;
     List<Transaction> allTransactionList;
@@ -61,8 +61,11 @@ public class Report_Format extends AppCompatActivity {
     String[] header = {"Tr Date", "Title", "Category", "Due Amount"};
     ReportAdapter reportAdapter;
 
+//    PDFView pdfView;
+
     ImageView backBtn;
 
+    private File filePath = null;
     @SuppressLint({"SetTextI18n", "MissingInflatedId"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,6 +145,7 @@ public class Report_Format extends AppCompatActivity {
                 reportAdapter = new ReportAdapter(Report_Format.this, reportList);
                 recyclerView.setAdapter(reportAdapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(Report_Format.this));
+
             }
 
             @Override
@@ -157,77 +161,55 @@ public class Report_Format extends AppCompatActivity {
 
         linear = findViewById(R.id.lineard);
         layout = findViewById(R.id.layoutPage);
+//        pdfView = findViewById(R.id.pdfView);
 
         downBtn = findViewById(R.id.downloadBtn);
         downBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                PDFTableView.PDFTableRowView tableHeader = new PDFTableView.PDFTableRowView(getApplicationContext());
-                for (String s : header) {
-                    PDFTextView pdfTextView = new PDFTextView(getApplicationContext(), PDFTextView.PDF_TEXT_SIZE.P);
-                    pdfTextView.setText("Header Title: " + s);
-                    tableHeader.addToRow(pdfTextView);
-                }
-// Create first row
-                PDFTableView.PDFTableRowView tableRowView1 = new PDFTableView.PDFTableRowView(getApplicationContext());
-                for (String s : header) {
-                    PDFTextView pdfTextView = new PDFTextView(getApplicationContext(), PDFTextView.PDF_TEXT_SIZE.P);
-                    pdfTextView.setText("Row 1 : " + " 0 ");
-                    tableRowView1.addToRow(pdfTextView);
-                }
-
-// PDFTableView takes table header and first row at once because if page ends after adding header then first row will be on next page. To avoid confusion to user, table header and first row is printed together.
-                PDFTableView tableView = new PDFTableView(getApplicationContext(), tableHeader, tableRowView1);
-                for (int i = 0; i < allTransactionList.size(); i++) {
-                    trTitle = allTransactionList.get(i).getName();
-                    trCat = allTransactionList.get(i).getCategoryId();
-                    trAmt = allTransactionList.get(i).getAmount();
-                    trDate = allTransactionList.get(i).getDate();
-
-                    String[] tr = {trDate, trTitle, trCat, trAmt};
 
 
-                    // Create 10 rows and add to table.
-                    PDFTableView.PDFTableRowView tableRowView = new PDFTableView.PDFTableRowView(getApplicationContext());
-                    for (String s : tr) {
-                        PDFTextView pdfTextView = new PDFTextView(getApplicationContext(), PDFTextView.PDF_TEXT_SIZE.P);
-                        pdfTextView.setText("Row " + (i + 1) + ": " + s);
-                        tableRowView.addToRow(pdfTextView);
-                    }
-                }
+
+                PdfGenerator.getBuilder()
+                        .setContext(Report_Format.this)
+                        .fromViewSource()
+                        .fromView(linear)
+                        /* "fromView()" takes array of view. You can also invoke "fromViewList()" method here
+                         * which takes list of view instead of array. */
+                        .setCustomPageSize(layout.getWidth(), layout.getHeight())
+                        .setFileName("Test-PDF")
+                        .setFolderName("TrackME")
+                        .openPDFafterGeneration(true)
+                        .build(new PdfGeneratorListener() {
+                            @Override
+                            public void onFailure(FailureResponse failureResponse) {
+                                super.onFailure(failureResponse);
+                            }
+
+                            @Override
+                            public void showLog(String log) {
+                                super.showLog(log);
+                            }
+
+                            @Override
+                            public void onSuccess(SuccessResponse response) {
+                                PdfDocument pdf = response.getPdfDocument();
+                                uri = Uri.parse(response.getPath());
+                                super.onSuccess(response);
+                                Intent intent = new Intent(Report_Format.this,Activity_UserProfile.class);
+                                startActivity(intent);
+                                finish();
+                            }
+
+                        });
+
+//                        pdfView.fromUri(uri);
 
 
-//                PdfGenerator.getBuilder()
-//                        .setContext(Report_Format.this)
-//                        .fromViewSource()
-//                        .fromView(linear)
-//                        /* "fromView()" takes array of view. You can also invoke "fromViewList()" method here
-//                         * which takes list of view instead of array. */
-//                        .setCustomPageSize(layout.getWidth(), layout.getHeight())
-//                        .setFileName("Test-PDF")
-//                        .setFolderName("TrackME")
-//                        .openPDFafterGeneration(true)
-//                        .build(new PdfGeneratorListener() {
-//                            @Override
-//                            public void onFailure(FailureResponse failureResponse) {
-//                                super.onFailure(failureResponse);
-//                            }
-//
-//                            @Override
-//                            public void showLog(String log) {
-//                                super.showLog(log);
-//                            }
-//
-//                            @Override
-//                            public void onSuccess(SuccessResponse response) {
-//                                super.onSuccess(response);
-//                                Intent intent = new Intent(Report_Format.this,Activity_UserProfile.class);
-//                                startActivity(intent);
-//                                finish();
-//                            }
-//
-//                        });
+
+
+
 
 
 
@@ -245,6 +227,7 @@ public class Report_Format extends AppCompatActivity {
                 finish();
             }
         });
+
 
 
 

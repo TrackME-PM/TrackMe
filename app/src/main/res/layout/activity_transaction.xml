@@ -55,135 +55,183 @@
 
             <androidx.cardview.widget.CardView
                 app:cardElevation="10dp"
-                android:id="@+id/catAll"
-                android:backgroundTint="@color/light_grey"
+
+                android:background="@color/teal_200"
                 app:cardCornerRadius="10dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:id="@+id/catAll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/light_grey">
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:padding="7dp"
                     android:text="All"
                     android:textSize="14sp" />
+                </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 app:cardElevation="10dp"
-                android:id="@+id/catFood"
+
                 android:backgroundTint="@color/light_grey"
                 app:cardCornerRadius="10dp"
                 android:layout_marginEnd="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:id="@+id/catFood"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/light_grey">
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:padding="7dp"
                     android:text="Food &amp; Beverages"
                     android:textSize="14sp" />
+                </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 app:cardElevation="10dp"
-                android:id="@+id/catPantry"
+
                 android:backgroundTint="@color/light_grey"
                 app:cardCornerRadius="10dp"
                 android:layout_marginEnd="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:id="@+id/catPantry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/light_grey">
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:padding="7dp"
                     android:text="Pantry"
                     android:textSize="14sp" />
+                </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
 
             <androidx.cardview.widget.CardView
                 app:cardElevation="10dp"
-                android:id="@+id/catTravel"
+
                 android:backgroundTint="@color/light_grey"
                 app:cardCornerRadius="10dp"
                 android:layout_marginEnd="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:id="@+id/catTravel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/light_grey">
                 <TextView
                     android:padding="7dp"
                     android:text="Travel"
                     android:textSize="14sp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="wrap_content" />
+                </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 app:cardElevation="10dp"
-                android:id="@+id/catStat"
+
                 android:backgroundTint="@color/light_grey"
                 app:cardCornerRadius="10dp"
                 android:layout_marginEnd="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:id="@+id/catStat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/light_grey">
                 <TextView
                     android:padding="7dp"
                     android:text="Stationary"
                     android:textSize="14sp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="wrap_content" />
+                </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 app:cardElevation="10dp"
-                android:id="@+id/catStaff"
+
                 android:backgroundTint="@color/light_grey"
                 app:cardCornerRadius="10dp"
                 android:layout_marginEnd="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:id="@+id/catStaff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/light_grey">
                 <TextView
                     android:padding="7dp"
                     android:text="Staff"
                     android:textSize="14sp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="wrap_content" />
+                </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 app:cardElevation="10dp"
-                android:id="@+id/catOther"
+
                 android:backgroundTint="@color/light_grey"
                 app:cardCornerRadius="10dp"
                 android:layout_marginEnd="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:id="@+id/catOther"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/light_grey">
                 <TextView
                     android:padding="7dp"
                     android:text="Others"
                     android:textSize="14sp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="wrap_content" />
+                </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 app:cardElevation="10dp"
-                android:id="@+id/catIncome"
+
                 android:backgroundTint="@color/light_grey"
                 app:cardCornerRadius="10dp"
                 android:layout_marginEnd="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:id="@+id/catIncome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/light_grey">
                 <TextView
                     android:padding="7dp"
                     android:text="Income"
                     android:textSize="14sp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="wrap_content" />
+                </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
         </LinearLayout>

@@ -14,7 +14,8 @@
         android:background="@color/dark_grey"
         android:layout_height="65dp"
         android:padding="10dp"
-        android:paddingBottom="20dp">
+        android:paddingBottom="20dp"
+        android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/backBtn"
@@ -36,170 +37,7 @@
 
         </TextView>
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/lineard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="30dp"
-            android:background="@color/transparent"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/transparent"
-                android:text="Monthly Expense Report"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="25dp"
-                android:background="@color/transparent"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:background="@color/transparent"
-                    android:text="Month : "
-                    android:textColor="@color/black"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/monthName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:background="@color/transparent"
-                    android:text="name"
-                    android:textColor="@color/black"
-                    android:textSize="14sp" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <TableLayout
-            android:id="@+id/tableLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="25dp"
-            android:background="@color/transparent"
-            android:weightSum="5">
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/grey">
-
-                <TextView
-                    android:layout_width="60dp"
-                    android:layout_height="match_parent"
-                    android:layout_column="1"
-                    android:layout_weight="1"
-                    android:background="@drawable/border_table"
-                    android:gravity="center"
-                    android:padding="9dp"
-                    android:text="Tr Date"
-                    android:textColor="@color/white" />
-
-                <TextView
-                    android:layout_width="80dp"
-                    android:layout_height="match_parent"
-                    android:layout_column="2"
-                    android:layout_weight="1"
-                    android:background="@drawable/border_table"
-                    android:gravity="center"
-                    android:padding="9dp"
-                    android:text="Title"
-                    android:textColor="@color/white" />
-
-                <TextView
-                    android:layout_width="80dp"
-                    android:layout_height="match_parent"
-                    android:layout_column="3"
-                    android:layout_weight="1"
-                    android:background="@drawable/border_table"
-                    android:gravity="center"
-                    android:padding="9dp"
-                    android:text="Category"
-                    android:textColor="@color/white" />
-
-                <TextView
-                    android:layout_width="50dp"
-                    android:layout_height="match_parent"
-                    android:layout_column="4"
-                    android:layout_weight="1"
-                    android:background="@drawable/border_table"
-                    android:gravity="center"
-                    android:padding="9dp"
-                    android:text="Due Amount"
-                    android:textColor="@color/white" />
-
-
-            </TableRow>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/dataRecycler"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/transparent"
-                tools:listitem="@layout/recycler_row_layout">
-
-            </androidx.recyclerview.widget.RecyclerView>
-
-        </TableLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="220dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:background="@color/transparent"
-            android:gravity="end"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/transparent"
-                android:gravity="end"
-                android:text="Total Due Amount : "
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/totalDue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/transparent"
-                android:gravity="end"
-                android:text="Amount"
-                android:textColor="@color/black"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-    </LinearLayout>
-
-    <RelativeLayout
+        <RelativeLayout
         android:background="@color/white"
         android:layout_marginStart="30dp"
         android:layout_width="50dp"
@@ -225,3 +63,168 @@
 
 </LinearLayout>
 
+
+        <LinearLayout
+            android:id="@+id/lineard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="30dp"
+                android:background="@color/transparent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:text="Monthly Expense Report"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="25dp"
+                    android:background="@color/transparent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:background="@color/transparent"
+                        android:text="Month : "
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/monthName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:background="@color/transparent"
+                        android:text="name"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TableLayout
+                android:id="@+id/tableLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="25dp"
+                android:background="@color/transparent"
+                android:weightSum="5">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/grey">
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_weight="1"
+                        android:background="@drawable/border_table"
+                        android:gravity="center"
+                        android:padding="9dp"
+                        android:text="Tr Date"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_weight="1"
+                        android:background="@drawable/border_table"
+                        android:gravity="center"
+                        android:padding="9dp"
+                        android:text="Title"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="3"
+                        android:layout_weight="1"
+                        android:background="@drawable/border_table"
+                        android:gravity="center"
+                        android:padding="9dp"
+                        android:text="Category"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="4"
+                        android:layout_weight="1"
+                        android:background="@drawable/border_table"
+                        android:gravity="center"
+                        android:padding="9dp"
+                        android:text="Due Amount"
+                        android:textColor="@color/white" />
+
+
+                </TableRow>
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/dataRecycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    tools:listitem="@layout/recycler_row_layout">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+            </TableLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="220dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@color/transparent"
+                android:gravity="end"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:gravity="end"
+                    android:text="Total Due Amount : "
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/totalDue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:gravity="end"
+                    android:text="Amount"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+</LinearLayout>

@@ -22,6 +22,7 @@ import com.example.trackme.holder.cardHolder;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,9 +38,10 @@ public class Activity_Transaction extends AppCompatActivity {
     TextView catName;
 
     TextView cardDesc, cardAmt, cardDate;
-    private String desc, title, amt, date ,catId, expId;
+    private String desc, title, amt, date, catId, expId;
 
-    CardView catAll, catFood, catTravel,catStat, catStaff, catOther, catInc, catPantry;
+    RelativeLayout catAll, catFood, catTravel, catStat, catStaff, catOther, catInc, catPantry;
+
     CardAdapter cardAdapter;
     List<Transaction> allTransactionList, transactionList;
     Category category;
@@ -49,6 +51,7 @@ public class Activity_Transaction extends AppCompatActivity {
 
     ArrayAdapter<CharSequence> adapterItems;
     ActivityTransactionBinding activityTransactionBinding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,46 +67,47 @@ public class Activity_Transaction extends AppCompatActivity {
         mProgressDialog.show();
 
         RetrofitClient.getRetrofitInstance().apiInterface.getTransactions().enqueue(new Callback<List<Transaction>>() {
-           @Override
-           public void onResponse(@NonNull Call<List<Transaction>> call, @NonNull Response<List<Transaction>> response) {
-               if (mProgressDialog.isShowing()){
-                   mProgressDialog.dismiss();
-               }
-               allTransactionList = response.body();
+            @Override
+            public void onResponse(@NonNull Call<List<Transaction>> call, @NonNull Response<List<Transaction>> response) {
+                if (mProgressDialog.isShowing()) {
+                    mProgressDialog.dismiss();
+                }
+                allTransactionList = response.body();
 //               cardAdapter = new CardAdapter(Activity_Transaction.this, allTransactionList);
 //               recyclerView.setAdapter(cardAdapter);
 
 
-               for(Transaction transaction : allTransactionList){
-                   title = transaction.getName();
-                   desc = transaction.getDescription();
-                   amt = transaction.getAmount();
-                   date = transaction.getDate();
+                for (Transaction transaction : allTransactionList) {
+                    title = transaction.getName();
+                    desc = transaction.getDescription();
+                    amt = transaction.getAmount();
+                    date = transaction.getDate();
 
-                   catId = transaction.getCategoryId();
-                   expId = transaction.getTransactionTypeId();
-                   Log.e("tran","success"+ expId);
-                   Log.e("tran","success"+ catId);
+                    catId = transaction.getCategoryId();
+                    expId = transaction.getTransactionTypeId();
 
-                   cards card = new cards(title, desc, amt, date, catId, expId);
-                   cardsList.add(card);
-               }
-               recyclerView = findViewById(R.id.itemsRecycler);
-               cardAdapter = new CardAdapter(Activity_Transaction.this, cardsList);
-               recyclerView.setAdapter(cardAdapter);
-               recyclerView.setLayoutManager(new LinearLayoutManager(Activity_Transaction.this));
-              // Toast.makeText(Activity_Transaction.this, Integer.toString(cardsList.size()), Toast.LENGTH_SHORT).show();
+                    Log.e("tran", "success" + expId);
+                    Log.e("tran", "success" + catId);
 
-           }
+                    cards card = new cards(title, desc, amt, date, catId, expId);
+                    cardsList.add(card);
+                }
+                recyclerView = findViewById(R.id.itemsRecycler);
+                cardAdapter = new CardAdapter(Activity_Transaction.this, cardsList);
+                recyclerView.setAdapter(cardAdapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(Activity_Transaction.this));
+                // Toast.makeText(Activity_Transaction.this, Integer.toString(cardsList.size()), Toast.LENGTH_SHORT).show();
 
-           @Override
-           public void onFailure(@NonNull Call<List<Transaction>> call, Throwable t) {
-                Log.e("api","onFailure: " + t.getLocalizedMessage());
-               if (mProgressDialog.isShowing()){
-                   mProgressDialog.dismiss();
-               }
-           }
-       });
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<Transaction>> call, Throwable t) {
+                Log.e("api", "onFailure: " + t.getLocalizedMessage());
+                if (mProgressDialog.isShowing()) {
+                    mProgressDialog.dismiss();
+                }
+            }
+        });
 
 
         activityTransactionBinding.backBtn.setOnClickListener(new View.OnClickListener() {
@@ -115,8 +119,6 @@ public class Activity_Transaction extends AppCompatActivity {
                 finish();
             }
         });
-
-
 
 
         catAll = findViewById(R.id.catAll);
@@ -139,12 +141,12 @@ public class Activity_Transaction extends AppCompatActivity {
                 RetrofitClient.getRetrofitInstance().apiInterface.getTransactions().enqueue(new Callback<List<Transaction>>() {
                     @Override
                     public void onResponse(Call<List<Transaction>> call, Response<List<Transaction>> response) {
-                        if (mProgressDialog.isShowing()){
+                        if (mProgressDialog.isShowing()) {
                             mProgressDialog.dismiss();
                         }
                         transactionList = response.body();
 
-                        for (Transaction transaction: transactionList) {
+                        for (Transaction transaction : transactionList) {
                             title = transaction.getName();
                             desc = transaction.getDescription();
                             amt = transaction.getAmount();
@@ -153,7 +155,7 @@ public class Activity_Transaction extends AppCompatActivity {
                             catId = transaction.getCategoryId();
                             expId = transaction.getTransactionTypeId();
 
-                            if(catId.equals("1")) {
+                            if (catId.equals("1")) {
                                 cards card = new cards(title, desc, amt, date, catId, expId);
                                 tempList.add(card);
                             }
@@ -167,7 +169,7 @@ public class Activity_Transaction extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<List<Transaction>> call, Throwable t) {
-                        if (mProgressDialog.isShowing()){
+                        if (mProgressDialog.isShowing()) {
                             mProgressDialog.dismiss();
                         }
                     }
@@ -184,12 +186,12 @@ public class Activity_Transaction extends AppCompatActivity {
                 RetrofitClient.getRetrofitInstance().apiInterface.getTransactions().enqueue(new Callback<List<Transaction>>() {
                     @Override
                     public void onResponse(Call<List<Transaction>> call, Response<List<Transaction>> response) {
-                        if (mProgressDialog.isShowing()){
+                        if (mProgressDialog.isShowing()) {
                             mProgressDialog.dismiss();
                         }
                         transactionList = response.body();
 
-                        for (Transaction transaction: transactionList) {
+                        for (Transaction transaction : transactionList) {
                             title = transaction.getName();
                             desc = transaction.getDescription();
                             amt = transaction.getAmount();
@@ -198,7 +200,7 @@ public class Activity_Transaction extends AppCompatActivity {
                             catId = transaction.getCategoryId();
                             expId = transaction.getTransactionTypeId();
 
-                            if(catId.equals("4")) {
+                            if (catId.equals("4")) {
                                 cards card = new cards(title, desc, amt, date, catId, expId);
                                 tempList.add(card);
                             }
@@ -212,7 +214,7 @@ public class Activity_Transaction extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<List<Transaction>> call, Throwable t) {
-                        if (mProgressDialog.isShowing()){
+                        if (mProgressDialog.isShowing()) {
                             mProgressDialog.dismiss();
                         }
                     }
@@ -231,12 +233,12 @@ public class Activity_Transaction extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<List<Transaction>> call, Response<List<Transaction>> response) {
 
-                        if (mProgressDialog.isShowing()){
+                        if (mProgressDialog.isShowing()) {
                             mProgressDialog.dismiss();
                         }
                         transactionList = response.body();
 
-                        for (Transaction transaction: transactionList) {
+                        for (Transaction transaction : transactionList) {
                             title = transaction.getName();
                             desc = transaction.getDescription();
                             amt = transaction.getAmount();
@@ -245,7 +247,7 @@ public class Activity_Transaction extends AppCompatActivity {
                             catId = transaction.getCategoryId();
                             expId = transaction.getTransactionTypeId();
 
-                            if(catId.equals("3")) {
+                            if (catId.equals("3")) {
                                 cards card = new cards(title, desc, amt, date, catId, expId);
                                 tempList.add(card);
                             }
@@ -259,7 +261,7 @@ public class Activity_Transaction extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<List<Transaction>> call, Throwable t) {
-                        if (mProgressDialog.isShowing()){
+                        if (mProgressDialog.isShowing()) {
                             mProgressDialog.dismiss();
                         }
                     }
@@ -277,12 +279,12 @@ public class Activity_Transaction extends AppCompatActivity {
                 RetrofitClient.getRetrofitInstance().apiInterface.getTransactions().enqueue(new Callback<List<Transaction>>() {
                     @Override
                     public void onResponse(Call<List<Transaction>> call, Response<List<Transaction>> response) {
-                        if (mProgressDialog.isShowing()){
+                        if (mProgressDialog.isShowing()) {
                             mProgressDialog.dismiss();
                         }
                         transactionList = response.body();
 
-                        for (Transaction transaction: transactionList) {
+                        for (Transaction transaction : transactionList) {
                             title = transaction.getName();
                             desc = transaction.getDescription();
                             amt = transaction.getAmount();
@@ -291,7 +293,7 @@ public class Activity_Transaction extends AppCompatActivity {
                             catId = transaction.getCategoryId();
                             expId = transaction.getTransactionTypeId();
 
-                            if(catId.equals("5")) {
+                            if (catId.equals("5")) {
                                 cards card = new cards(title, desc, amt, date, catId, expId);
                                 tempList.add(card);
                             }
@@ -305,7 +307,7 @@ public class Activity_Transaction extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<List<Transaction>> call, Throwable t) {
-                        if (mProgressDialog.isShowing()){
+                        if (mProgressDialog.isShowing()) {
                             mProgressDialog.dismiss();
                         }
                     }
@@ -323,12 +325,12 @@ public class Activity_Transaction extends AppCompatActivity {
                 RetrofitClient.getRetrofitInstance().apiInterface.getTransactions().enqueue(new Callback<List<Transaction>>() {
                     @Override
                     public void onResponse(Call<List<Transaction>> call, Response<List<Transaction>> response) {
-                        if (mProgressDialog.isShowing()){
+                        if (mProgressDialog.isShowing()) {
                             mProgressDialog.dismiss();
                         }
                         transactionList = response.body();
 
-                        for (Transaction transaction: transactionList) {
+                        for (Transaction transaction : transactionList) {
                             title = transaction.getName();
                             desc = transaction.getDescription();
                             amt = transaction.getAmount();
@@ -337,7 +339,7 @@ public class Activity_Transaction extends AppCompatActivity {
                             catId = transaction.getCategoryId();
                             expId = transaction.getTransactionTypeId();
 
-                            if(catId.equals("6")) {
+                            if (catId.equals("6")) {
                                 cards card = new cards(title, desc, amt, date, catId, expId);
                                 tempList.add(card);
                             }
@@ -351,7 +353,7 @@ public class Activity_Transaction extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<List<Transaction>> call, Throwable t) {
-                        if (mProgressDialog.isShowing()){
+                        if (mProgressDialog.isShowing()) {
                             mProgressDialog.dismiss();
                         }
                     }
@@ -366,7 +368,7 @@ public class Activity_Transaction extends AppCompatActivity {
             public void onClick(View view) {
                 changeColor(1);
 
-                if (mProgressDialog.isShowing()){
+                if (mProgressDialog.isShowing()) {
                     mProgressDialog.dismiss();
                 }
 
@@ -419,12 +421,12 @@ public class Activity_Transaction extends AppCompatActivity {
                 RetrofitClient.getRetrofitInstance().apiInterface.getTransactions().enqueue(new Callback<List<Transaction>>() {
                     @Override
                     public void onResponse(Call<List<Transaction>> call, Response<List<Transaction>> response) {
-                        if (mProgressDialog.isShowing()){
+                        if (mProgressDialog.isShowing()) {
                             mProgressDialog.dismiss();
                         }
                         transactionList = response.body();
 
-                        for (Transaction transaction: transactionList) {
+                        for (Transaction transaction : transactionList) {
                             title = transaction.getName();
                             desc = transaction.getDescription();
                             amt = transaction.getAmount();
@@ -433,7 +435,7 @@ public class Activity_Transaction extends AppCompatActivity {
                             catId = transaction.getCategoryId();
                             expId = transaction.getTransactionTypeId();
 
-                            if(catId.equals("2")) {
+                            if (catId.equals("2")) {
                                 cards card = new cards(title, desc, amt, date, catId, expId);
                                 tempList.add(card);
                             }
@@ -447,7 +449,7 @@ public class Activity_Transaction extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<List<Transaction>> call, Throwable t) {
-                        if (mProgressDialog.isShowing()){
+                        if (mProgressDialog.isShowing()) {
                             mProgressDialog.dismiss();
                         }
                     }
@@ -467,12 +469,12 @@ public class Activity_Transaction extends AppCompatActivity {
                 RetrofitClient.getRetrofitInstance().apiInterface.getTransactions().enqueue(new Callback<List<Transaction>>() {
                     @Override
                     public void onResponse(Call<List<Transaction>> call, Response<List<Transaction>> response) {
-                        if (mProgressDialog.isShowing()){
+                        if (mProgressDialog.isShowing()) {
                             mProgressDialog.dismiss();
                         }
                         transactionList = response.body();
 
-                        for (Transaction transaction: transactionList) {
+                        for (Transaction transaction : transactionList) {
                             title = transaction.getName();
                             desc = transaction.getDescription();
                             amt = transaction.getAmount();
@@ -481,7 +483,7 @@ public class Activity_Transaction extends AppCompatActivity {
                             catId = transaction.getCategoryId();
                             expId = transaction.getTransactionTypeId();
 
-                            if(catId.equals("7")) {
+                            if (catId.equals("7")) {
                                 cards card = new cards(title, desc, amt, date, catId, expId);
                                 tempList.add(card);
                             }
@@ -495,7 +497,7 @@ public class Activity_Transaction extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<List<Transaction>> call, Throwable t) {
-                        if (mProgressDialog.isShowing()){
+                        if (mProgressDialog.isShowing()) {
                             mProgressDialog.dismiss();
                         }
                     }
@@ -503,8 +505,6 @@ public class Activity_Transaction extends AppCompatActivity {
 
             }
         });
-
-
 
 
 //        cardDesc = findViewById(R.id.description);
@@ -589,35 +589,37 @@ public class Activity_Transaction extends AppCompatActivity {
 //        recyclerView.smoothScrollToPosition(allTransactionList.size()-1);
 
 
-
     }
+
 
     @SuppressLint("ResourceAsColor")
     public void changeColor(int id) {
-        catAll.setCardBackgroundColor(R.color.light_grey);
-        catFood.setCardBackgroundColor(R.color.light_grey);
-        catPantry.setCardBackgroundColor(R.color.light_grey);
-        catStat.setCardBackgroundColor(R.color.light_grey);
-        catStaff.setCardBackgroundColor(R.color.light_grey);
-        catOther.setCardBackgroundColor(R.color.light_grey);
-        catTravel.setCardBackgroundColor(R.color.light_grey);
-        catInc.setCardBackgroundColor(R.color.light_grey);
-        if(id == 1){
-            catAll.setCardBackgroundColor(R.color.teal_200);
+        catAll.setBackgroundResource(R.color.light_grey);
+        catFood.setBackgroundResource(R.color.light_grey);
+        catPantry.setBackgroundResource(R.color.light_grey);
+        catStat.setBackgroundResource(R.color.light_grey);
+        catStaff.setBackgroundResource(R.color.light_grey);
+        catOther.setBackgroundResource(R.color.light_grey);
+        catTravel.setBackgroundResource(R.color.light_grey);
+        catInc.setBackgroundResource(R.color.light_grey);
+        if (id == 1) {
+            catAll.setBackgroundResource(R.color.teal_200);
+
         } else if (id == 2) {
-            catFood.setCardBackgroundColor(R.color.teal_200);
+            catFood.setBackgroundResource(R.color.teal_200);
         } else if (id == 3) {
-            catPantry.setCardBackgroundColor(R.color.teal_200);
-        }else if (id == 4) {
-            catTravel.setCardBackgroundColor(R.color.teal_200);
-        }else if (id == 5) {
-            catStat.setCardBackgroundColor(R.color.teal_200);
-        }else if (id == 6) {
-            catStaff.setCardBackgroundColor(R.color.teal_200);
-        }else if (id == 7) {
-            catOther.setCardBackgroundColor(R.color.teal_200);
-        }else if (id == 8) {
-            catInc.setCardBackgroundColor(R.color.teal_200);
+            catPantry.setBackgroundResource(R.color.teal_200);
+        } else if (id == 4) {
+            catTravel.setBackgroundResource(R.color.teal_200);
+        } else if (id == 5) {
+            catStat.setBackgroundResource(R.color.teal_200);
+        } else if (id == 6) {
+            catStaff.setBackgroundResource(R.color.teal_200);
+        } else if (id == 7) {
+            catOther.setBackgroundResource(R.color.teal_200);
+        } else if (id == 8) {
+            catInc.setBackgroundResource(R.color.teal_200);
         }
+
     }
 }

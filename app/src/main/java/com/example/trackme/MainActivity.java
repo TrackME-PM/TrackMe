@@ -2,6 +2,7 @@ package com.example.trackme;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -41,15 +42,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 usrnm = username.getText().toString();
-                if(usrnm == null){
-                    usrnm = "";
-                }
                 psswrd = password.getText().toString();
-                Intent intent = new Intent(MainActivity.this, Activity_HomePage.class);
-                intent.putExtra("username",(Serializable) usrnm);
-                startActivity(intent);
 
-                //loginBtnClicked(usrnm, psswrd);
+
+
+                loginBtnClicked(usrnm, psswrd);
 
             }
         });
@@ -64,6 +61,10 @@ public class MainActivity extends AppCompatActivity {
 //                .addConverterFactory(GsonConverterFactory.create())
 //                .build();
 //        ApiInterface retrofitApi = retrofit.create(ApiInterface.class);
+        ProgressDialog mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.setMessage("Loading...");
+        mProgressDialog.show();
         ApiInterface retrofitApi = RetrofitClient.getRetrofitInstance().apiInterface;
         User user = new User(username, password);
         Call<User> call = retrofitApi.getLoginData(user);
@@ -75,6 +76,10 @@ public class MainActivity extends AppCompatActivity {
                   Log.e("login", String.valueOf(response.code()));
                   Log.e("login", usrnm);
                   Log.e("login", psswrd);
+
+                if (mProgressDialog.isShowing()){
+                    mProgressDialog.dismiss();
+                }
 
                   if(response.code()==200){
                       Toast.makeText(MainActivity.this, "Logged in successfully !", Toast.LENGTH_SHORT).show();
