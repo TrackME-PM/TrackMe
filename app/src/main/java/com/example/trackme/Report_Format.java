@@ -164,45 +164,46 @@ public class Report_Format extends AppCompatActivity {
 //        pdfView = findViewById(R.id.pdfView);
 
         downBtn = findViewById(R.id.downloadBtn);
-        downBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-
-
-
-                PdfGenerator.getBuilder()
-                        .setContext(Report_Format.this)
-                        .fromViewSource()
-                        .fromView(linear)
-                        /* "fromView()" takes array of view. You can also invoke "fromViewList()" method here
-                         * which takes list of view instead of array. */
-                        .setCustomPageSize(layout.getWidth(), layout.getHeight())
-                        .setFileName("Test-PDF")
-                        .setFolderName("TrackME")
-                        .openPDFafterGeneration(true)
-                        .build(new PdfGeneratorListener() {
-                            @Override
-                            public void onFailure(FailureResponse failureResponse) {
-                                super.onFailure(failureResponse);
-                            }
-
-                            @Override
-                            public void showLog(String log) {
-                                super.showLog(log);
-                            }
-
-                            @Override
-                            public void onSuccess(SuccessResponse response) {
-                                PdfDocument pdf = response.getPdfDocument();
-                                uri = Uri.parse(response.getPath());
-                                super.onSuccess(response);
-                                Intent intent = new Intent(Report_Format.this,Activity_UserProfile.class);
-                                startActivity(intent);
-                                finish();
-                            }
-
-                        });
+        downBtn.setVisibility(View.GONE);
+//        downBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//
+//
+//
+//                PdfGenerator.getBuilder()
+//                        .setContext(Report_Format.this)
+//                        .fromViewSource()
+//                        .fromView(linear)
+//                        /* "fromView()" takes array of view. You can also invoke "fromViewList()" method here
+//                         * which takes list of view instead of array. */
+//                        .setCustomPageSize(layout.getWidth(), layout.getHeight())
+//                        .setFileName("Test-PDF")
+//                        .setFolderName("TrackME")
+//                        .openPDFafterGeneration(true)
+//                        .build(new PdfGeneratorListener() {
+//                            @Override
+//                            public void onFailure(FailureResponse failureResponse) {
+//                                super.onFailure(failureResponse);
+//                            }
+//
+//                            @Override
+//                            public void showLog(String log) {
+//                                super.showLog(log);
+//                            }
+//
+//                            @Override
+//                            public void onSuccess(SuccessResponse response) {
+//                                PdfDocument pdf = response.getPdfDocument();
+//                                uri = Uri.parse(response.getPath());
+//                                super.onSuccess(response);
+//                                Intent intent = new Intent(Report_Format.this,Activity_UserProfile.class);
+//                                startActivity(intent);
+//                                finish();
+//                            }
+//
+//                        });
 
 //                        pdfView.fromUri(uri);
 
@@ -211,12 +212,12 @@ public class Report_Format extends AppCompatActivity {
 
 
 
-
-
-            }
-
-
-        });
+//
+//
+//            }
+//
+//
+//        });
 
         backBtn = findViewById(R.id.backBtn);
         backBtn.setOnClickListener(new View.OnClickListener() {

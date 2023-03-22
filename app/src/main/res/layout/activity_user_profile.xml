@@ -17,11 +17,13 @@
             android:paddingBottom="20dp">
 
         <ImageView
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
             android:id="@+id/backBtn"
             android:contentDescription="Back Button"
             android:layout_gravity="center_vertical"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:src="@drawable/back_btn">
 
         </ImageView>
