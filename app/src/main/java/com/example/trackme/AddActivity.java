@@ -179,10 +179,19 @@ public class AddActivity extends AppCompatActivity  {
         binding.addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getAmt= "0";
                 getTitle = title.getText().toString();
+                if( getTitle.length() == 0 ){
+                    title.setError( "Title is required!" );
+                }
                 getAmt = amt.getText().toString();
+                if(getAmt.length() == 0){
+                    amt.setError("Amount is required");
+                    getAmt = "0";
+                }
                 getDesc = desc.getText().toString();
+                if(getDesc.length() == 0){
+                    getDesc = "No description";
+                }
 
 
 //                Toast.makeText(AddActivity.this,getTitle,Toast.LENGTH_SHORT).show();
@@ -204,10 +213,11 @@ public class AddActivity extends AppCompatActivity  {
                             Log.e("Add","Failure");
                         }
                     });
+                    startActivity(new Intent(AddActivity.this, Activity_HomePage.class));
+                    finish();
 
                 }
-                startActivity(new Intent(AddActivity.this, Activity_HomePage.class));
-                finish();
+
             }
         });
 

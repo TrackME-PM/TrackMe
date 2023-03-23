@@ -42,9 +42,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 usrnm = username.getText().toString();
+                if(usrnm.length() == 0){
+                    username.setError("Username is required");
+                }
                 psswrd = password.getText().toString();
+                if(psswrd.length() == 0){
+                    password.setError("Password is required");
+                }
 
-                loginBtnClicked(usrnm, psswrd);
+                if(!usrnm.equals("") && !psswrd.equals("")){
+                    loginBtnClicked(usrnm, psswrd);
+
+                }
 
             }
         });
