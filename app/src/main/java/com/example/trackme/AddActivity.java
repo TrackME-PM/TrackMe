@@ -233,7 +233,11 @@ public class AddActivity extends AppCompatActivity  {
         startActivity(intent);
     }
 
-
+    @Override
+        public void onBackPressed(){
+        startActivity(new Intent(AddActivity.this, Activity_HomePage.class));
+        finish();
+    }
 
 
 }

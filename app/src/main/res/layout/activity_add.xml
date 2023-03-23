@@ -11,27 +11,28 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <RelativeLayout
-                android:background="@color/dark_grey"
                 android:layout_width="match_parent"
                 android:layout_height="65dp"
+                android:background="@color/dark_grey"
                 android:paddingTop="20dp"
                 android:paddingBottom="20dp">
 
                 <ImageView
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
                     android:id="@+id/backBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentStart="true"
                     android:layout_marginStart="15dp"
                     android:backgroundTint="@color/white"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
                     android:src="@drawable/back_btn">
 
                 </ImageView>
@@ -49,47 +50,49 @@
 
 
             <androidx.cardview.widget.CardView
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
-                android:layout_marginTop="30dp"
-                app:cardCornerRadius="15dp"
-                android:backgroundTint="@color/light_teal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="15dp"
+                android:backgroundTint="@color/light_teal"
+                app:cardCornerRadius="15dp">
 
                 <LinearLayout
-                    android:weightSum="2"
-                    android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
                     <LinearLayout
                         android:id="@+id/isExpense"
-                        android:background="@drawable/rectangle_border"
-                        android:padding="20dp"
-                        android:layout_weight="1"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:textSize="18sp"
-                            android:gravity="center"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:text="Expense" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:background="@drawable/rectangle_border"
-                            android:id="@+id/isIncome"
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/rectangle_border"
+                        android:padding="20dp">
 
                         <TextView
-                            android:textSize="18sp"
-                            android:gravity="center"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:text="Income" />
+                            android:gravity="center"
+                            android:text="Expense"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/isIncome"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/rectangle_border">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="Income"
+                            android:textSize="18sp" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -100,108 +103,108 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:orientation="vertical"
-                android:padding="15dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:text="Title"
-                    android:textSize="16dp" />
-
-                <EditText
-                    android:id="@+id/title"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/stroke"
-                    android:hint="Enter the title"
-                    android:paddingLeft="10dp">
-
-                </EditText>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:text="Amount"
-                    android:textSize="16dp"></TextView>
-
-                <EditText
-                    android:id="@+id/amount"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/stroke"
-                    android:hint="Enter the amount"
-                    android:inputType="number"
-                    android:paddingLeft="10dp">
-
-                </EditText>
-
-                <TextView
-                    android:id="@+id/textViewCategory"
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:text="Category"
-                    android:textSize="16dp"></TextView>
-
-
-                <RelativeLayout
-                    android:id="@+id/categoryLayout"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_marginTop="30dp"
+                    android:orientation="vertical"
+                    android:padding="15dp">
 
-                    <Spinner
-                        android:id="@+id/Category"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/stroke"
-                        android:padding="15dp"
-                        tools:listitem="@layout/dropdown_item">
-
-                    </Spinner>
-
-                    <ImageView
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="20dp"
-                        android:background="@drawable/drop_down_arr"
-                        android:paddingEnd="10dp" />
+                        android:layout_marginBottom="10dp"
+                        android:text="Title"
+                        android:textSize="16dp" />
 
-                </RelativeLayout>
+                    <EditText
+                        android:id="@+id/title"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/stroke"
+                        android:hint="Enter the title"
+                        android:paddingLeft="10dp">
+
+                    </EditText>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="Amount"
+                        android:textSize="16dp"></TextView>
+
+                    <EditText
+                        android:id="@+id/amount"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/stroke"
+                        android:hint="Enter the amount"
+                        android:inputType="number"
+                        android:paddingLeft="10dp">
+
+                    </EditText>
+
+                    <TextView
+                        android:id="@+id/textViewCategory"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="Category"
+                        android:textSize="16dp"></TextView>
 
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="Description (Optional)"
-                    android:textSize="16dp" />
+                    <RelativeLayout
+                        android:id="@+id/categoryLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/description"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/stroke"
-                    android:hint="Enter the description"
-                    android:paddingLeft="10dp">
+                        <Spinner
+                            android:id="@+id/Category"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/stroke"
+                            android:padding="15dp"
+                            tools:listitem="@layout/dropdown_item">
 
-                </EditText>
+                        </Spinner>
 
-            </LinearLayout>
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="20dp"
+                            android:background="@drawable/drop_down_arr"
+                            android:paddingEnd="10dp" />
+
+                    </RelativeLayout>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="Description (Optional)"
+                        android:textSize="16dp" />
+
+                    <EditText
+                        android:id="@+id/description"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/stroke"
+                        android:hint="Enter the description"
+                        android:paddingLeft="10dp">
+
+                    </EditText>
+
+                </LinearLayout>
             </ScrollView>
         </LinearLayout>
     </LinearLayout>

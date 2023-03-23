@@ -624,4 +624,12 @@ public class Activity_Transaction extends AppCompatActivity {
         }
 
     }
+
+    @Override
+    public void onBackPressed(){
+        Intent intent = new Intent(Activity_Transaction.this, Activity_HomePage.class);
+
+        startActivity(intent);
+        finish();
+    }
 }

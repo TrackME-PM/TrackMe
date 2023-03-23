@@ -44,8 +44,6 @@ public class MainActivity extends AppCompatActivity {
                 usrnm = username.getText().toString();
                 psswrd = password.getText().toString();
 
-
-
                 loginBtnClicked(usrnm, psswrd);
 
             }

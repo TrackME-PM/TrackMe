@@ -160,4 +160,10 @@ public class Activity_Report extends AppCompatActivity {
 
 
     }
+
+    @Override
+    public void onBackPressed(){
+        startActivity(new Intent(Activity_Report.this, Activity_HomePage.class));
+        finish();
+    }
 }

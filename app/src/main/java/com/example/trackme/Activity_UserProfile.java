@@ -63,6 +63,14 @@ public class Activity_UserProfile extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed()
+    {
+        startActivity(new Intent(Activity_UserProfile.this, Activity_HomePage.class));
+        finish();
+
+    }
+
 
 
 //    public void openHomePage(View view){
