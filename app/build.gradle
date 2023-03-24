@@ -35,6 +35,13 @@ android {
     task prepareKotlinBuildScriptModel {
 
     }
+    packagingOptions {
+        exclude 'META-INF/INDEX.LIST'
+    }
+
+
+
+
 }
 
 dependencies {
@@ -64,11 +71,21 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
 
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+//
+    implementation files('libs/aa-poi-3.10-min-0.1.5.jar')
+    implementation files('libs/aa-poi-ooxml-schemas-3.10-reduced-more-0.1.5.jar')
 
 
-    implementation 'com.github.Gkemon:Android-XML-to-PDF-Generator:1.0'
+
+
 
     implementation 'net.danlew:android.joda:2.12.1.1'
+
+    implementation files('libs/activation.jar')
+    implementation files('libs/additional.jar')
+    implementation files('libs/mail.jar')
+
+
 
     // PDF Creator
 //    implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
