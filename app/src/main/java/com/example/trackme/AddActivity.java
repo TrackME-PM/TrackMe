@@ -63,7 +63,7 @@ public class AddActivity extends AppCompatActivity  {
 // System.out.println(date1);
 
     String getAmt, getDesc, getTitle;
-    Integer catId = 7, cardAmt, expId = 1;
+    Integer catId = 6, cardAmt, expId = 1;
     Spinner spinner;
 
 

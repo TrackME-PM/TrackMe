@@ -155,7 +155,7 @@
                         android:background="@drawable/border_table"
                         android:gravity="center"
                         android:padding="9dp"
-                        android:text="Due Amount"
+                        android:text="Due Amount (\u20B9)"
                         android:textColor="@color/white" />
 
 

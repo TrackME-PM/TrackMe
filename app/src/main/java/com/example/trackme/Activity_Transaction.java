@@ -486,7 +486,7 @@ public class Activity_Transaction extends AppCompatActivity {
                             expId = transaction.getTransactionTypeId();
 
                             if (catId.equals("7")) {
-                                cards card = new cards(title, desc, amt, date, catId, expId);
+                                cards card = new cards(title, desc, "(\u20B9)" + amt, date, catId, expId);
                                 tempList.add(card);
                             }
 

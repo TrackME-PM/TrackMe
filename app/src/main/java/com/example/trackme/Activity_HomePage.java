@@ -119,11 +119,11 @@ public class Activity_HomePage extends AppCompatActivity {
                     cardsList.add(card);
                 }
 
-                incAmt.setText(Double.toString(inc));
-                expAmt.setText(Double.toString(exp));
+                incAmt.setText("\u20B9 " + Double.toString(inc));
+                expAmt.setText("\u20B9 " + Double.toString(exp));
 
                 int size = cardsList.size() - 1;
-                for(int i = size; i > size - 5; i--) {
+                for(int i = size; i > 0; i--) {
                     cards card = cardsList.get(i);
                     tempList.add(card);
                 }

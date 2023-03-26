@@ -38,17 +38,17 @@ import com.example.trackme.data.model.Transaction;
 import com.example.trackme.databinding.ActivityReportFormatBinding;
 //import com.github.barteksc.pdfviewer.PDFView;
 
-
-import org.apache.poi.ss.usermodel.BorderStyle;
-import org.apache.poi.ss.usermodel.FillPatternType;
-import org.apache.poi.ss.usermodel.HorizontalAlignment;
-import org.apache.poi.ss.usermodel.IndexedColors;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFCellStyle;
-import org.apache.poi.xssf.usermodel.XSSFFont;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+//
+//import org.apache.poi.ss.usermodel.BorderStyle;
+//import org.apache.poi.ss.usermodel.FillPatternType;
+//import org.apache.poi.ss.usermodel.HorizontalAlignment;
+//import org.apache.poi.ss.usermodel.IndexedColors;
+//import org.apache.poi.xssf.usermodel.XSSFCell;
+//import org.apache.poi.xssf.usermodel.XSSFCellStyle;
+//import org.apache.poi.xssf.usermodel.XSSFFont;
+//import org.apache.poi.xssf.usermodel.XSSFRow;
+//import org.apache.poi.xssf.usermodel.XSSFSheet;
+//import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -65,12 +65,12 @@ import java.util.Objects;
 import java.util.Properties;
 
 
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+//import javax.mail.MessagingException;
+//import javax.mail.PasswordAuthentication;
+//import javax.mail.Session;
+//import javax.mail.Transport;
+//import javax.mail.internet.InternetAddress;
+//import javax.mail.internet.MimeMessage;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -107,7 +107,7 @@ public class Report_Format extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_format);
-        checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, STORAGE_PERMISSION_CODE);
+        //checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, STORAGE_PERMISSION_CODE);
 
 
         dueAmt = findViewById(R.id.totalDue);
@@ -234,7 +234,7 @@ public class Report_Format extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                createXlsx(reportList);
+                //createXlsx(reportList);
             }
         });
 
@@ -251,159 +251,155 @@ public class Report_Format extends AppCompatActivity {
 
     }
 
-    private void createXlsx(List<Report> reportList) {
-        try {
-            String strDate = new SimpleDateFormat("dd-MM-yyyy HH-mm-ss", Locale.getDefault()).format(new Date());
-            File root = new File(Environment
-                    .getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "FileExcel");
-            if (!root.exists())
-                root.mkdirs();
-
-            File path = new File(root, "/" + strDate + ".xlsx");
-
-            XSSFWorkbook workbook = new XSSFWorkbook();
-            FileOutputStream outputStream = new FileOutputStream(path);
-
-            XSSFCellStyle headerStyle = workbook.createCellStyle();
-            headerStyle.setAlignment(HorizontalAlignment.CENTER);
-            headerStyle.setFillForegroundColor(IndexedColors.BLUE_GREY.getIndex());
-            headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-            headerStyle.setBorderTop(BorderStyle.MEDIUM);
-            headerStyle.setBorderBottom(BorderStyle.MEDIUM);
-            headerStyle.setBorderRight(BorderStyle.MEDIUM);
-            headerStyle.setBorderLeft(BorderStyle.MEDIUM);
-
-            XSSFFont font = workbook.createFont();
-            font.setFontHeightInPoints((short) 12);
-            font.setColor(IndexedColors.WHITE.getIndex());
-            font.setBold(true);
-            headerStyle.setFont(font);
-
-            XSSFSheet sheet = workbook.createSheet("TrackME");
-            XSSFRow row = sheet.createRow(0);
-
-            XSSFCell cell = row.createCell(0);
-            cell.setCellValue("Date");
-            cell.setCellStyle(headerStyle);
-
-            cell = row.createCell(1);
-            cell.setCellValue("Title");
-            cell.setCellStyle(headerStyle);
-
-            cell = row.createCell(2);
-            cell.setCellValue("Category");
-            cell.setCellStyle(headerStyle);
-
-            cell = row.createCell(3);
-            cell.setCellValue("Due Amount");
-            cell.setCellStyle(headerStyle);
-
-            String cat[] = {"Food And Beverages","Pantry","Stationary","Travel","Staff","Others","Income"};
-
-            for (int i = 0; i < reportList.size(); i++) {
-                row = sheet.createRow(i + 1);
-
-                cell = row.createCell(0);
-                cell.setCellValue(reportList.get(i).getTrDate());
-                sheet.setColumnWidth(0, (reportList.get(i).getTrDate().length() + 10) * 256);
-
-                cell = row.createCell(1);
-                cell.setCellValue(reportList.get(i).getTrTitle());
-                sheet.setColumnWidth(1, (reportList.get(i).getTrTitle().length()+15) * 256);
-
-                cell = row.createCell(2);
-                String category = cat[Integer.parseInt(reportList.get(i).getTrCategory())-1];
-                cell.setCellValue(category);
-                sheet.setColumnWidth(2, (reportList.get(i).getTrCategory().length()+30) * 256);
-
-                cell = row.createCell(3);
-                cell.setCellValue(reportList.get(i).getTrAmount());
-                sheet.setColumnWidth(3, (reportList.get(i).getTrAmount().length()+10) * 256);
-
-
-
-
-            }
-
-            workbook.write(outputStream);
-            outputStream.close();
-
-            Intent intentShareFile = new Intent(Intent.ACTION_SEND);
-            intentShareFile.putExtra(Intent.EXTRA_SUBJECT, "My Subject");
-            intentShareFile.putExtra(Intent.EXTRA_TEXT, "Extra text");
-            intentShareFile.setType("application/vnd.ms-excel");
-            intentShareFile.putExtra(Intent.EXTRA_STREAM, Uri.parse(path.getAbsolutePath()));
-            startActivity(Intent.createChooser(intentShareFile, "Share File"));
-
-
-
-
-            final String username = "prathamesh_girase@moderncoe.edu.in";
-            final String password = "McoeCode3250";
-            String message_to_send = "mpkulkarni117@gmail.com";
-
-            Properties props = new Properties();
-            props.put("mail.smtp.auth","true");
-            props.put("mail.smtp.starttls.enable","true");
-            props.put("mail.smtp.host","smtp.gmail.com");
-            props.put("mail.smtp.port","587");
-
-            Session session = Session.getInstance(props,
-                    new javax.mail.Authenticator(){
-                        @Override
-                        protected PasswordAuthentication getPasswordAuthentication(){
-                            return new PasswordAuthentication(username, password);
-                        }
-                    }
-                    );
-
-            try{
-                MimeMessage message = new MimeMessage(session);
-                message.setFrom(new InternetAddress());
-                message.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse(username));
-                message.setSubject("Sending Email Without Opening Gmail");
-                message.setText(message_to_send);
-                Transport.send(message);
-                Toast.makeText(getApplicationContext(),"email send succesfully", Toast.LENGTH_SHORT).show();
-            }catch (MessagingException e){
-                    throw new RuntimeException(e);
-            }
-
-
-
-
-
-
-
-            Toast.makeText(Report_Format.this, "Data successfully exported!", Toast.LENGTH_SHORT).show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-
-
-
-    public void checkPermission(String permission, int requestCode) {
-        if (ContextCompat.checkSelfPermission(Report_Format.this, permission) == PackageManager.PERMISSION_DENIED) {
-            ActivityCompat.requestPermissions(Report_Format.this, new String[]{permission}, requestCode);
-        } else {
-            Toast.makeText(Report_Format.this, "Permission already granted", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        if (requestCode == STORAGE_PERMISSION_CODE) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(Report_Format.this, "Storage Permission Granted", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(Report_Format.this, "Storage Permission Denied", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
+//    private void createXlsx(List<Report> reportList) {
+//        try {
+//            String strDate = new SimpleDateFormat("dd-MM-yyyy HH-mm-ss", Locale.getDefault()).format(new Date());
+//            File root = new File(Environment
+//                    .getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "FileExcel");
+//            if (!root.exists())
+//                root.mkdirs();
+//
+//            File path = new File(root, "/" + strDate + ".xlsx");
+//
+//            XSSFWorkbook workbook = new XSSFWorkbook();
+//            FileOutputStream outputStream = new FileOutputStream(path);
+//
+//            XSSFCellStyle headerStyle = workbook.createCellStyle();
+//            headerStyle.setAlignment(HorizontalAlignment.CENTER);
+//            headerStyle.setFillForegroundColor(IndexedColors.BLUE_GREY.getIndex());
+//            headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+//            headerStyle.setBorderTop(BorderStyle.MEDIUM);
+//            headerStyle.setBorderBottom(BorderStyle.MEDIUM);
+//            headerStyle.setBorderRight(BorderStyle.MEDIUM);
+//            headerStyle.setBorderLeft(BorderStyle.MEDIUM);
+//
+//            XSSFFont font = workbook.createFont();
+//            font.setFontHeightInPoints((short) 12);
+//            font.setColor(IndexedColors.WHITE.getIndex());
+//            font.setBold(true);
+//            headerStyle.setFont(font);
+//
+//            XSSFSheet sheet = workbook.createSheet("TrackME");
+//            XSSFRow row = sheet.createRow(0);
+//
+//            XSSFCell cell = row.createCell(0);
+//            cell.setCellValue("Date");
+//            cell.setCellStyle(headerStyle);
+//
+//            cell = row.createCell(1);
+//            cell.setCellValue("Title");
+//            cell.setCellStyle(headerStyle);
+//
+//            cell = row.createCell(2);
+//            cell.setCellValue("Category");
+//            cell.setCellStyle(headerStyle);
+//
+//            cell = row.createCell(3);
+//            cell.setCellValue("Due Amount");
+//            cell.setCellStyle(headerStyle);
+//
+//            String cat[] = {"Food And Beverages","Pantry","Stationary","Travel","Staff","Others","Income"};
+//
+//            for (int i = 0; i < reportList.size(); i++) {
+//                row = sheet.createRow(i + 1);
+//
+//                cell = row.createCell(0);
+//                cell.setCellValue(reportList.get(i).getTrDate());
+//                sheet.setColumnWidth(0, (reportList.get(i).getTrDate().length() + 10) * 256);
+//
+//                cell = row.createCell(1);
+//                cell.setCellValue(reportList.get(i).getTrTitle());
+//                sheet.setColumnWidth(1, (reportList.get(i).getTrTitle().length()+15) * 256);
+//
+//                cell = row.createCell(2);
+//                String category = cat[Integer.parseInt(reportList.get(i).getTrCategory())-1];
+//                cell.setCellValue(category);
+//                sheet.setColumnWidth(2, (reportList.get(i).getTrCategory().length()+30) * 256);
+//
+//                cell = row.createCell(3);
+//                cell.setCellValue(reportList.get(i).getTrAmount());
+//                sheet.setColumnWidth(3, (reportList.get(i).getTrAmount().length()+10) * 256);
+//
+//
+//
+//
+//            }
+//
+//            workbook.write(outputStream);
+//            outputStream.close();
+//
+//            Intent intentShareFile = new Intent(Intent.ACTION_SEND);
+//            intentShareFile.putExtra(Intent.EXTRA_SUBJECT, "My Subject");
+//            intentShareFile.putExtra(Intent.EXTRA_TEXT, "Extra text");
+//            intentShareFile.setType("application/vnd.ms-excel");
+//            intentShareFile.putExtra(Intent.EXTRA_STREAM, Uri.parse(path.getAbsolutePath()));
+//            startActivity(Intent.createChooser(intentShareFile, "Share File"));
+//
+//
+//
+//
+//            final String username = "prathamesh_girase@moderncoe.edu.in";
+//            final String password = "McoeCode3250";
+//            String message_to_send = "mpkulkarni117@gmail.com";
+//
+//            Properties props = new Properties();
+//            props.put("mail.smtp.auth","true");
+//            props.put("mail.smtp.starttls.enable","true");
+//            props.put("mail.smtp.host","smtp.gmail.com");
+//            props.put("mail.smtp.port","587");
+//
+//            Session session = Session.getInstance(props,
+//                    new javax.mail.Authenticator(){
+//                        @Override
+//                        protected PasswordAuthentication getPasswordAuthentication(){
+//                            return new PasswordAuthentication(username, password);
+//                        }
+//                    }
+//                    );
+//
+//            try{
+//                MimeMessage message = new MimeMessage(session);
+//                message.setFrom(new InternetAddress());
+//                message.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse(username));
+//                message.setSubject("Sending Email Without Opening Gmail");
+//                message.setText(message_to_send);
+//                Transport.send(message);
+//                Toast.makeText(getApplicationContext(),"email send succesfully", Toast.LENGTH_SHORT).show();
+//            }catch (MessagingException e){
+//                    throw new RuntimeException(e);
+//            }
+//
+//
+//
+//            Toast.makeText(Report_Format.this, "Data successfully exported!", Toast.LENGTH_SHORT).show();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//    StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+//
+//
+//
+//    public void checkPermission(String permission, int requestCode) {
+//        if (ContextCompat.checkSelfPermission(Report_Format.this, permission) == PackageManager.PERMISSION_DENIED) {
+//            ActivityCompat.requestPermissions(Report_Format.this, new String[]{permission}, requestCode);
+//        } else {
+//            Toast.makeText(Report_Format.this, "Permission already granted", Toast.LENGTH_SHORT).show();
+//        }
+//    }
+//
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//
+//        if (requestCode == STORAGE_PERMISSION_CODE) {
+//            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                Toast.makeText(Report_Format.this, "Storage Permission Granted", Toast.LENGTH_SHORT).show();
+//            } else {
+//                Toast.makeText(Report_Format.this, "Storage Permission Denied", Toast.LENGTH_SHORT).show();
+//            }
+//        }
+//    }
 
     @Override
     public void onBackPressed(){

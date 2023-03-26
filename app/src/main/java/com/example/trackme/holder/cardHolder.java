@@ -79,8 +79,13 @@ public class cardHolder extends RecyclerView.ViewHolder {
             case "6":
                 img.setImageResource(R.drawable.other_icon);
                 break;
-            default:
+            case "7":
                 img.setImageResource(R.drawable.income_icon);
+                break;
+
+            default:
+
+                img.setImageResource(R.drawable.other_icon);
                 break;
 
         }

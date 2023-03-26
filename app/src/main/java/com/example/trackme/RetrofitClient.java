@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitClient {
     static RetrofitClient retrofit;
     ApiInterface apiInterface;
-    private static String BASE_URL = "https://expensemanager20230309225838.azurewebsites.net/";
+    private static String BASE_URL = "https://expensemanager20230325125916.azurewebsites.net/";
 
     RetrofitClient(){
         Retrofit retrofit = new Retrofit.Builder()

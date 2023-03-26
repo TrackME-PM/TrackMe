@@ -24,6 +24,7 @@
                 android:layout_height="match_parent"
                 android:padding="9dp"
                 android:text="Tr Date"
+                android:gravity="center"
                 android:textSize="12sp"
                 android:textColor="@color/black" />
 
