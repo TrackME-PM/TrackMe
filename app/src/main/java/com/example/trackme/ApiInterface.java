@@ -5,15 +5,17 @@ import com.example.trackme.data.model.Transaction;
 import com.example.trackme.data.model.TransactionType;
 import com.example.trackme.data.model.User;
 
+import java.io.InputStream;
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Streaming;
+import retrofit2.http.Url;
 
 public interface ApiInterface {
 
@@ -41,4 +43,8 @@ public interface ApiInterface {
 
     @POST("api/transactions")
     Call<Transaction> addTransaction(@Body Transaction transaction);
+
+    @GET("api/transactions/generatepdf")
+    Call<InputStream> getPdf(@Body String month, @Body String year);
+
 }

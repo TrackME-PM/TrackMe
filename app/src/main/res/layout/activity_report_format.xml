@@ -225,6 +225,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@color/transparent"
+
                 android:src="@drawable/file_download" />
 
         </androidx.cardview.widget.CardView>

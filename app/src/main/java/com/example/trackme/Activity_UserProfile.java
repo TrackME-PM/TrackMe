@@ -9,15 +9,17 @@ import android.view.View;
 
 import com.example.trackme.databinding.ActivityUserProfileBinding;
 
+import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.Date;
+
 
 public class Activity_UserProfile extends AppCompatActivity {
 
+    private static final String PDF_API_FORMAT = "https://expensemanager20230325125916.azurewebsites.net/api/transactions/generatepdf?i_month=%s&i_year=%d";
+
+    private static final int CUT_OFF_DAY = 7;
     ActivityUserProfileBinding activityUserProfileBinding;
-
-
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +46,24 @@ public class Activity_UserProfile extends AppCompatActivity {
         activityUserProfileBinding.reportBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Activity_UserProfile.this, Report_Format.class));
-                finish();
+                Calendar c = Calendar.getInstance();
+                String[]monthName={"January","February","March", "April", "May", "June", "July",
+                        "August", "September", "October", "November",
+                        "December"};
+
+                int monthIndex = c.get(Calendar.MONTH);
+                int year=c.get(Calendar.YEAR);
+                int dayOfMonth = c.get(Calendar.DAY_OF_MONTH);
+                if(dayOfMonth <= CUT_OFF_DAY){
+                    monthIndex = (monthIndex + 11) % 12;
+                }
+
+
+                String month=monthName[monthIndex];
+                String apiUrl = String.format(PDF_API_FORMAT, month, year);
+                Intent intent = new Intent();
+                intent.setData(Uri.parse(apiUrl));
+                startActivity(intent);
             }
         });
 
