@@ -2,7 +2,6 @@ package com.example.trackme;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,20 +13,14 @@ import android.os.Bundle;
 
 
 import com.example.trackme.adapter.CardAdapter;
-import com.example.trackme.data.model.Category;
 import com.example.trackme.data.model.Transaction;
 import com.example.trackme.databinding.ActivityTransactionBinding;
-import com.example.trackme.holder.cardHolder;
 
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -37,21 +30,14 @@ import retrofit2.Response;
 
 public class Activity_Transaction extends AppCompatActivity {
 
-    TextView catName;
-
-    TextView cardDesc, cardAmt, cardDate;
-    private String desc, title, amt, date, catId, expId;
+    private String desc, title, amt, date, categoryId, transactionType;
 
     RelativeLayout catAll, catFood, catTravel, catStat, catStaff, catOther, catInc, catPantry;
 
     CardAdapter cardAdapter;
     List<Transaction> allTransactionList, transactionList;
-    Category category;
     List<cards> cardsList, tempList;
-    cardHolder holder;
     RecyclerView recyclerView;
-
-    ArrayAdapter<CharSequence> adapterItems;
     ActivityTransactionBinding activityTransactionBinding;
 
     @Override
@@ -84,13 +70,14 @@ public class Activity_Transaction extends AppCompatActivity {
                     amt = transaction.getAmount();
                     date = transaction.getDate();
 
-                    catId = transaction.getCategoryId();
-                    expId = transaction.getTransactionTypeId();
+                    categoryId = transaction.getCategoryId();
+                    transactionType
+                            = transaction.getTransactionTypeId();
 
-                    Log.e("tran", "success" + expId);
-                    Log.e("tran", "success" + catId);
+                    Log.e("tran", "success" + transactionType);
+                    Log.e("tran", "success" + categoryId);
 
-                    cards card = new cards(title, desc, amt, date, catId, expId);
+                    cards card = new cards(title, desc, amt, date, categoryId, transactionType);
                     cardsList.add(card);
                 }
                 Collections.reverse(cardsList);
@@ -154,11 +141,11 @@ public class Activity_Transaction extends AppCompatActivity {
                             amt = transaction.getAmount();
                             date = transaction.getDate();
                             date = date.substring(0, 10);
-                            catId = transaction.getCategoryId();
-                            expId = transaction.getTransactionTypeId();
+                            categoryId = transaction.getCategoryId();
+                            transactionType = transaction.getTransactionTypeId();
 
-                            if (catId.equals("1")) {
-                                cards card = new cards(title, desc, amt, date, catId, expId);
+                            if (categoryId.equals("1")) {
+                                cards card = new cards(title, desc, amt, date, categoryId, transactionType);
                                 tempList.add(card);
                             }
 
@@ -199,11 +186,11 @@ public class Activity_Transaction extends AppCompatActivity {
                             amt = transaction.getAmount();
                             date = transaction.getDate();
                             date = date.substring(0, 10);
-                            catId = transaction.getCategoryId();
-                            expId = transaction.getTransactionTypeId();
+                            categoryId = transaction.getCategoryId();
+                            transactionType = transaction.getTransactionTypeId();
 
-                            if (catId.equals("4")) {
-                                cards card = new cards(title, desc, amt, date, catId, expId);
+                            if (categoryId.equals("4")) {
+                                cards card = new cards(title, desc, amt, date, categoryId, transactionType);
                                 tempList.add(card);
                             }
 
@@ -246,11 +233,11 @@ public class Activity_Transaction extends AppCompatActivity {
                             amt = transaction.getAmount();
                             date = transaction.getDate();
                             date = date.substring(0, 10);
-                            catId = transaction.getCategoryId();
-                            expId = transaction.getTransactionTypeId();
+                            categoryId = transaction.getCategoryId();
+                            transactionType = transaction.getTransactionTypeId();
 
-                            if (catId.equals("3")) {
-                                cards card = new cards(title, desc, amt, date, catId, expId);
+                            if (categoryId.equals("3")) {
+                                cards card = new cards(title, desc, amt, date, categoryId, transactionType);
                                 tempList.add(card);
                             }
 
@@ -292,11 +279,11 @@ public class Activity_Transaction extends AppCompatActivity {
                             amt = transaction.getAmount();
                             date = transaction.getDate();
                             date = date.substring(0, 10);
-                            catId = transaction.getCategoryId();
-                            expId = transaction.getTransactionTypeId();
+                            categoryId = transaction.getCategoryId();
+                            transactionType = transaction.getTransactionTypeId();
 
-                            if (catId.equals("5")) {
-                                cards card = new cards(title, desc, amt, date, catId, expId);
+                            if (categoryId.equals("5")) {
+                                cards card = new cards(title, desc, amt, date, categoryId, transactionType);
                                 tempList.add(card);
                             }
 
@@ -338,11 +325,11 @@ public class Activity_Transaction extends AppCompatActivity {
                             amt = transaction.getAmount();
                             date = transaction.getDate();
                             date = date.substring(0, 10);
-                            catId = transaction.getCategoryId();
-                            expId = transaction.getTransactionTypeId();
+                            categoryId = transaction.getCategoryId();
+                            transactionType = transaction.getTransactionTypeId();
 
-                            if (catId.equals("6")) {
-                                cards card = new cards(title, desc, amt, date, catId, expId);
+                            if (categoryId.equals("6")) {
+                                cards card = new cards(title, desc, amt, date, categoryId, transactionType);
                                 tempList.add(card);
                             }
 
@@ -434,11 +421,11 @@ public class Activity_Transaction extends AppCompatActivity {
                             amt = transaction.getAmount();
                             date = transaction.getDate();
                             date = date.substring(0, 10);
-                            catId = transaction.getCategoryId();
-                            expId = transaction.getTransactionTypeId();
+                            categoryId = transaction.getCategoryId();
+                            transactionType = transaction.getTransactionTypeId();
 
-                            if (catId.equals("2")) {
-                                cards card = new cards(title, desc, amt, date, catId, expId);
+                            if (categoryId.equals("2")) {
+                                cards card = new cards(title, desc, amt, date, categoryId, transactionType);
                                 tempList.add(card);
                             }
 
@@ -482,11 +469,11 @@ public class Activity_Transaction extends AppCompatActivity {
                             amt = transaction.getAmount();
                             date = transaction.getDate();
                             date = date.substring(0, 10);
-                            catId = transaction.getCategoryId();
-                            expId = transaction.getTransactionTypeId();
+                            categoryId = transaction.getCategoryId();
+                            transactionType = transaction.getTransactionTypeId();
 
-                            if (catId.equals("7")) {
-                                cards card = new cards(title, desc, "(\u20B9)" + amt, date, catId, expId);
+                            if (categoryId.equals("7")) {
+                                cards card = new cards(title, desc, amt, date, categoryId, transactionType);
                                 tempList.add(card);
                             }
 

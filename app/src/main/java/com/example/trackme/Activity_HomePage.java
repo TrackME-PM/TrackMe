@@ -28,6 +28,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -79,8 +81,8 @@ public class Activity_HomePage extends AppCompatActivity {
         mProgressDialog.setMessage("Loading...");
         mProgressDialog.show();
 
-
-
+        Calendar c = Calendar.getInstance();
+        int currMonth = c.get(Calendar.MONTH);
 
 
 
@@ -105,32 +107,35 @@ public class Activity_HomePage extends AppCompatActivity {
                     date = date.substring(0, 10);
                     catId = transaction.getCategoryId();
                     expId = transaction.getTransactionTypeId();
-                    Log.e("tran","success"+ expId);
-                    Log.e("tran","success"+ catId);
 
+                    String[] str = date.split("-");
+                    int month = Integer.parseInt(str[1]);
+                    if(month == currMonth+1) {
 
-                    if(expId.equals("1")){
-                        exp += Double.parseDouble(transaction.getAmount());
-                    } else if (expId.equals("2")) {
-                        inc += Double.parseDouble(transaction.getAmount());
+                        if(expId.equals("1")){
+                            exp += Double.parseDouble(transaction.getAmount());
+                        } else if (expId.equals("2")) {
+                            inc += Double.parseDouble(transaction.getAmount());
+                        }
+                        Log.e("tran","success"+ title);
+                        Log.e("tran","success"+ amt);
+                        Log.e("tran","success"+ desc);
+                        Log.e("tran","success"+ date);
+                        Log.e("tran","success"+ expId);
+                        Log.e("tran","success"+ catId);
+                        cards card = new cards(title, desc, amt, date, catId, expId);
+                        cardsList.add(card);
                     }
 
-                    cards card = new cards(title, desc, amt, date, catId, expId);
-                    cardsList.add(card);
                 }
 
                 incAmt.setText("\u20B9 " + Double.toString(inc));
                 expAmt.setText("\u20B9 " + Double.toString(exp));
 
-                int size = cardsList.size() - 1;
-                for(int i = size; i > 0; i--) {
-                    cards card = cardsList.get(i);
-                    tempList.add(card);
-                }
 
-
+                Collections.reverse(cardsList);
                 recyclerView = findViewById(R.id.itemsRecycler);
-                cardAdapter = new CardAdapter(Activity_HomePage.this, tempList);
+                cardAdapter = new CardAdapter(Activity_HomePage.this, cardsList);
                 recyclerView.setAdapter(cardAdapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(Activity_HomePage.this));
                 // Toast.makeText(Activity_Transaction.this, Integer.toString(cardsList.size()), Toast.LENGTH_SHORT).show();

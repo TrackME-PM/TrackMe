@@ -26,12 +26,10 @@ import com.example.trackme.databinding.ActivityAddBinding;
 import com.example.trackme.holder.cardHolder;
 
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,13 +42,13 @@ public class AddActivity extends AppCompatActivity  {
 
     Button addBtn;
     ActivityAddBinding binding;
-    LinearLayout expLayout, incLayout;
+    LinearLayout expenseLayout, incomeLayout;
     RelativeLayout relativeLayout;
 
 
 
     TextView category;
-    EditText amt, desc, title;
+    EditText amtEditText, descEditText, titleEditText;
 
 
 
@@ -62,8 +60,7 @@ public class AddActivity extends AppCompatActivity  {
 
 // System.out.println(date1);
 
-    String getAmt, getDesc, getTitle;
-    Integer catId = 6, cardAmt, expId = 1;
+    Integer categoryId = 6, transactionType = 1;
     Spinner spinner;
 
 
@@ -86,9 +83,9 @@ public class AddActivity extends AppCompatActivity  {
         binding = ActivityAddBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        title = (EditText) findViewById(R.id.title);
-        desc = (EditText) findViewById(R.id.description);
-        amt= (EditText) findViewById(R.id.amount);
+        titleEditText = (EditText) findViewById(R.id.title);
+        descEditText = (EditText) findViewById(R.id.description);
+        amtEditText = (EditText) findViewById(R.id.amount);
 
 
 
@@ -96,16 +93,16 @@ public class AddActivity extends AppCompatActivity  {
         category = findViewById(R.id.textViewCategory);
         relativeLayout =(RelativeLayout) findViewById(R.id.categoryLayout);
 
-        incLayout = findViewById(R.id.isIncome);
-        expLayout = findViewById(R.id.isExpense);
-        incLayout.setBackgroundColor(android.R.color.transparent);
+        incomeLayout = findViewById(R.id.isIncome);
+        expenseLayout = findViewById(R.id.isExpense);
+        incomeLayout.setBackgroundColor(android.R.color.transparent);
 
         binding.isExpense.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                expId = 1;
-                incLayout.setBackgroundColor(android.R.color.transparent);
-                expLayout.setBackgroundResource(R.drawable.rectangle_border);
+                transactionType = 1;
+                incomeLayout.setBackgroundColor(android.R.color.transparent);
+                expenseLayout.setBackgroundResource(R.drawable.rectangle_border);
                 relativeLayout.setVisibility(1);
                 category.setVisibility(1);
             }
@@ -115,10 +112,10 @@ public class AddActivity extends AppCompatActivity  {
 
             @Override
             public void onClick(View view) {
-                catId = 7;
-                expId = 2;
-                expLayout.setBackgroundColor(android.R.color.transparent);
-                incLayout.setBackgroundResource(R.drawable.rectangle_border);
+                categoryId = 7;
+                transactionType = 2;
+                expenseLayout.setBackgroundColor(android.R.color.transparent);
+                incomeLayout.setBackgroundResource(R.drawable.rectangle_border);
                 relativeLayout.setVisibility(view.GONE);
                 category.setVisibility(view.GONE);
 
@@ -147,22 +144,22 @@ public class AddActivity extends AppCompatActivity  {
 
                 int positonInt = Integer.parseInt(item_position);
                 if(positonInt == 0) {
-                    catId = 1;
+                    categoryId = 1;
                 }
                 else if (positonInt == 1) {
-                    catId = 2;
+                    categoryId = 2;
                 }
                 else if (positonInt == 2) {
-                    catId = 3;
+                    categoryId = 3;
                 }
                 else if (positonInt == 3) {
-                    catId = 4;
+                    categoryId = 4;
                 }
                 else if (positonInt == 4) {
-                    catId = 5;
+                    categoryId = 5;
                 }
                 else if (positonInt == 5) {
-                    catId = 6;
+                    categoryId = 6;
                 }
 
                 adapterItems.notifyDataSetChanged();
@@ -179,26 +176,31 @@ public class AddActivity extends AppCompatActivity  {
         binding.addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getTitle = title.getText().toString();
-                if( getTitle.length() == 0 ){
-                    title.setError( "Title is required!" );
+                String amount, desc, title;
+
+                title = titleEditText.getText().toString();
+                if (StringUtils.isBlank(title)) {
+                    titleEditText.setError( "Title is required!" );
                 }
-                getAmt = amt.getText().toString();
-                if(getAmt.length() == 0){
-                    amt.setError("Amount is required");
-                    getAmt = "0";
+
+                amount = amtEditText.getText().toString();
+                if(StringUtils.isBlank(amount)){
+                    amtEditText.setError("Amount is required");
                 }
-                getDesc = desc.getText().toString();
-                if(getDesc.length() == 0){
-                    getDesc = "No description";
+
+                desc = descEditText.getText().toString();
+                if(StringUtils.isBlank(desc)){
+                    desc = StringUtils.EMPTY;
                 }
 
 
 //                Toast.makeText(AddActivity.this,getTitle,Toast.LENGTH_SHORT).show();
-                Log.e("Add","Success"+ getAmt);
-                if(!getTitle.equals("") && !getAmt.equals("") && !getDesc.equals("")){
+                Log.e("Add","Success"+ amount);
+                if(!title.isEmpty()
+                        && !amount.isEmpty()) {
+
                     ApiInterface retrofitApi = RetrofitClient.getRetrofitInstance().apiInterface;
-                    Transaction transaction = new Transaction(getTitle,getDesc,Double.parseDouble(getAmt),date.toString(),expId,catId);
+                    Transaction transaction = new Transaction(title, desc,Double.parseDouble(amount),date.toString(), transactionType, categoryId);
                     Call<Transaction> call = retrofitApi.addTransaction(transaction);
                     call.enqueue(new Callback<Transaction>() {
                         @Override

@@ -12,9 +12,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.example.trackme.adapter.ReportAdapter;
@@ -40,7 +43,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Objects;
 
 
 //import javax.mail.MessagingException;
@@ -57,28 +62,19 @@ import retrofit2.Response;
 
 public class Report_Format extends AppCompatActivity {
 
-    TextView dueAmt, tvMonth;
+    EditText monthName, year;
+    String i_month, i_year;
 
-    LinearLayout linear, layout;
-    CardView downBtn;
-    List<Report> reportList;
-    double sum = 0, getAmt;
+    private static final String PDF_API_FORMAT = "https://expensemanager20230325125916.azurewebsites.net/api/transactions/generatepdf?i_month=%s&i_year=%s";
 
-    Uri uri;
+    private static final int CUT_OFF_DAY = 7;
 
-    private String desc, title, amt, date ,catId, expId;
-    private String month, year;
-    List<Transaction> allTransactionList;
-    RecyclerView recyclerView;
-    String[] monthArr = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
-
-    String[] header = {"Tr Date", "Title", "Category", "Due Amount"};
-    ReportAdapter reportAdapter;
 
 
 //    PDFView pdfView;
 
     ImageView backBtn;
+    Button getReportBtn;
     private static final int STORAGE_PERMISSION_CODE = 101;
 
     private File filePath = null;
@@ -87,138 +83,44 @@ public class Report_Format extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_format);
-        //checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, STORAGE_PERMISSION_CODE);
 
+        monthName = findViewById(R.id.month);
+        year = findViewById(R.id.year);
 
-        dueAmt = findViewById(R.id.totalDue);
-        tvMonth = findViewById(R.id.monthName);
-
-        reportList = new ArrayList<>();
-
-        ProgressDialog mProgressDialog = new ProgressDialog(this);
-        mProgressDialog.setIndeterminate(true);
-        mProgressDialog.setMessage("Loading...");
-        mProgressDialog.show();
-
-
-
-//        RetrofitClient.getRetrofitInstance().apiInterface.getTransactions().enqueue(new Callback<List<Transaction>>() {
-//            @Override
-//            public void onResponse(Call<List<Transaction>> call, Response<List<Transaction>> response) {
-//
-//                if (mProgressDialog.isShowing()){
-//                    mProgressDialog.dismiss();
-//                }
-//                allTransactionList = response.body();
-//
-//                String[] str = allTransactionList.get(1).getDate().split("-");
-//                int month = Integer.parseInt(str[1]);
-//                String getMonth = monthArr[month-1];
-//                year = str[0];
-//                tvMonth.setText(getMonth);
-//
-//                for (Transaction transaction: allTransactionList) {
-//                    title = transaction.getName();
-//                    desc = transaction.getDescription();
-//                    amt = transaction.getAmount();
-//                    date = transaction.getDate();
-//                    date = date.substring(0, 10);
-//                    catId = transaction.getCategoryId();
-//                    expId = (transaction.getTransactionTypeId());
-//
-//
-//                    Log.e("report", "OnSuccess " + title);
-//                    Log.e("report", "OnSuccess " + desc);
-//                    Log.e("report", "OnSuccess " + amt);
-//                    Log.e("report", "OnSuccess " + date);
-//                    Log.e("report", "OnSuccess " + catId);
-//                    Log.e("report", "OnSuccess " + expId);
-//
-//
-//                    if(expId.equals("1")){
-//                        Log.e("report", "OnSuccess " + expId);
-//                        String[] dates = transaction.getDate().split("-");
-//                        LocalDate date_var = null;
-//                        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-//                            date_var = LocalDate.now();
-//                        }
-//                        String[] currDate = date_var.toString().split("-");
-//                        int day = Integer.parseInt((currDate[2]));
-//                        int mnth = Integer.parseInt((currDate[1]));
-//                        if(day<=7){
-//                            tvMonth.setText(monthArr[mnth-2]);
-//                            int pos = Integer.parseInt(dates[1]);
-//                            if((mnth-1) == pos) {
-//                                Report report = new Report(date, title, catId, amt);
-//                                reportList.add(report);
-//                                getAmt = Double.parseDouble(amt);
-//                                sum += getAmt;
-//                            }
-//
-//                        }
-//                        else{
-//                            tvMonth.setText(monthArr[mnth-1]);
-//                            int pos = Integer.parseInt(dates[1]);
-//                            if(mnth == pos) {
-//                                Report report = new Report(date, title, catId, amt);
-//                                reportList.add(report);
-//                                getAmt = Double.parseDouble(amt);
-//                                sum += getAmt;
-//                            }
-//
-//
-//                        }
-//
-//
-//
-//
-//                        Log.e("amount", "OnSuccess " + date_var.toString());
-//
-//                    }
-//
-//                }
-//
-//
-////                Toast.makeText(Report_Format.this,reportList.size(),Toast.LENGTH_SHORT).show();
-//
-//
-//                dueAmt.setText(Double.toString(sum));
-//
-//
-//
-//                recyclerView = findViewById(R.id.dataRecycler);
-//                reportAdapter = new ReportAdapter(Report_Format.this, reportList);
-//                recyclerView.setAdapter(reportAdapter);
-//                recyclerView.setLayoutManager(new LinearLayoutManager(Report_Format.this));
-//
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<Transaction>> call, Throwable t) {
-//                if (mProgressDialog.isShowing()){
-//                    mProgressDialog.dismiss();
-//                }
-//            }
-//        });
-//
-
-        final File[] file = new File[1];
-
-        linear = findViewById(R.id.lineard);
-        layout = findViewById(R.id.layoutPage);
-//        pdfView = findViewById(R.id.pdfView);
-
-        downBtn = findViewById(R.id.downloadBtn);
-
-        downBtn.setOnClickListener(new View.OnClickListener() {
-
-
+        getReportBtn = findViewById(R.id.getReportBtn);
+        getReportBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //createXlsx(reportList);
-                Intent intent = new Intent();
-                intent.setData(Uri.parse("https://expensemanager20230325125916.azurewebsites.net/api/Transactions/generatepdf?i_month=march&i_year=2023"));
-                startActivity(intent);
+
+                i_month = monthName.getText().toString();
+                i_year = year.getText().toString();
+
+                if(i_month.isEmpty()){
+                    monthName.setError("Month is required!");
+                }
+                if(i_year.isEmpty()){
+                    year.setError("Year is required");
+                }
+
+
+
+                if(!i_month.isEmpty() && !i_year.isEmpty()){
+                    if(validateMonth(i_month) && validateYear(i_year)){
+                        Log.e("url", i_month + " " + i_year);
+                        String apiUrl = String.format(PDF_API_FORMAT, i_month, i_year);
+                        Intent intent = new Intent();
+                        intent.setAction(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse(apiUrl));
+                        startActivity(intent);
+
+                    }
+                    else{
+                        Toast.makeText(Report_Format.this, "Enter valid month and year!!! ", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+
+//
             }
         });
 
@@ -235,156 +137,6 @@ public class Report_Format extends AppCompatActivity {
 
     }
 
-//    private void createXlsx(List<Report> reportList) {
-//        try {
-//            String strDate = new SimpleDateFormat("dd-MM-yyyy HH-mm-ss", Locale.getDefault()).format(new Date());
-//            File root = new File(Environment
-//                    .getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "FileExcel");
-//            if (!root.exists())
-//                root.mkdirs();
-//
-//            File path = new File(root, "/" + strDate + ".xlsx");
-//
-//            XSSFWorkbook workbook = new XSSFWorkbook();
-//            FileOutputStream outputStream = new FileOutputStream(path);
-//
-//            XSSFCellStyle headerStyle = workbook.createCellStyle();
-//            headerStyle.setAlignment(HorizontalAlignment.CENTER);
-//            headerStyle.setFillForegroundColor(IndexedColors.BLUE_GREY.getIndex());
-//            headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-//            headerStyle.setBorderTop(BorderStyle.MEDIUM);
-//            headerStyle.setBorderBottom(BorderStyle.MEDIUM);
-//            headerStyle.setBorderRight(BorderStyle.MEDIUM);
-//            headerStyle.setBorderLeft(BorderStyle.MEDIUM);
-//
-//            XSSFFont font = workbook.createFont();
-//            font.setFontHeightInPoints((short) 12);
-//            font.setColor(IndexedColors.WHITE.getIndex());
-//            font.setBold(true);
-//            headerStyle.setFont(font);
-//
-//            XSSFSheet sheet = workbook.createSheet("TrackME");
-//            XSSFRow row = sheet.createRow(0);
-//
-//            XSSFCell cell = row.createCell(0);
-//            cell.setCellValue("Date");
-//            cell.setCellStyle(headerStyle);
-//
-//            cell = row.createCell(1);
-//            cell.setCellValue("Title");
-//            cell.setCellStyle(headerStyle);
-//
-//            cell = row.createCell(2);
-//            cell.setCellValue("Category");
-//            cell.setCellStyle(headerStyle);
-//
-//            cell = row.createCell(3);
-//            cell.setCellValue("Due Amount");
-//            cell.setCellStyle(headerStyle);
-//
-//            String cat[] = {"Food And Beverages","Pantry","Stationary","Travel","Staff","Others","Income"};
-//
-//            for (int i = 0; i < reportList.size(); i++) {
-//                row = sheet.createRow(i + 1);
-//
-//                cell = row.createCell(0);
-//                cell.setCellValue(reportList.get(i).getTrDate());
-//                sheet.setColumnWidth(0, (reportList.get(i).getTrDate().length() + 10) * 256);
-//
-//                cell = row.createCell(1);
-//                cell.setCellValue(reportList.get(i).getTrTitle());
-//                sheet.setColumnWidth(1, (reportList.get(i).getTrTitle().length()+15) * 256);
-//
-//                cell = row.createCell(2);
-//                String category = cat[Integer.parseInt(reportList.get(i).getTrCategory())-1];
-//                cell.setCellValue(category);
-//                sheet.setColumnWidth(2, (reportList.get(i).getTrCategory().length()+30) * 256);
-//
-//                cell = row.createCell(3);
-//                cell.setCellValue(reportList.get(i).getTrAmount());
-//                sheet.setColumnWidth(3, (reportList.get(i).getTrAmount().length()+10) * 256);
-//
-//
-//
-//
-//            }
-//
-//            workbook.write(outputStream);
-//            outputStream.close();
-//
-//            Intent intentShareFile = new Intent(Intent.ACTION_SEND);
-//            intentShareFile.putExtra(Intent.EXTRA_SUBJECT, "My Subject");
-//            intentShareFile.putExtra(Intent.EXTRA_TEXT, "Extra text");
-//            intentShareFile.setType("application/vnd.ms-excel");
-//            intentShareFile.putExtra(Intent.EXTRA_STREAM, Uri.parse(path.getAbsolutePath()));
-//            startActivity(Intent.createChooser(intentShareFile, "Share File"));
-//
-//
-//
-//
-//            final String username = "prathamesh_girase@moderncoe.edu.in";
-//            final String password = "McoeCode3250";
-//            String message_to_send = "mpkulkarni117@gmail.com";
-//
-//            Properties props = new Properties();
-//            props.put("mail.smtp.auth","true");
-//            props.put("mail.smtp.starttls.enable","true");
-//            props.put("mail.smtp.host","smtp.gmail.com");
-//            props.put("mail.smtp.port","587");
-//
-//            Session session = Session.getInstance(props,
-//                    new javax.mail.Authenticator(){
-//                        @Override
-//                        protected PasswordAuthentication getPasswordAuthentication(){
-//                            return new PasswordAuthentication(username, password);
-//                        }
-//                    }
-//                    );
-//
-//            try{
-//                MimeMessage message = new MimeMessage(session);
-//                message.setFrom(new InternetAddress());
-//                message.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse(username));
-//                message.setSubject("Sending Email Without Opening Gmail");
-//                message.setText(message_to_send);
-//                Transport.send(message);
-//                Toast.makeText(getApplicationContext(),"email send succesfully", Toast.LENGTH_SHORT).show();
-//            }catch (MessagingException e){
-//                    throw new RuntimeException(e);
-//            }
-//
-//
-//
-//            Toast.makeText(Report_Format.this, "Data successfully exported!", Toast.LENGTH_SHORT).show();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//    StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-//
-//
-//
-//    public void checkPermission(String permission, int requestCode) {
-//        if (ContextCompat.checkSelfPermission(Report_Format.this, permission) == PackageManager.PERMISSION_DENIED) {
-//            ActivityCompat.requestPermissions(Report_Format.this, new String[]{permission}, requestCode);
-//        } else {
-//            Toast.makeText(Report_Format.this, "Permission already granted", Toast.LENGTH_SHORT).show();
-//        }
-//    }
-//
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//
-//        if (requestCode == STORAGE_PERMISSION_CODE) {
-//            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                Toast.makeText(Report_Format.this, "Storage Permission Granted", Toast.LENGTH_SHORT).show();
-//            } else {
-//                Toast.makeText(Report_Format.this, "Storage Permission Denied", Toast.LENGTH_SHORT).show();
-//            }
-//        }
-//    }
-
     @Override
     public void onBackPressed(){
         Intent intent = new Intent(Report_Format.this, Activity_UserProfile.class);
@@ -392,53 +144,28 @@ public class Report_Format extends AppCompatActivity {
         finish();
     }
 
-    private boolean writeResponseBodyToDisk(ResponseBody body) {
-        try {
-            // todo change the file location/name according to your needs
-            File futureStudioIconFile = new File(getExternalFilesDir(null) + File.separator + "Future Studio Icon.png");
-
-            InputStream inputStream = null;
-            OutputStream outputStream = null;
-
-            try {
-                byte[] fileReader = new byte[4096];
-
-                long fileSize = body.contentLength();
-                long fileSizeDownloaded = 0;
-
-                inputStream = body.byteStream();
-                outputStream = new FileOutputStream(futureStudioIconFile);
-
-                while (true) {
-                    int read = inputStream.read(fileReader);
-
-                    if (read == -1) {
-                        break;
-                    }
-
-                    outputStream.write(fileReader, 0, read);
-
-                    fileSizeDownloaded += read;
-
-                    Log.d("File Download: " , fileSizeDownloaded + " of " + fileSize);
-                }
-
-                outputStream.flush();
-
+    public boolean validateMonth(String month) {
+        String[]monthName={"January","February","March", "April", "May", "June", "July",
+                "August", "September", "October", "November",
+                "December","january","february","march", "april", "may", "june", "july",
+                "august", "september", "october", "november",
+                "december"};
+        for(String s : monthName){
+            if(Objects.equals(month, s)){
                 return true;
-            } catch (IOException e) {
-                return false;
-            } finally {
-                if (inputStream != null) {
-                    inputStream.close();
-                }
-
-                if (outputStream != null) {
-                    outputStream.close();
-                }
             }
-        } catch (IOException e) {
-            return false;
         }
+        return false;
     }
+
+    public boolean validateYear(String year) {
+        int i_year = Integer.parseInt(year);
+        Calendar c = Calendar.getInstance();
+        int currYear = c.get(Calendar.YEAR);
+        if(i_year <= currYear){
+            return true;
+        }
+        return false;
+    }
+
 }

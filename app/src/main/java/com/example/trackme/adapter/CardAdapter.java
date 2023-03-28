@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trackme.R;
 import com.example.trackme.cards;
-import com.example.trackme.data.model.Transaction;
 import com.example.trackme.holder.cardHolder;
 
 import java.util.List;
@@ -40,8 +39,8 @@ public class CardAdapter extends RecyclerView.Adapter<cardHolder>{
         holder.setAmount(Double.valueOf(card.getAmount()));
         holder.setDate(card.getDate());
         holder.setTitle(card.getTitle());
-        holder.setType(card.getExpId());
-        holder.setCategory(card.getCatId());
+        holder.setType(card.getTransactionType());
+        holder.setCategory(card.getCategoryId());
 
     }
 

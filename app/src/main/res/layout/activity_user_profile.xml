@@ -158,6 +158,10 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            <LinearLayout
                 android:padding="20dp"
                 android:weightSum="4"
                 android:orientation="horizontal"
@@ -166,7 +170,43 @@
 
                 <TextView
                     android:layout_width="100dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:padding="15dp"
+                    android:textSize="18sp"
+                    android:textColor="@color/teal_200"
+                    android:text="Current Report">
+
+                </TextView>
+
+            <Button
+                android:id="@+id/reportBtn"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_radius"
+                android:text="Download" />
+
+            </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@color/color_two" />
+
+                <LinearLayout
+                android:padding="20dp"
+                android:weightSum="4"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:padding="15dp"
                     android:textSize="18sp"
@@ -175,16 +215,16 @@
 
                 </TextView>
 
-            <Button
-                android:id="@+id/reportBtn"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:background="@drawable/button_radius"
-                android:text="Report" />
+                <Button
+                    android:id="@+id/generateBtn"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_radius"
+                    android:text="Report" />
 
             </LinearLayout>
-
+            </LinearLayout>
         </androidx.cardview.widget.CardView>
 
     <Button

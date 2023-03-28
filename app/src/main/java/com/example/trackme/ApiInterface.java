@@ -1,6 +1,7 @@
 package com.example.trackme;
 
 import com.example.trackme.data.model.Category;
+import com.example.trackme.data.model.GeneratePdf;
 import com.example.trackme.data.model.Transaction;
 import com.example.trackme.data.model.TransactionType;
 import com.example.trackme.data.model.User;
@@ -14,6 +15,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 import retrofit2.http.Streaming;
 import retrofit2.http.Url;
 
@@ -45,6 +47,6 @@ public interface ApiInterface {
     Call<Transaction> addTransaction(@Body Transaction transaction);
 
     @GET("api/transactions/generatepdf")
-    Call<InputStream> getPdf(@Body String month, @Body String year);
+    Call<ResponseBody> getPdf(@Query("i_month") String month, @Query("i_year") String year);
 
 }

@@ -7,15 +7,15 @@ public class cards {
     private String title;
     private String amount;
     private String date;
-    private String expId, catId;
+    private String transactionType, categoryId;
 
     public cards(String title, String description, String amount, String date, String catId, String expId) {
         this.title = title;
         this.description = description;
         this.amount = amount;
         this.date = date;
-        this.expId = expId;
-        this.catId = catId;
+        this.transactionType = expId;
+        this.categoryId = catId;
     }
 
 
@@ -44,20 +44,20 @@ public class cards {
         this.date = date;
     }
 
-    public String getExpId() {
-        return expId;
+    public String getTransactionType() {
+        return transactionType;
     }
 
-    public void setExpId(String expId) {
-        this.expId = expId;
+    public void setTransactionType(String transactionType) {
+        this.transactionType = transactionType;
     }
 
-    public String getCatId() {
-        return catId;
+    public String getCategoryId() {
+        return categoryId;
     }
 
-    public void setCatId(String catId) {
-        this.catId = catId;
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
     }
 
     public String getTitle() {
